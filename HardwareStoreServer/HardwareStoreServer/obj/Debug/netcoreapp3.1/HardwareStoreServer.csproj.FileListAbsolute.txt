@@ -1,0 +1,158 @@
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.exe
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csprojAssemblyReference.cache
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorAssemblyInfo.cache
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorAssemblyInfo.cs
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.AssemblyInfoInputs.cache
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.AssemblyInfo.cs
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.TagHelpers.input.cache
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.TagHelpers.output.cache
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorCoreGenerate.cache
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorTargetAssemblyInfo.cache
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorTargetAssemblyInfo.cs
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\staticwebassets\HardwareStoreServer.StaticWebAssets.Manifest.cache
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\staticwebassets\HardwareStoreServer.StaticWebAssets.xml
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csproj.CoreCompileInputs.cache
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csproj.CopyComplete
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.deps.json
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.runtimeconfig.json
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.runtimeconfig.dev.json
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.pdb
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.Views.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.Views.pdb
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.Views.pdb
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.dll
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.pdb
+C:\Users\Liz\source\repos\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.genruntimeconfig.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\appsettings.json
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.exe
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.deps.json
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.runtimeconfig.json
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.runtimeconfig.dev.json
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.pdb
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.Views.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.Views.pdb
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csprojAssemblyReference.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csproj.CoreCompileInputs.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.MvcApplicationPartsAssemblyInfo.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorAssemblyInfo.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorAssemblyInfo.cs
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.AssemblyInfoInputs.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.AssemblyInfo.cs
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.TagHelpers.input.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.TagHelpers.output.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorCoreGenerate.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorTargetAssemblyInfo.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorTargetAssemblyInfo.cs
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.Views.pdb
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csproj.CopyComplete
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\staticwebassets\HardwareStoreServer.StaticWebAssets.Manifest.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\staticwebassets\HardwareStoreServer.StaticWebAssets.xml
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.pdb
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.genruntimeconfig.cache
