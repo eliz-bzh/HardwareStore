@@ -131,8 +131,6 @@ D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csprojAssemblyReference.cache
-D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csproj.CoreCompileInputs.cache
-D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.MvcApplicationPartsAssemblyInfo.cache
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorAssemblyInfo.cache
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.RazorAssemblyInfo.cs
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.AssemblyInfoInputs.cache
@@ -156,3 +154,7 @@ D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.dll
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.pdb
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.genruntimeconfig.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Humanizer.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csproj.CoreCompileInputs.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.MvcApplicationPartsAssemblyInfo.cache
