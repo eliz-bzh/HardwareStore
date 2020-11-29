@@ -12,7 +12,7 @@ export default class EditProductModal extends Component{
 
     constructor(props){
         super(props);
-        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[]};
+        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[], loading: false, image: this.props.image};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -50,17 +50,18 @@ export default class EditProductModal extends Component{
     handleSubmit=(event)=>{
         event.preventDefault();
         
-        axios.put(`https://localhost:44365/api/Product/update?${qs.stringify({
+        axios.put(`https://localhost:44365/api/Product/edit?${qs.stringify({
             Id: this.props.id,
             Name: event.target.name.value,
             Year: event.target.year.value,
-            BrendId: event.target.brand.value,
+            BrandId: event.target.brand.value,
             TypeId:event.target.type.value,
-            Model: event.target.model.value,
+            Modal: event.target.model.value,
             Warranty: event.target.warranty.value,
             Price: event.target.price.value,
             Amount: event.target.amount.value,
-            SupplyId: event.target.supply.value
+            SupplyId: event.target.supply.value,
+            Image: this.props.image
         })}`)
         .then(res=> {
             console.log(res.data);
@@ -72,8 +73,26 @@ export default class EditProductModal extends Component{
         });
     }
 
+    uploadImage= async event=>{
+        const files = event.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'hardware-store');
+        this.setState({loading: true})
+        const res = await fetch(`https://api.cloudinary.com/v1_1/dzlhauo5h/image/upload`,
+            {
+                method: 'POST',
+                body: data
+            }
+        );
+
+        const file = await res.json();
+        this.setState({loading: false, image: file.secure_url});
+        
+    }
+
     render(){
-        const{brands, types, supplies} = this.state;
+        const{brands, types, supplies, image} = this.state;
         return(
             <div className='container'>
                 <SnackBar
@@ -95,13 +114,25 @@ export default class EditProductModal extends Component{
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Editing product
+          Редактирование товара
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
               <Row>
                   <Col sm={6}>
                       <Form onSubmit={this.handleSubmit}>
+                        <Form.Group>
+                              <div>
+                                <Form>
+                                    <Form.File onChange={this.uploadImage} label='Выберите картинку для товара' data-browse='Выбрать' custom/>
+                                </Form>
+                                {this.state.loading?(
+                                    <h3>Loading...</h3>
+                                ):(
+                                    <img src={image} style={{width: '300px'}} alt='Error'/>
+                                )}
+                                </div>
+                          </Form.Group>
                       <Form.Group controlId="name">
                               <Form.Label>Название</Form.Label>
                               <Form.Control 
@@ -125,7 +156,7 @@ export default class EditProductModal extends Component{
                           <Form.Group controlId="brand">
                               <Form.Label>Бренд</Form.Label>
                               <Form.Control as="select"
-                                defaultValue={this.props.brend}>
+                                defaultValue={this.props.brand}>
                                     {brands.map(brand=>
                                     <Tooltip key={brand.id} title={brand.name}>
                                         <option key={brand.id}>{brand.id}</option>
@@ -139,7 +170,7 @@ export default class EditProductModal extends Component{
                                 type="text"
                                 name="model"
                                 required
-                                defaultValue={this.props.model}
+                                defaultValue={this.props.modal}
                                 placeholder="Модель"/>
                           </Form.Group>
                           <Form.Group controlId="year">
@@ -191,7 +222,7 @@ export default class EditProductModal extends Component{
                           </Form.Group>
                           <Form.Group>
                             <Button variant="light" type="submit">
-                                Edit product
+                                Изменить товар
                             </Button>
                           </Form.Group>
                       </Form>
@@ -202,7 +233,7 @@ export default class EditProductModal extends Component{
       <Modal.Footer>
 
         <Button variant="light" onClick={this.props.onHide}>
-            Close
+            Закрыть
         </Button>
 
       </Modal.Footer>

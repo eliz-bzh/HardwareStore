@@ -12,7 +12,7 @@ export default class AddProductModal extends Component{
 
     constructor(props){
         super(props);
-        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[]};
+        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[], image: '', loading: false};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -53,13 +53,14 @@ export default class AddProductModal extends Component{
         axios.post(`https://localhost:44365/api/Product/create?${qs.stringify({
             Name: event.target.name.value,
             Year: event.target.year.value,
-            BrendId: event.target.brand.value,
+            BrandId: event.target.brand.value,
             TypeId:event.target.type.value,
-            Model: event.target.model.value,
+            Modal: event.target.model.value,
             Warranty: event.target.warranty.value,
             Price: event.target.price.value,
             Amount: event.target.amount.value,
-            SupplyId: event.target.supply.value
+            SupplyId: event.target.supply.value,
+            Image: this.state.image
         })}`)
         .then(res=> {
             console.log(res.data);
@@ -70,9 +71,28 @@ export default class AddProductModal extends Component{
             this.setState({snackBaropen: true, snackBarMessage: 'Failed added'});
         });
     }
+    
+
+    uploadImage= async event=>{
+        const files = event.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'hardware-store');
+        this.setState({loading: true})
+        const res = await fetch(`https://api.cloudinary.com/v1_1/dzlhauo5h/image/upload`,
+            {
+                method: 'POST',
+                body: data
+            }
+        );
+
+        const file = await res.json();
+        this.setState({loading: false, image: file.secure_url})
+        
+    }
 
     render(){
-        const{brands, types, supplies}=this.state;
+        const{brands, types, supplies, image}=this.state;
         return(
             <div className='container'>
                 <SnackBar
@@ -94,13 +114,25 @@ export default class AddProductModal extends Component{
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Adding product
+          Добавление нового товара
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
               <Row>
                   <Col sm={6}>
                       <Form onSubmit={this.handleSubmit}>
+                          <Form.Group>
+                              <div>
+                                <Form>
+                                    <Form.File onChange={this.uploadImage} label='Выберите картинку для товара' data-browse='Выбрать' custom/>
+                                </Form>
+                                {this.state.loading?(
+                                    <h3>Loading...</h3>
+                                ):(
+                                    <img src={image} style={{width: '300px'}}/>
+                                )}
+                                </div>
+                          </Form.Group>
                       <Form.Group controlId="name">
                               <Form.Label>Название</Form.Label>
                               <Form.Control 
@@ -181,7 +213,7 @@ export default class AddProductModal extends Component{
                           </Form.Group>
                           <Form.Group>
                             <Button variant="light" type="submit">
-                                Add product
+                                Добавить товар
                             </Button>
                           </Form.Group>
                       </Form>
@@ -192,7 +224,7 @@ export default class AddProductModal extends Component{
       <Modal.Footer>
 
         <Button variant="light" onClick={this.props.onHide}>
-            Close
+            Закрыть
         </Button>
 
       </Modal.Footer>
