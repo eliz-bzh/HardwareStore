@@ -71,20 +71,20 @@ export default class Products extends Component{
 
 
     render(){
-        const{products, brands, types, Id,  Name, Year, Brend, Type, Model, Warranty, Amount, Supply, Price}=this.state;
+        const{products, brands, types, Id,  Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Image}=this.state;
         const addModalClose=()=>this.setState({addModalShow:false});
         const editModalClose=()=>this.setState({editModalShow:false});
         return(
             <div>
                 {products.map(product=>
                         <Card key={product.id} style={{ width: '18rem'}}>
-                            <Card.Img variant='top' src='https://content2.onliner.by/catalog/device/header/1172d56c04b6938925920fcefe994d0f.jpeg' height='270px' alt='Error, sorry...'/>
+                            <Card.Img variant='top' src={product.image} height='70%' alt='Error, sorry...'/>
                             <Card.Header>{product.name}</Card.Header>
                             <Card.Body style={{textAlign: 'left' }}>
                                 <Card.Text>
                                 Категория: {types.map(type=>{if(type.id === product.typeId){return type.name}})}<br/>
-                                Бренд: {brands.map(brand=>{if(brand.id === product.brendId){return brand.name}})}<br/>
-                                Модель: {product.model}<br/>
+                                Бренд: {brands.map(brand=>{if(brand.id === product.brandId){return brand.name}})}<br/>
+                                Модель: {product.modal}<br/>
                                 Год выпуска: {product.year}<br/>
                                 Срок гарантии: {product.warranty}<br/>
                                 Количество на складе: {product.amount}<br/>
@@ -102,13 +102,14 @@ export default class Products extends Component{
                                                 Id: product.id,
                                                 Name: product.name,
                                                 Year: product.year,
-                                                Brend: product.brendId,
+                                                Brand: product.brandId,
                                                 Type: product.typeId,
-                                                Model: product.model,
+                                                Modal: product.modal,
                                                 Warranty: product.warranty,
                                                 Amount: product.amount,
                                                 Supply: product.supplyId,
-                                                Price: product.price
+                                                Price: product.price,
+                                                Image: product.image
                                             })
                                         }}>
                                         {<EditIcon/>}
@@ -127,13 +128,14 @@ export default class Products extends Component{
                                         id={Id}
                                         name={Name}
                                         year={Year}
-                                        brend={Brend}
+                                        brand={Brand}
                                         type={Type}
-                                        model={Model}
+                                        modal={Modal}
                                         warranty={Warranty}
                                         amount={Amount}
                                         supply={Supply}
                                         price={Price}
+                                        image={Image}
                                         />
 
                                 </ButtonToolbar>
