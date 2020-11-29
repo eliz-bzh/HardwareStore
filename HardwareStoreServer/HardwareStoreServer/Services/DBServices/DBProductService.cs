@@ -96,13 +96,14 @@ namespace HardwareStoreServer.Services.DBServices
 
             prevEntity.Name = newEntity.Name;
             prevEntity.Year = newEntity.Year;
-            prevEntity.BrendId = newEntity.BrendId;
+            prevEntity.BrandId = newEntity.BrandId;
             prevEntity.TypeId = newEntity.TypeId;
-            prevEntity.Model = newEntity.Model;
+            prevEntity.Modal = newEntity.Modal;
             prevEntity.Warranty = newEntity.Warranty;
             prevEntity.Price = newEntity.Price;
             prevEntity.Amount = newEntity.Amount;
             prevEntity.SupplyId = newEntity.SupplyId;
+            prevEntity.Image = newEntity.Image;
 
             try
             {
