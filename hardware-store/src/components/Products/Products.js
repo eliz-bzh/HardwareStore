@@ -148,7 +148,7 @@ export default class Products extends Component{
                         onClick={()=>{
                             this.setState({addModalShow: true})
                         }}>
-                        {<AddIcon/>}Add new product
+                        {<AddIcon/>}Добавить новый товар
                     </Button>
                 </ButtonToolbar>
 

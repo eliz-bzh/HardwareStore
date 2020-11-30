@@ -1,38 +1,35 @@
-import React, {useState} from 'react';
-import { Form } from 'react-bootstrap';
+import React from 'react';
 import './App.css';
 import Products from './components/Products/Products';
+import Navigation from './components/Navigation';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import References from './components/ReferencesSystem/References';
+import Home from './components/Home';
+import Brands from './components/Brands/Brands';
+import Types from './components/Types/Types';
 
 function App() {
-  /*const [image, setImage] = useState('');
-
-  const [loading, setLoading] = useState(false);
-
-  const uploadImage= async event=>{
-    const files = event.target.files;
-    const data = new FormData();
-    data.append('file', files[0]);
-    data.append('upload_preset', 'hardware-store');
-    setLoading(true);
-    const res = await fetch(
-      `	https://api.cloudinary.com/v1_1/dzlhauo5h/image/upload`,
-      {
-        method: 'POST',
-        body: data
-      }
-    );
-
-    const file = await res.json();
-    setImage(file.secure_url);
-    console.log(file.secure_url);
-    setLoading(false);
-
-  }*/
 
   return (
-    <div className="App">
-      <Products/>
-    </div>
+    <BrowserRouter>
+      <div className="container">
+
+        <h1 className='m-3 d-flex justify-content-center'>i-Bozh</h1>
+
+        <Navigation/>
+
+        <Switch>
+          <Route path='/home' component={Home}/>
+          <Route path='/products' component={Products}/>
+          <Route path='/brands' component={Brands}/>
+          <Route path='/types' component={Types}/>
+          <Route path='/supplies' component={Products}/>
+          <Route path='/suppliers' component={Products}/>
+          <Route path='/help' component={References}/>
+        </Switch>
+
+      </div>
+    </BrowserRouter>
   );
 }
 
