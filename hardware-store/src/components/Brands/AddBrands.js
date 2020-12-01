@@ -22,7 +22,7 @@ export default class AddBrandModal extends Component{
     handleSubmit=(event)=>{
         event.preventDefault();
 
-        axios.post(`https://localhost:44365/api/Brands/create?${qs.stringify({
+        axios.post(`https://localhost:44365/api/Brand/create?${qs.stringify({
             Name: event.target.name.value
         })}`)
         .then(res=> {

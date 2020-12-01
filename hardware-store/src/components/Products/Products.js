@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card} from 'react-bootstrap';
+import {Card, CardGroup, Row, Col} from 'react-bootstrap';
 import {ButtonToolbar, Button} from 'react-bootstrap';
 import AddProductModal from './AddProduct';
 import EditProductModal from './EditProduct';
@@ -76,10 +76,13 @@ export default class Products extends Component{
         const editModalClose=()=>this.setState({editModalShow:false});
         return(
             <div>
+                <CardGroup className='justify-content-md-center'>
                 {products.map(product=>
-                        <Card key={product.id} style={{ width: '18rem'}}>
-                            <Card.Img variant='top' src={product.image} height='70%' alt='Error, sorry...'/>
-                            <Card.Header>{product.name}</Card.Header>
+                    <Row>
+                    <Col>
+                        <Card className='mr-2 mt-4' key={product.id} style={{ width: '16.5rem'}}>
+                            <Card.Img variant='top' src={product.image} height='200px' alt='Error, sorry...'/>
+                            <Card.Header style={{textAlign: 'center' }}>{product.name}</Card.Header>
                             <Card.Body style={{textAlign: 'left' }}>
                                 <Card.Text>
                                 Категория: {types.map(type=>{if(type.id === product.typeId){return type.name}})}<br/>
@@ -141,8 +144,10 @@ export default class Products extends Component{
                                 </ButtonToolbar>
                             </Card.Footer>
                         </Card>
+                    </Col>
+                    </Row>
                     )}
-
+                </CardGroup>  
                 <ButtonToolbar>
                     <Button variant="light"
                         onClick={()=>{
