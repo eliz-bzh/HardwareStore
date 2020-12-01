@@ -12,7 +12,7 @@ export default class EditProductModal extends Component{
 
     constructor(props){
         super(props);
-        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[], loading: false, image: this.props.image};
+        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[], loading: false, imagep: this.props.image};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -49,7 +49,10 @@ export default class EditProductModal extends Component{
 
     handleSubmit=(event)=>{
         event.preventDefault();
-        
+        var imageUrl = this.state.imagep;
+        if(imageUrl === undefined){
+            imageUrl = this.props.image;
+        }
         axios.put(`https://localhost:44365/api/Product/edit?${qs.stringify({
             Id: this.props.id,
             Name: event.target.name.value,
@@ -61,7 +64,7 @@ export default class EditProductModal extends Component{
             Price: event.target.price.value,
             Amount: event.target.amount.value,
             SupplyId: event.target.supply.value,
-            Image: this.props.image
+            Image: imageUrl
         })}`)
         .then(res=> {
             console.log(res.data);
@@ -87,12 +90,12 @@ export default class EditProductModal extends Component{
         );
 
         const file = await res.json();
-        this.setState({loading: false, image: file.secure_url});
+        this.setState({loading: false, imagep: file.secure_url});
         
     }
 
     render(){
-        const{brands, types, supplies, image} = this.state;
+        const{brands, types, supplies, loading, imagep} = this.state;
         return(
             <div className='container'>
                 <SnackBar
@@ -126,10 +129,10 @@ export default class EditProductModal extends Component{
                                 <Form>
                                     <Form.File onChange={this.uploadImage} label='Выберите картинку для товара' data-browse='Выбрать' custom/>
                                 </Form>
-                                {this.state.loading?(
-                                    <h3>Loading...</h3>
+                                {loading?(
+                                    <h3 className='mt-4'>Loading...</h3>
                                 ):(
-                                    <img src={image} style={{width: '300px'}} alt='Error'/>
+                                    <img src={imagep} style={{width: '300px'}} alt='Error' className='mt-2'/>
                                 )}
                                 </div>
                           </Form.Group>
@@ -148,7 +151,7 @@ export default class EditProductModal extends Component{
                                 defaultValue={this.props.type}>
                                     {types.map(type=>
                                         <Tooltip key={type.id} title={type.name}>
-                                            <option key={type.id}>{type.id}</option>
+                                            <option key={type.id} value={type.id}>{type.name}</option>
                                         </Tooltip>
                                     )}
                                 </Form.Control>
@@ -159,7 +162,7 @@ export default class EditProductModal extends Component{
                                 defaultValue={this.props.brand}>
                                     {brands.map(brand=>
                                     <Tooltip key={brand.id} title={brand.name}>
-                                        <option key={brand.id}>{brand.id}</option>
+                                        <option key={brand.id} value={brand.id}>{brand.name}</option>
                                     </Tooltip>
                                 )}
                                 </Form.Control>

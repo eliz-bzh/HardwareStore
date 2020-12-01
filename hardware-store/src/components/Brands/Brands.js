@@ -27,7 +27,7 @@ export default class Brands extends Component{
         this.brandsList();
     }
 
-    deleteProduct(id){
+    deleteBrand(id){
         if(window.confirm('Are you sure?')){
             axios.delete(`https://localhost:44365/api/Brand/delete/${id}`)
             .then(res=> {
@@ -71,7 +71,7 @@ export default class Brands extends Component{
                             <td>
                             <ButtonToolbar>
                                 <Button 
-                                variant="success" 
+                                variant="light" 
                                 onClick={()=>this.setState({
                                     editModalShow: true, 
                                     Id: brand.id,
@@ -83,8 +83,8 @@ export default class Brands extends Component{
                                 <div className="mr-2"></div>
 
                                 <Button className="mr-2"
-                                variant="secondary" 
-                                onClick={()=>this.deleteCat(brand.id)}>
+                                variant="light" 
+                                onClick={()=>this.deleteBrand(brand.id)}>
                                 {<DeleteIcon/>}
                                 </Button>
 

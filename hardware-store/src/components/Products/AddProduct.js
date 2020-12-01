@@ -64,7 +64,7 @@ export default class AddProductModal extends Component{
         })}`)
         .then(res=> {
             console.log(res.data);
-            this.setState({snackBaropen: true, snackBarMessage: 'Added successfully'});
+            this.setState({snackBaropen: true, snackBarMessage: 'Added successfully', image:''});
         })
         .catch(error=> {
             console.log(error);
@@ -127,9 +127,9 @@ export default class AddProductModal extends Component{
                                     <Form.File onChange={this.uploadImage} label='Выберите картинку для товара' data-browse='Выбрать' custom/>
                                 </Form>
                                 {this.state.loading?(
-                                    <h3>Loading...</h3>
+                                    <h3 className='mt-4'>Loading...</h3>
                                 ):(
-                                    <img src={image} style={{width: '300px'}}/>
+                                    <img src={image} style={{width: '300px'}} alt='' className='mt-2'/>
                                 )}
                                 </div>
                           </Form.Group>
@@ -146,7 +146,7 @@ export default class AddProductModal extends Component{
                               <Form.Control as="select">
                                     {types.map(type=>
                                         <Tooltip key={type.id} title={type.name}>
-                                            <option key={type.id}>{type.id}</option>
+                                            <option key={type.id} value={type.id}>{type.name}</option>
                                         </Tooltip>
                                     )}
                                 </Form.Control>
@@ -156,7 +156,7 @@ export default class AddProductModal extends Component{
                               <Form.Control as="select">
                                     {brands.map(brand=>
                                         <Tooltip key={brand.id} title={brand.name}>
-                                            <option key={brand.id}>{brand.id}</option>
+                                            <option key={brand.id} value={brand.id}>{brand.name}</option>
                                         </Tooltip>
                                     )}
                                 </Form.Control>
