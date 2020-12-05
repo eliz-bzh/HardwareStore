@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Card, CardGroup, Row, Col} from 'react-bootstrap';
-import {ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, Collapse} from 'react-bootstrap';
+import {ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup} from 'react-bootstrap';
 import AddProductModal from './AddProduct';
 import EditProductModal from './EditProduct';
 import AddIcon from '@material-ui/icons/Add';
@@ -8,7 +8,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 import CheckBox from '../CheckBox';
-import SortRoundedIcon from '@material-ui/icons/SortRounded';
+import RadioBox from '../RadioBox';
 
 
 export default class Products extends Component{
@@ -22,11 +22,14 @@ export default class Products extends Component{
             addModalShow: false,
             editModalShow: false, 
             search: '',
-            checked: []
-            /*brand:[],
-            type:[],
             newFiltersBrands: [],
-            newFiltersTypes: []*/
+            newFiltersTypes: [],
+            items: [
+                {id: 1, label: 'Любой'},
+                {id: 2, label: 'От большего к меньшему'},
+                {id: 3, label: 'От меньшего к большему'}
+            ],
+            sortBy: ''
         };
     }
 
@@ -68,6 +71,10 @@ export default class Products extends Component{
             }else{
                 newList = res.data;
             }
+            if(this.state.sortBy !== ''){
+                this.sortList(newList, this.state.sortBy);
+            }
+            
             this.setState({products: res.data, productsFilters: newList});
         })
     }
@@ -90,9 +97,22 @@ export default class Products extends Component{
         return rows.filter((row)=>row.name.toLowerCase().indexOf(this.state.search.toLocaleLowerCase()) > -1);
     }
 
+    sortList(list, sortType){
+        let oldList = list;
+        if (sortType === 'От большего к меньшему' || sortType === 'От меньшего к большему') {
+            if (sortType === 'От меньшего к большему') {
+                return list.sort((a, b)=>(a.price > b.price) ? 1 : -1);
+            }else if(sortType === 'От большего к меньшему'){
+                return list.sort((a, b)=>(a.price < b.price) ? 1 : -1);
+            }
+        }else{
+            list = oldList;
+            return list;
+        }
+    }
+
     handleFiltersBrands=(filters)=>{
         var newFilters = [...filters];
-        console.log(newFilters);
         this.setState({newFiltersBrands: newFilters});
     }
 
@@ -100,24 +120,32 @@ export default class Products extends Component{
         var newFilters = [...filters];
         this.setState({newFiltersTypes: newFilters});
     }
+
+    handleSortPrice = (sortType) => {
         
-    
+        console.log(sortType);
+        this.setState({sortBy: sortType});
+        //this.setState({productsFilters: this.sortList(this.state.productsFilters, this.state.sortBy)});
+    }
 
     render(){
-        const{productsFilters, brands, types, Id,  Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Image, search, open, checked}=this.state;
+        const{productsFilters, brands, types, Id,  Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Image, search, items, sortBy}=this.state;
         const addModalClose=()=>this.setState({addModalShow:false});
         const editModalClose=()=>this.setState({editModalShow:false});
+        //const productsSorting = this.sortList(productsFilters, sortBy);
         const productsSearch = this.searchPanel(productsFilters);
-        //const productsFilterByBrand = this.handleFilters();
         return(
             <div>
                 <ButtonToolbar className='float-right'>
+                    <ButtonGroup className='vertical'>
+                        <RadioBox list={items} handleSort={sort=>this.handleSortPrice(sort)}/>
                         <Button variant="light"
                         onClick={()=>{
                             this.setState({addModalShow: true})
                         }}>
                         {<AddIcon/>}Добавить новый товар
                         </Button>
+                    </ButtonGroup>
                 </ButtonToolbar>
 
                 <ButtonToolbar className='mt-2'>
