@@ -12,12 +12,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="container">
+      <div className='container'>
 
         <h1 className='m-3 d-flex justify-content-center'>i-Bozh</h1>
 
         <Navigation/>
-
+        
         <Switch>
           <Route path='/home' component={Home}/>
           <Route path='/products' component={Products}/>
