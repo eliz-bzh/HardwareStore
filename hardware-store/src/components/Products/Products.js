@@ -25,9 +25,9 @@ export default class Products extends Component{
             newFiltersBrands: [],
             newFiltersTypes: [],
             items: [
-                {id: 1, label: 'Любой'},
-                {id: 2, label: 'От большего к меньшему'},
-                {id: 3, label: 'От меньшего к большему'}
+                {id: 1, label: 'Любой', checked: true},
+                {id: 2, label: 'От большего к меньшему', checked: false},
+                {id: 3, label: 'От меньшего к большему', checked: false}
             ],
             sortBy: ''
         };
