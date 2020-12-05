@@ -118,14 +118,12 @@ export default class AddProductModal extends Component{
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-              <Row>
+              <Row key={1}>
                   <Col sm={6}>
                       <Form onSubmit={this.handleSubmit}>
                           <Form.Group>
                               <div>
-                                <Form>
                                     <Form.File onChange={this.uploadImage} label='Выберите картинку для товара' data-browse='Выбрать' custom/>
-                                </Form>
                                 {this.state.loading?(
                                     <h3 className='mt-4'>Loading...</h3>
                                 ):(

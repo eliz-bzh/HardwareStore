@@ -124,11 +124,9 @@ export default class EditProductModal extends Component{
               <Row>
                   <Col sm={6}>
                       <Form onSubmit={this.handleSubmit}>
-                        <Form.Group>
+                        <Form.Group controlId="image">
                               <div>
-                                <Form>
                                     <Form.File onChange={this.uploadImage} label='Выберите картинку для товара' data-browse='Выбрать' custom/>
-                                </Form>
                                 {loading?(
                                     <h3 className='mt-4'>Loading...</h3>
                                 ):(
