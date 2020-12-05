@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {Form, Row, Col, Button, Collapse} from 'react-bootstrap';
+import {Form, Button, Collapse} from 'react-bootstrap';
 import SortRoundedIcon from '@material-ui/icons/SortRounded';
 
 const RadioBox =({list, handleSort})=>{
 
     const [open, setOpen] = useState(false);
+    const [checked, setchecked] = useState(1);
 
     const handleToggle = (label)=>{
         handleSort(label);
@@ -12,6 +13,7 @@ const RadioBox =({list, handleSort})=>{
     const sortPrice = list.map(item=>{
         return(
             <Form.Check
+            defaultChecked={item.id === 1}
         type="radio"
         label={item.label}
         id={item.id}
