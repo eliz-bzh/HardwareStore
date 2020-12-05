@@ -25,9 +25,9 @@ export default class Products extends Component{
             newFiltersBrands: [],
             newFiltersTypes: [],
             items: [
-                {id: 1, label: 'Любой', checked: true},
-                {id: 2, label: 'От большего к меньшему', checked: false},
-                {id: 3, label: 'От меньшего к большему', checked: false}
+                {id: 1, label: 'Любой'},
+                {id: 2, label: 'От большего к меньшему'},
+                {id: 3, label: 'От меньшего к большему'}
             ],
             sortBy: ''
         };
@@ -58,24 +58,12 @@ export default class Products extends Component{
     productsList(){
         axios.get('https://localhost:44365/api/Product/getAll')
         .then(res=>{
-            let list = res.data;
-            let newList = list;
-            if((this.state.newFiltersBrands && this.state.newFiltersBrands.length) || (this.state.newFiltersTypes && this.state.newFiltersTypes.length)){
-                //if states not empty
-                if(this.state.newFiltersBrands && this.state.newFiltersBrands.length){
-                    newList = list.filter(a=>this.state.newFiltersBrands.indexOf(a.brandId) > -1);
-                }
-                if(this.state.newFiltersTypes && this.state.newFiltersTypes.length){
-                    newList = newList.filter(a=>this.state.newFiltersTypes.indexOf(a.typeId) > -1);
-                }
-            }else{
-                newList = res.data;
-            }
+            let filterList = this.filterList(res.data);
             if(this.state.sortBy !== ''){
-                this.sortList(newList, this.state.sortBy);
+                this.sortList(filterList, this.state.sortBy);
             }
             
-            this.setState({products: res.data, productsFilters: newList});
+            this.setState({products: res.data, productsFilters: filterList});
         })
     }
 
@@ -95,6 +83,22 @@ export default class Products extends Component{
 
     searchPanel(rows){
         return rows.filter((row)=>row.name.toLowerCase().indexOf(this.state.search.toLocaleLowerCase()) > -1);
+    }
+
+    filterList(list){
+        let newList = list;
+        if((this.state.newFiltersBrands && this.state.newFiltersBrands.length) || (this.state.newFiltersTypes && this.state.newFiltersTypes.length)){
+            //if states not empty
+            if(this.state.newFiltersBrands && this.state.newFiltersBrands.length){
+                newList = list.filter(a=>this.state.newFiltersBrands.indexOf(a.brandId) > -1);
+            }
+            if(this.state.newFiltersTypes && this.state.newFiltersTypes.length){
+                newList = newList.filter(a=>this.state.newFiltersTypes.indexOf(a.typeId) > -1);
+            }
+        }else{
+            return newList = this.state.products;
+        }
+        return newList;
     }
 
     sortList(list, sortType){
@@ -122,23 +126,21 @@ export default class Products extends Component{
     }
 
     handleSortPrice = (sortType) => {
-        
-        console.log(sortType);
         this.setState({sortBy: sortType});
-        //this.setState({productsFilters: this.sortList(this.state.productsFilters, this.state.sortBy)});
     }
 
     render(){
-        const{productsFilters, brands, types, Id,  Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Image, search, items, sortBy}=this.state;
+        const{productsFilters, brands, types, Id,  Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Image, search, items}=this.state;
         const addModalClose=()=>this.setState({addModalShow:false});
         const editModalClose=()=>this.setState({editModalShow:false});
-        //const productsSorting = this.sortList(productsFilters, sortBy);
         const productsSearch = this.searchPanel(productsFilters);
         return(
             <div>
                 <ButtonToolbar className='float-right'>
                     <ButtonGroup className='vertical'>
+                        {/*Sorting by price*/}
                         <RadioBox list={items} handleSort={sort=>this.handleSortPrice(sort)}/>
+                        <div className="mr-2"></div>
                         <Button variant="light"
                         onClick={()=>{
                             this.setState({addModalShow: true})

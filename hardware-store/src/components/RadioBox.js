@@ -5,7 +5,6 @@ import SortRoundedIcon from '@material-ui/icons/SortRounded';
 const RadioBox =({list, handleSort})=>{
 
     const [open, setOpen] = useState(false);
-    const [checked, setchecked] = useState(1);
 
     const handleToggle = (label)=>{
         handleSort(label);
@@ -14,6 +13,7 @@ const RadioBox =({list, handleSort})=>{
         return(
             <Form.Check
             defaultChecked={item.id === 1}
+            key={item.id}
         type="radio"
         label={item.label}
         id={item.id}

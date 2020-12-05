@@ -12,6 +12,7 @@ export default class EditProductModal extends Component{
 
     constructor(props){
         super(props);
+        //const imageProps = this.props.image;
         this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[], loading: false, imagep: this.props.image};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
