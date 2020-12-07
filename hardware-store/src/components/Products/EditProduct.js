@@ -12,8 +12,7 @@ export default class EditProductModal extends Component{
 
     constructor(props){
         super(props);
-        //const imageProps = this.props.image;
-        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[], loading: false, imagep: this.props.image};
+        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[], loading: false, imagep: ''};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -97,6 +96,7 @@ export default class EditProductModal extends Component{
 
     render(){
         const{brands, types, supplies, loading, imagep} = this.state;
+        let imageUrl = (imagep === '') ? (this.props.image) : (imagep);
         return(
             <div className='container'>
                 <SnackBar
@@ -127,11 +127,11 @@ export default class EditProductModal extends Component{
                       <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="image">
                               <div>
-                                    <Form.File onChange={this.uploadImage} label='Выберите картинку для товара' data-browse='Выбрать' custom/>
+                                    <Form.File name='file' onChange={this.uploadImage} label='Выберите картинку для товара' data-browse='Выбрать' custom/>
                                 {loading?(
                                     <h3 className='mt-4'>Loading...</h3>
                                 ):(
-                                    <img src={imagep} style={{width: '300px'}} alt='Error' className='mt-2'/>
+                                    <img src={imageUrl} style={{width: '300px'}} alt='Error' className='mt-2'/>
                                 )}
                                 </div>
                           </Form.Group>
