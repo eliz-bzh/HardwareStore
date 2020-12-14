@@ -10,13 +10,14 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 export default class EditProductModal extends Component{
 
-    constructor(props){
-        super(props);
-        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[], loading: false, imagep: ''};
+    constructor(){
+        super();
+        this.state = {snackBaropen: false, snackBarMessage: '', products:[], brands:[], types:[], supplies:[], loading: false, imagep: ''};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
+        this.productList();
         this.brandsList();
         this.typesList();
         this.supplyList();
@@ -43,17 +44,23 @@ export default class EditProductModal extends Component{
         });
     }
 
+    productList(){
+        axios.get(`https://localhost:44365/api/Product/getAll`)
+        .then(res=> {
+            this.setState({products: res.data})
+        });
+    }
+
     snackBarClose=(event)=>{
         this.setState({snackBaropen: false});
     }
 
     handleSubmit=(event)=>{
         event.preventDefault();
-        var imageUrl = this.state.imagep;
-        if(imageUrl === undefined){
-            imageUrl = this.props.image;
+        var imageUrl = this.props.image;
+        if(this.state.imagep !== ''){
+            imageUrl = this.state.imagep;
         }
-        console.log(event.target.files);
         axios.put(`https://localhost:44365/api/Product/edit?${qs.stringify({
             Id: this.props.id,
             Name: event.target.name.value,
@@ -97,8 +104,6 @@ export default class EditProductModal extends Component{
 
     render(){
         const{brands, types, supplies, loading, imagep} = this.state;
-        const propsImg = this.props.image;
-        let imageUrl2 = (imagep === '' || imagep === undefined) ? ({propsImg}) : (imagep);
         return(
             <div className='container'>
                 <SnackBar
@@ -133,7 +138,8 @@ export default class EditProductModal extends Component{
                                 {loading?(
                                     <h3 className='mt-4'>Loading...</h3>
                                 ):(
-                                    <img src={imageUrl2} style={{width: '300px'}} alt='Error' className='mt-2'/>
+                                    <img src={(imagep === '')? (this.props.image) : (imagep)} 
+                                    style={{width: '300px'}} alt='Error' className='mt-2'/>
                                 )}
                                 </div>
                           </Form.Group>
