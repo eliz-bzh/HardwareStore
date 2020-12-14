@@ -18,7 +18,7 @@ function App() {
         <h1 className='m-3 d-flex justify-content-center'>i-Bozh</h1>
 
         <Navigation/>
-        
+
         <Switch>
           <Route path='/home' component={Home}/>
           <Route path='/products' component={Products}/>
@@ -26,7 +26,7 @@ function App() {
           <Route path='/types' component={Types}/>
           <Route path='/supplies' component={Products}/>
           <Route path='/suppliers' component={Products}/>
-          <Route path='/shoppingCart' component={Cart}/>
+          <Route path='/shoppingCart' component={<Cart/>}/>
           <Route path='/help' component={References}/>
         </Switch>
 
