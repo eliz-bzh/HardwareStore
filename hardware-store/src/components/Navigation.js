@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import {Navbar, Nav} from 'react-bootstrap';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 
 export default class Navigation extends Component{
     
@@ -18,6 +19,7 @@ export default class Navigation extends Component{
                         <NavLink className='d-inline p-2 bg-dark text-white badge-pill' to='/suppliers'>Поставщики</NavLink>
                     </Nav>
                     <Nav>
+                        <NavLink className='d-inline p-2 bg-dark text-white badge-pill' to='/shoppingCart'>{<ShoppingCartRoundedIcon/>}Корзина</NavLink>
                         <NavLink className='d-inline p-2 bg-dark text-white badge-pill' to='/help'>{<HelpOutlineIcon/>}</NavLink>
                     </Nav>
                 </Navbar.Collapse>
