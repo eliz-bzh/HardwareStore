@@ -7,6 +7,7 @@ import References from './components/ReferencesSystem/References';
 import Home from './components/Home';
 import Brands from './components/Brands/Brands';
 import Types from './components/Types/Types';
+import Cart from './components/Cart/Cart';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/types' component={Types}/>
           <Route path='/supplies' component={Products}/>
           <Route path='/suppliers' component={Products}/>
+          <Route path='/shoppingCart' component={Cart}/>
           <Route path='/help' component={References}/>
         </Switch>
 

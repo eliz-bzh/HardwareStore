@@ -53,6 +53,7 @@ export default class EditProductModal extends Component{
         if(imageUrl === undefined){
             imageUrl = this.props.image;
         }
+        console.log(event.target.files);
         axios.put(`https://localhost:44365/api/Product/edit?${qs.stringify({
             Id: this.props.id,
             Name: event.target.name.value,
@@ -96,7 +97,8 @@ export default class EditProductModal extends Component{
 
     render(){
         const{brands, types, supplies, loading, imagep} = this.state;
-        let imageUrl = (imagep === '') ? (this.props.image) : (imagep);
+        const propsImg = this.props.image;
+        let imageUrl2 = (imagep === '' || imagep === undefined) ? ({propsImg}) : (imagep);
         return(
             <div className='container'>
                 <SnackBar
@@ -131,7 +133,7 @@ export default class EditProductModal extends Component{
                                 {loading?(
                                     <h3 className='mt-4'>Loading...</h3>
                                 ):(
-                                    <img src={imageUrl} style={{width: '300px'}} alt='Error' className='mt-2'/>
+                                    <img src={imageUrl2} style={{width: '300px'}} alt='Error' className='mt-2'/>
                                 )}
                                 </div>
                           </Form.Group>

@@ -6,6 +6,8 @@ import EditProductModal from './EditProduct';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
+import RemoveShoppingCartRoundedIcon from '@material-ui/icons/RemoveShoppingCartRounded';
 import axios from 'axios';
 import CheckBox from '../CheckBox';
 import RadioBox from '../RadioBox';
@@ -221,6 +223,11 @@ export default class Products extends Component{
                                         onClick={()=>this.deleteProduct(product.id)}>
                                         {<DeleteIcon/>}
                                     </Button>
+
+                                    <div className="mr-2"></div>
+                                    {product.amount > 0 ? <Button variant="light"
+                                        onClick={()=>this.addToCart(product.id)}>{<AddShoppingCartRoundedIcon/>}</Button> : 
+                                        <Button variant="light" disabled>{<RemoveShoppingCartRoundedIcon/>}Sold out</Button>}
 
                                     <EditProductModal
                                         show={this.state.editModalShow}

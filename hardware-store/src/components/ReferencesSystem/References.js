@@ -5,6 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {Button, ButtonToolbar} from 'react-bootstrap';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 import {Modal, Row, Col, Form} from 'react-bootstrap';
 
 export default class References extends Component{
@@ -135,6 +136,15 @@ export default class References extends Component{
                     </Button>
                     <span className='span-style'>Кнопка для функции удаления. 
                     Нажав на неё отобразиться окно соглашения на удаление выбраного элемента из списка.</span>
+                    </div>
+
+                    <div className='app-header'>
+                    <Button onClick={()=>this.setState({deleteModalShow: true})}
+                    variant="light">
+                    {<ShoppingCartRoundedIcon/>}Корзина
+                    </Button>
+                    <span className='span-style'>Кнопка для функции добавления товара в корзину. 
+                    Нажав товар добавится в корзину.</span>
                     </div>
                 </ButtonToolbar>
                 <div className='app-header'>
