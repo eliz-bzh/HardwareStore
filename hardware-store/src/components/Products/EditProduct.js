@@ -10,14 +10,13 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 export default class EditProductModal extends Component{
 
-    constructor(){
-        super();
-        this.state = {snackBaropen: false, snackBarMessage: '', products:[], brands:[], types:[], supplies:[], loading: false, imagep: ''};
+    constructor(props){
+        super(props);
+        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[], loading: false, imagep: ''};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
-        this.productList();
         this.brandsList();
         this.typesList();
         this.supplyList();
@@ -41,13 +40,6 @@ export default class EditProductModal extends Component{
         axios.get(`https://localhost:44365/api/Supply/getAll`)
         .then(res=> {
             this.setState({supplies: res.data})
-        });
-    }
-
-    productList(){
-        axios.get(`https://localhost:44365/api/Product/getAll`)
-        .then(res=> {
-            this.setState({products: res.data})
         });
     }
 
