@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
-import {Card, CardGroup, Row, Col} from 'react-bootstrap';
-import {ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup} from 'react-bootstrap';
+import {ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, CardGroup} from 'react-bootstrap';
 import AddProductModal from './AddProduct';
-import EditProductModal from './EditProduct';
+import Product from './Product';
 import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
-import RemoveShoppingCartRoundedIcon from '@material-ui/icons/RemoveShoppingCartRounded';
 import axios from 'axios';
 import CheckBox from '../CheckBox';
 import RadioBox from '../RadioBox';
@@ -22,7 +17,6 @@ export default class Products extends Component{
             brands:[],
             types:[],
             addModalShow: false,
-            editModalShow: false, 
             search: '',
             newFiltersBrands: [],
             newFiltersTypes: [],
@@ -45,30 +39,6 @@ export default class Products extends Component{
         this.productsList();
     }
 
-    deleteProduct(id){
-        if(window.confirm('Are you sure?')){
-            axios.delete(`https://localhost:44365/api/Product/delete/${id}`)
-            .then(res=> {
-                console.log(res.data);
-            })
-            .catch(error=> {
-                console.log(error);
-            });
-        }
-    }
-
-    productsList(){
-        axios.get('https://localhost:44365/api/Product/getAll')
-        .then(res=>{
-            let filterList = this.filterList(res.data);
-            if(this.state.sortBy !== ''){
-                this.sortList(filterList, this.state.sortBy);
-            }
-            
-            this.setState({products: res.data, productsFilters: filterList});
-        })
-    }
-
     brandsList(){
         axios.get(`https://localhost:44365/api/Brand/getAll`)
         .then(res=> {
@@ -81,6 +51,18 @@ export default class Products extends Component{
         .then(res=> {
             this.setState({types: res.data})
         });
+    }
+
+    productsList(){
+        axios.get('https://localhost:44365/api/Product/getAll')
+        .then(res=>{
+            let filterList = this.filterList(res.data);
+            if(this.state.sortBy !== ''){
+                this.sortList(filterList, this.state.sortBy);
+            }
+            
+            this.setState({products: res.data, productsFilters: filterList});
+        })
     }
 
     searchPanel(rows){
@@ -132,9 +114,8 @@ export default class Products extends Component{
     }
 
     render(){
-        const{productsFilters, brands, types, Id,  Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Image, search, items}=this.state;
+        const{productsFilters, brands, types, search, items}=this.state;
         const addModalClose=()=>this.setState({addModalShow:false});
-        const editModalClose=()=>this.setState({editModalShow:false});
         const productsSearch = this.searchPanel(productsFilters);
         return(
             <div>
@@ -175,81 +156,9 @@ export default class Products extends Component{
                     </FormGroup>
                 </Form>
 
-                <CardGroup className='justify-content-md-center'>
-                {productsSearch.map(product=>
-                    <Row key={product.id}>
-                    <Col>
-                        <Card className='mr-2 mt-2' key={product.id} style={{ width: '16.5rem'}}>
-                            <Card.Img variant='top' src={product.image} height='200px' alt='Error, sorry...'/>
-                            <Card.Header style={{textAlign: 'center' }}>{product.name}</Card.Header>
-                            <Card.Body style={{textAlign: 'left' }}>
-                                <Card.Text>
-                                Категория: {types.map(type=>{if(type.id === product.typeId){return type.name}})}<br/>
-                                Бренд: {brands.map(brand=>{if(brand.id === product.brandId){return brand.name}})}<br/>
-                                Модель: {product.modal}<br/>
-                                Год выпуска: {product.year}<br/>
-                                Срок гарантии: {product.warranty}<br/>
-                                Количество на складе: {product.amount}<br/>
-                                Поставщик(надо подумать): {product.supplyId}<br/>
-                                Цена: <b>{product.price} руб.</b>
-                                </Card.Text>
-                                
-                            </Card.Body>
-                            <Card.Footer>
-                                <ButtonToolbar>
-                                    <Button variant="light"
-                                        onClick={()=>{
-                                            this.setState({
-                                                editModalShow: true,
-                                                Id: product.id,
-                                                Name: product.name,
-                                                Year: product.year,
-                                                Brand: product.brandId,
-                                                Type: product.typeId,
-                                                Modal: product.modal,
-                                                Warranty: product.warranty,
-                                                Amount: product.amount,
-                                                Supply: product.supplyId,
-                                                Price: product.price,
-                                                Image: product.image
-                                            })
-                                        }}>
-                                        {<EditIcon/>}
-                                    </Button>
-
-                                    <div className="mr-2"></div>
-
-                                    <Button variant="light"
-                                        onClick={()=>this.deleteProduct(product.id)}>
-                                        {<DeleteIcon/>}
-                                    </Button>
-
-                                    <div className="mr-2"></div>
-                                    {product.amount > 0 ? <Button variant="light"
-                                        onClick={()=>this.addToCart(product.id)}>{<AddShoppingCartRoundedIcon/>}</Button> : 
-                                        <Button variant="light" disabled>{<RemoveShoppingCartRoundedIcon/>}Sold out</Button>}
-
-                                    <EditProductModal
-                                        show={this.state.editModalShow}
-                                        onHide={editModalClose}
-                                        id={Id}
-                                        name={Name}
-                                        year={Year}
-                                        brand={Brand}
-                                        type={Type}
-                                        modal={Modal}
-                                        warranty={Warranty}
-                                        amount={Amount}
-                                        supply={Supply}
-                                        price={Price}
-                                        image={Image}
-                                        />
-
-                                </ButtonToolbar>
-                            </Card.Footer>
-                        </Card>
-                    </Col>
-                    </Row>
+                <CardGroup className='justify-content-center'>
+                    {productsSearch.map(product=>
+                        <Product product={product} role={this.props.role}/>
                     )}
                 </CardGroup>
             </div>
