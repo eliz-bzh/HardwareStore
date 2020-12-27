@@ -22,7 +22,7 @@ namespace HardwareStoreServer.Controllers
         }
 
         [HttpPost("create")]
-        public bool Create(Client client)
+        public bool Create([FromBody]Client client)
         {
             return service.Create(client);
         }
@@ -37,6 +37,12 @@ namespace HardwareStoreServer.Controllers
         public Client GetById(int id)
         {
             return service.GetById(id);
+        }
+
+        [HttpGet("getByLogin/{login}")]
+        public Client GetByLogin(string login)
+        {
+            return service.GetByLogin(login);
         }
 
         [HttpDelete("delete/{id}")]

@@ -11,10 +11,12 @@ namespace HardwareStoreServer.Services.DBServices
     public class DBOrderService: IDBService<Order>
     {
         private readonly ApplicationDbContext context;
+        private readonly ExcelService excelService;
 
-        public DBOrderService(ApplicationDbContext context)
+        public DBOrderService(ApplicationDbContext context, ExcelService excelService)
         {
             this.context = context;
+            this.excelService = excelService;
         }
 
         public bool Create(Order entity)
@@ -41,6 +43,19 @@ namespace HardwareStoreServer.Services.DBServices
             }
 
             return true;
+        }
+
+        public void ExportOrdersToExcel(DateTime from, DateTime to)
+        {
+            var q = context.Orders.Where(o => o.Date > from && o.Date < to);
+            try
+            {
+                excelService.ExportData(q);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public IList<Order> GetAll()

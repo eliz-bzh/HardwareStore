@@ -33,6 +33,12 @@ namespace HardwareStoreServer.Controllers
             return service.GetAll();
         }
 
+        [HttpGet("excelOrders")]
+        public void GetExcel(DateTime from, DateTime to)
+        {
+            service.ExportOrdersToExcel(from, to);
+        }
+
         [HttpGet("getById/{id}")]
         public Order GetById(int id)
         {
