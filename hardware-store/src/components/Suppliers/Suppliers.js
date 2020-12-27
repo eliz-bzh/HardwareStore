@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {ButtonToolbar, Button, Table, Alert} from 'react-bootstrap';
-import AddBrandModal from './AddBrands';
-import EditBrandModal from './EditBrands';
+import AddSupplierModal from './AddSupplier';
+import EditSupplierModal from './EditSupplier';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 
-export default class Brands extends Component{
+export default class Suppliers extends Component{
     constructor(props){
         super(props);
         this.state={
-            brands:[],
+            suppliers:[],
             snackBaropen: false, 
             snackBarMessage: '',
             addModalShow: false,
@@ -20,16 +20,16 @@ export default class Brands extends Component{
     }
 
     componentDidMount(){
-        this.brandsList();
+        this.suppliersList();
     }
 
     componentDidUpdate(){
-        this.brandsList();
+        this.suppliersList();
     }
 
-    deleteBrand(id){
+    deleteSupplier(id){
         if(window.confirm('Are you sure?')){
-            axios.delete(`https://localhost:44365/api/Brand/delete/${id}`)
+            axios.delete(`https://localhost:44365/api/Supplier/delete/${id}`)
             .then(res=> {
                 console.log(res.data);
             })
@@ -39,10 +39,10 @@ export default class Brands extends Component{
         }
     }
 
-    brandsList(){
-        axios.get(`https://localhost:44365/api/Brand/getAll`)
+    suppliersList(){
+        axios.get(`https://localhost:44365/api/Supplier/getAll`)
         .then(res=> {
-            this.setState({brands: res.data})
+            this.setState({suppliers: res.data})
         });
     }
 
@@ -52,31 +52,37 @@ export default class Brands extends Component{
 
 
     render(){
-        const{brands, Id,  Name}=this.state;
+        const{suppliers, Id, Name, Number, Adress}=this.state;
         const addModalClose=()=>this.setState({addModalShow:false});
         const editModalClose=()=>this.setState({editModalShow:false});
         return(
             <div>
-                {(brands && brands.length !== 0) ? (
+                {(suppliers && suppliers.length !== 0) ? (
                         <Table className='mt-4' size='sm'>
                     <thead>
                         <tr>
-                            <th>Название</th>
+                            <th>Организация</th>
+                            <th>Контакты</th>
+                            <th>Адрес офиса</th>
                             <th>Действия</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {brands.map(brand=>
-                            <tr key={brand.id}>
-                                <td>{brand.name}</td>
+                        {suppliers.map(supplier=>
+                            <tr key={supplier.id}>
+                                <td>{supplier.nameOrganization}</td>
+                                <td>{supplier.number}</td>
+                                <td>{supplier.adress}</td>
                                 <td>
                                 <ButtonToolbar>
                                     <Button 
                                     variant="light" 
                                     onClick={()=>this.setState({
                                         editModalShow: true, 
-                                        Id: brand.id,
-                                        Name: brand.name
+                                        Id: supplier.id,
+                                        Name: supplier.nameOrganization,
+                                        Number: supplier.number,
+                                        Adress: supplier.adress
                                         })}>
                                     {<EditIcon/>}
                                     </Button>
@@ -85,15 +91,17 @@ export default class Brands extends Component{
 
                                     <Button className="mr-2"
                                     variant="light" 
-                                    onClick={()=>this.deleteBrand(brand.id)}>
+                                    onClick={()=>this.deleteSupplier(supplier.id)}>
                                     {<DeleteIcon/>}
                                     </Button>
 
-                                    <EditBrandModal
+                                    <EditSupplierModal
                                     show={this.state.editModalShow}
                                     onHide={editModalClose}
-                                    brandid={Id}
-                                    brandname={Name}/>
+                                    supplierid={Id}
+                                    supplierOrg={Name}
+                                    supplierNum={Number}
+                                    supplierAdr={Adress}/>
 
                                 </ButtonToolbar>
                                 </td>
@@ -108,14 +116,14 @@ export default class Brands extends Component{
                         onClick={()=>{
                             this.setState({addModalShow: true})
                         }}>
-                        {<AddIcon/>}Добавить новый бренд
+                        {<AddIcon/>}Добавить нового поставщика
                     </Button>
                 </ButtonToolbar>
 
-                <AddBrandModal
+                <AddSupplierModal
                     show={this.state.addModalShow}
                     onHide={addModalClose}>
-                </AddBrandModal>
+                </AddSupplierModal>
             </div>
         )
     }

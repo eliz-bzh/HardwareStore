@@ -14,6 +14,8 @@ export default class Product extends Component{
         this.state={
             brands:[],
             types:[],
+            supplies: [],
+            suppliers: [],
             editModalShow: false
         }
     }
@@ -21,6 +23,8 @@ export default class Product extends Component{
     componentDidMount(){
         this.brandsList();
         this.typesList();
+        this.suppliesList();
+        this.suppliersList();
     }
 
     brandsList(){
@@ -34,6 +38,20 @@ export default class Product extends Component{
         axios.get(`https://localhost:44365/api/Type/getAll`)
         .then(res=> {
             this.setState({types: res.data})
+        });
+    }
+    
+    suppliesList(){
+        axios.get(`https://localhost:44365/api/Supply/getAll`)
+        .then(res=> {
+            this.setState({supplies: res.data})
+        });
+    }
+
+    suppliersList(){
+        axios.get(`https://localhost:44365/api/Supplier/getAll`)
+        .then(res=> {
+            this.setState({suppliers: res.data})
         });
     }
 
@@ -50,7 +68,7 @@ export default class Product extends Component{
     }
 
     render(){
-        const{brands, types, Id,  Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Image}=this.state;
+        const{brands, types, supplies, suppliers, Id,  Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Image}=this.state;
         const editModalClose=()=>this.setState({editModalShow:false});
         return(
             <div>
@@ -67,7 +85,7 @@ export default class Product extends Component{
                                 Год выпуска: {this.props.product.year}<br/>
                                 Срок гарантии: {this.props.product.warranty}<br/>
                                 Количество на складе: {this.props.product.amount}<br/>
-                                Поставщик(надо подумать): {this.props.product.supplyId}<br/>
+                                Поставщик: {suppliers.map(supplier=>{if(supplier.id === this.props.product.supplyId){return supplier.nameOrganization + ', '+supplier.adress + '; ' + supplier.number}})}<br/>
                                 Цена: <b>{this.props.product.price} руб.</b>
                             </Card.Text>
                                     
@@ -121,7 +139,7 @@ export default class Product extends Component{
                                 ):(
                                     <div>
                                         {this.props.product.amount > 0 ? <Button variant="light"
-                                        onClick={()=>this.addToCart(this.props.product.id)}>{<AddShoppingCartRoundedIcon/>}</Button> : 
+                                        onClick={()=>this.props.addToCart(this.props.product)}>{<AddShoppingCartRoundedIcon/>}</Button> : 
                                         <Button variant="light" disabled>{<RemoveShoppingCartRoundedIcon/>}Sold out</Button>}
                                     </div>
                                 )}
