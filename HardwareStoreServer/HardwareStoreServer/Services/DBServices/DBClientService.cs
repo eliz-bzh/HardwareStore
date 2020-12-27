@@ -23,6 +23,14 @@ namespace HardwareStoreServer.Services.DBServices
             {
                 return false;
             }
+
+            var user = context.Clients.FirstOrDefault(c => c.Login.Equals(entity.Login));
+
+            if (user != null)
+            {
+                throw new Exception("User already register"); 
+            }
+
             var state = context.Add(entity).State;
 
             if (state != EntityState.Added)
@@ -51,6 +59,11 @@ namespace HardwareStoreServer.Services.DBServices
         public Client GetById(int id)
         {
             return context.Clients.FirstOrDefault(x => x.Id == id);
+        }
+
+        public Client GetByLogin(string login)
+        {
+            return context.Clients.FirstOrDefault(x => x.Login == login);
         }
 
         public bool Remove(int id)
@@ -98,6 +111,8 @@ namespace HardwareStoreServer.Services.DBServices
             prevEntity.Surname = newEntity.Surname;
             prevEntity.Adress = newEntity.Adress;
             prevEntity.Number = newEntity.Number;
+            prevEntity.Login = newEntity.Login;
+            prevEntity.Password = newEntity.Password;
 
             try
             {

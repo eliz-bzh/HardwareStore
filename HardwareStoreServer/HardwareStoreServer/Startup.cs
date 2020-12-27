@@ -43,6 +43,7 @@ namespace HardwareStoreServer
             services.AddScoped(typeof(DBSupplierService));
             services.AddScoped(typeof(DBSupplyService));
             services.AddScoped(typeof(DBTypeService));
+            services.AddScoped(typeof(ExcelService));
 
             //add react core
             services.AddCors(options =>
