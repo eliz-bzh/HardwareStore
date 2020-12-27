@@ -45,10 +45,16 @@ namespace HardwareStoreServer.Migrations
                     b.Property<string>("Adress")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")

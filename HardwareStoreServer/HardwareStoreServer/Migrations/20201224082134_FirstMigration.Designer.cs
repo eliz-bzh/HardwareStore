@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HardwareStoreServer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201128220437_FirstMigration")]
+    [Migration("20201224082134_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,10 +47,16 @@ namespace HardwareStoreServer.Migrations
                     b.Property<string>("Adress")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
