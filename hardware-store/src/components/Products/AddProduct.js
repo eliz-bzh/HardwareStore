@@ -12,14 +12,14 @@ export default class AddProductModal extends Component{
 
     constructor(props){
         super(props);
-        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[], image: '', loading: false};
+        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], suppliers:[], image: '', loading: false};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
         this.brandsList();
         this.typesList();
-        this.supplyList();
+        this.suppliersList();
     }
 
     brandsList(){
@@ -36,10 +36,10 @@ export default class AddProductModal extends Component{
         });
     }
 
-    supplyList(){
-        axios.get(`https://localhost:44365/api/Supply/getAll`)
+    suppliersList(){
+        axios.get(`https://localhost:44365/api/Supplier/getAll`)
         .then(res=> {
-            this.setState({supplies: res.data})
+            this.setState({suppliers: res.data})
         });
     }
 
@@ -59,7 +59,7 @@ export default class AddProductModal extends Component{
             Warranty: event.target.warranty.value,
             Price: event.target.price.value,
             Amount: event.target.amount.value,
-            SupplyId: event.target.supply.value,
+            SupplyId: event.target.supplier.value,
             Image: this.state.image
         })}`)
         .then(res=> {
@@ -92,7 +92,7 @@ export default class AddProductModal extends Component{
     }
 
     render(){
-        const{brands, types, supplies, image}=this.state;
+        const{brands, types, suppliers, image}=this.state;
         return(
             <div className='container'>
                 <SnackBar
@@ -191,12 +191,12 @@ export default class AddProductModal extends Component{
                                 required
                                 placeholder="Количество на складе"/>
                           </Form.Group>
-                          <Form.Group controlId="supply">
-                              <Form.Label>Поставщик(надо подумать)</Form.Label>
+                          <Form.Group controlId="supplier">
+                              <Form.Label>Поставщик</Form.Label>
                               <Form.Control as="select">
-                                    {supplies.map(supply=>
-                                        <Tooltip key={supply.id} title={supply.supplierId}>
-                                            <option key={supply.id}>{supply.id}</option>
+                                    {suppliers.map(supplier=>
+                                        <Tooltip key={supplier.id} title={supplier.nameOrganization}>
+                                            <option key={supplier.id} value={supplier.id}>{supplier.nameOrganization}</option>
                                         </Tooltip>
                                     )}
                                 </Form.Control>

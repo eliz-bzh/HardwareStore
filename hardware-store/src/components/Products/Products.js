@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, CardGroup} from 'react-bootstrap';
+import {ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, CardGroup, Alert} from 'react-bootstrap';
 import AddProductModal from './AddProduct';
 import Product from './Product';
 import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
 import CheckBox from '../CheckBox';
 import RadioBox from '../RadioBox';
-
 
 export default class Products extends Component{
     constructor(props){
@@ -25,7 +24,8 @@ export default class Products extends Component{
                 {id: 2, label: 'От большего к меньшему'},
                 {id: 3, label: 'От меньшего к большему'}
             ],
-            sortBy: ''
+            sortBy: '',
+            cart: []
         };
     }
 
@@ -113,6 +113,14 @@ export default class Products extends Component{
         this.setState({sortBy: sortType});
     }
 
+    addToCart=(product)=>{
+        console.log('adding ' + product.id);
+        const { cart } = this.state;
+        cart.push({...product});
+        this.setState({cart});
+        console.log(this.state.cart);
+    }
+
     render(){
         const{productsFilters, brands, types, search, items}=this.state;
         const addModalClose=()=>this.setState({addModalShow:false});
@@ -124,12 +132,14 @@ export default class Products extends Component{
                         {/*Sorting by price*/}
                         <RadioBox list={items} handleSort={sort=>this.handleSortPrice(sort)}/>
                         <div className="mr-2"></div>
-                        <Button variant="light"
-                        onClick={()=>{
-                            this.setState({addModalShow: true})
-                        }}>
-                        {<AddIcon/>}Добавить новый товар
-                        </Button>
+                        {(this.props.role === 'admin') ? (
+                            <Button variant="light"
+                            onClick={()=>{
+                                this.setState({addModalShow: true})
+                            }}>
+                            {<AddIcon/>}Добавить новый товар
+                            </Button>
+                        ):(null)}
                     </ButtonGroup>
                 </ButtonToolbar>
 
@@ -156,11 +166,13 @@ export default class Products extends Component{
                     </FormGroup>
                 </Form>
 
-                <CardGroup className='justify-content-center'>
-                    {productsSearch.map(product=>
-                        <Product product={product} role={this.props.role}/>
-                    )}
-                </CardGroup>
+                {(productsSearch && productsSearch.length !== 0) ? ( 
+                    <CardGroup className='justify-content-center'>
+                        {productsSearch.map(product=>
+                            <Product addToCart={this.addToCart} product={product} role={this.props.role}/>
+                        )}
+                    </CardGroup>
+                ):(<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)}
             </div>
         )
     }

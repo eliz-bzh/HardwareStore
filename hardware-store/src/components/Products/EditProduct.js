@@ -12,7 +12,7 @@ export default class EditProductModal extends Component{
 
     constructor(props){
         super(props);
-        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], supplies:[], loading: false, imagep: ''};
+        this.state = {snackBaropen: false, snackBarMessage: '', brands:[], types:[], suppliers:[], loading: false, imagep: ''};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -37,9 +37,9 @@ export default class EditProductModal extends Component{
     }
 
     supplyList(){
-        axios.get(`https://localhost:44365/api/Supply/getAll`)
+        axios.get(`https://localhost:44365/api/Supplier/getAll`)
         .then(res=> {
-            this.setState({supplies: res.data})
+            this.setState({suppliers: res.data})
         });
     }
 
@@ -63,7 +63,7 @@ export default class EditProductModal extends Component{
             Warranty: event.target.warranty.value,
             Price: event.target.price.value,
             Amount: event.target.amount.value,
-            SupplyId: event.target.supply.value,
+            SupplyId: event.target.supplier.value,
             Image: imageUrl
         })}`)
         .then(res=> {
@@ -95,7 +95,7 @@ export default class EditProductModal extends Component{
     }
 
     render(){
-        const{brands, types, supplies, loading, imagep} = this.state;
+        const{brands, types, suppliers, loading, imagep} = this.state;
         return(
             <div className='container'>
                 <SnackBar
@@ -202,13 +202,13 @@ export default class EditProductModal extends Component{
                                 defaultValue={this.props.amount}
                                 placeholder="Количество на складе"/>
                           </Form.Group>
-                          <Form.Group controlId="supply">
+                          <Form.Group controlId="supplier">
                               <Form.Label>Поставщик</Form.Label>
                               <Form.Control as="select" 
                                 defaultValue={this.props.supply}>
-                                    {supplies.map(supply=>
-                                        <Tooltip key={supply.id} title={supply.supplierId}>
-                                            <option key={supply.id}>{supply.id}</option>
+                                    {suppliers.map(supplier=>
+                                        <Tooltip key={supplier.id} title={supplier.nameOrganization}>
+                                            <option key={supplier.id} value={supplier.id}>{supplier.nameOrganization}</option>
                                         </Tooltip>
                                     )}
                                 </Form.Control>

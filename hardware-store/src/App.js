@@ -10,7 +10,8 @@ import Types from './components/Types/Types';
 import Cart from './components/Cart/Cart';
 import LoginForm from './components/LoginRegisterForms/LoginForm';
 import RegistrationForm from './components/LoginRegisterForms/RegistrationForm';
-import Product from './components/Products/Product';
+import Supplies from './components/Supplies/Supplies';
+import Suppliers from './components/Suppliers/Suppliers';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <div className='container'>
           <Switch>
             <Route path='/' component={LoginForm} exact/>
+
             <Route path='/registration' component={RegistrationForm}/>
             <Route path='/admin'>
               <h1 className='m-3 d-flex justify-content-center'>i-Bozh</h1>
@@ -26,25 +28,25 @@ function App() {
               <Navigation role='admin'/>
 
               <Switch>
-                <Route path='/admin/home' component={Home}/>
+                <Route path='/admin/home'><Home/></Route>
                 <Route path='/admin/products'><Products role='admin'/></Route>
                 <Route path='/admin/brands' component={Brands}/>
                 <Route path='/admin/types' component={Types}/>
-                <Route path='/admin/supplies' component={Products}/>{/*Поставки */}
-                <Route path='/admin/suppliers' component={Products}/>{/*Поставщики */}
-                <Route path='/admin/help' component={References}/>
+                <Route path='/admin/supplies' component={Supplies}/>
+                <Route path='/admin/suppliers' component={Suppliers}/>
+                <Route path='/admin/help'><References role='admin'/></Route>
               </Switch>
             </Route>
 
-            <Route path='/client'>
+            <Route path='/client/:login'>
               <h1 className='m-3 d-flex justify-content-center'>i-Bozh</h1>
-
               <Navigation role='client'/>
 
               <Switch>
-                <Route path='/client/home' component={Home}/>
-                <Route path='/client/products'><Products role='client'/></Route>
-                <Route path='/client/help' component={References}/>
+                <Route path='/client/:login/home'><Home/></Route>
+                <Route path='/client/:login/products'><Products role='client'/></Route>
+                <Route path='/client/:login/shoppingCart' component={Cart}></Route>
+                <Route path='/client/:login/help'><References role='client'/></Route>
               </Switch>
             </Route>
 
