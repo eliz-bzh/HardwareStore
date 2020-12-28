@@ -39,6 +39,12 @@ export default class Products extends Component{
         this.productsList();
     }
 
+    componentWillUnmount(){
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+
     brandsList(){
         axios.get(`https://localhost:44365/api/Brand/getAll`)
         .then(res=> {
@@ -113,14 +119,6 @@ export default class Products extends Component{
         this.setState({sortBy: sortType});
     }
 
-    addToCart=(product)=>{
-        console.log('adding ' + product.id);
-        const { cart } = this.state;
-        cart.push({...product});
-        this.setState({cart});
-        console.log(this.state.cart);
-    }
-
     render(){
         const{productsFilters, brands, types, search, items}=this.state;
         const addModalClose=()=>this.setState({addModalShow:false});
@@ -169,7 +167,7 @@ export default class Products extends Component{
                 {(productsSearch && productsSearch.length !== 0) ? ( 
                     <CardGroup className='justify-content-center'>
                         {productsSearch.map(product=>
-                            <Product addToCart={this.addToCart} product={product} role={this.props.role}/>
+                            <Product key={product.id} product={product} role={this.props.role}/>
                         )}
                     </CardGroup>
                 ):(<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)}

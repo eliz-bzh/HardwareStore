@@ -7,8 +7,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
 import RemoveShoppingCartRoundedIcon from '@material-ui/icons/RemoveShoppingCartRounded';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import { withRouter } from "react-router-dom";
+import { addItemInCart } from "../../redux/Actions";
 
-export default class Product extends Component{
+class Product extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -68,7 +71,7 @@ export default class Product extends Component{
     }
 
     render(){
-        const{brands, types, supplies, suppliers, Id,  Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Image}=this.state;
+        const{brands, types, suppliers, Id,  Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Image}=this.state;
         const editModalClose=()=>this.setState({editModalShow:false});
         return(
             <div>
@@ -79,13 +82,13 @@ export default class Product extends Component{
                         <Card.Header style={{textAlign: 'center' }}>{this.props.product.name}</Card.Header>
                         <Card.Body style={{textAlign: 'left' }}>
                             <Card.Text>
-                                Категория: {types.map(type=>{if(type.id === this.props.product.typeId){return type.name}})}<br/>
-                                Бренд: {brands.map(brand=>{if(brand.id === this.props.product.brandId){return brand.name}})}<br/>
+                                Категория: {types.filter(type => type.id === this.props.product.typeId).map(type=>{return type.name})}<br/>
+                                Бренд: {brands.filter(brand => brand.id === this.props.product.brandId).map(brand=>{return brand.name})}<br/>
                                 Модель: {this.props.product.modal}<br/>
                                 Год выпуска: {this.props.product.year}<br/>
                                 Срок гарантии: {this.props.product.warranty}<br/>
                                 Количество на складе: {this.props.product.amount}<br/>
-                                Поставщик: {suppliers.map(supplier=>{if(supplier.id === this.props.product.supplyId){return supplier.nameOrganization + ', '+supplier.adress + '; ' + supplier.number}})}<br/>
+                                Поставщик: {suppliers.filter(supplier=>supplier.id === this.props.product.supplyId).map(supplier=>{return supplier.nameOrganization + ', '+supplier.adress + '; ' + supplier.number})}<br/>
                                 Цена: <b>{this.props.product.price} руб.</b>
                             </Card.Text>
                                     
@@ -139,7 +142,13 @@ export default class Product extends Component{
                                 ):(
                                     <div>
                                         {this.props.product.amount > 0 ? <Button variant="light"
-                                        onClick={()=>this.props.addToCart(this.props.product)}>{<AddShoppingCartRoundedIcon/>}</Button> : 
+                                        onClick={e => {
+                                            e.stopPropagation();
+                                            this.props.dispatch(
+                                                addItemInCart({ ...this.props.product, quantity: 1 })
+                                            );
+                                        }}
+                                        /*{()=>this.props.addToCart(this.props.product)}*/>{<AddShoppingCartRoundedIcon/>}</Button> : 
                                         <Button variant="light" disabled>{<RemoveShoppingCartRoundedIcon/>}Sold out</Button>}
                                     </div>
                                 )}
@@ -152,3 +161,5 @@ export default class Product extends Component{
         )
     }
 }
+
+export default withRouter(connect()(Product));

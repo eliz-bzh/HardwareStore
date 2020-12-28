@@ -38,9 +38,9 @@ function App() {
               </Switch>
             </Route>
 
-            <Route path='/client/:login'>
+            <Route path='/client/:login' component={Navigation}>
               <h1 className='m-3 d-flex justify-content-center'>i-Bozh</h1>
-              <Navigation role='client'/>
+              <Navigation role='client' totalItem={2}/>
 
               <Switch>
                 <Route path='/client/:login/home'><Home/></Route>

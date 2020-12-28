@@ -27,6 +27,12 @@ export default class Brands extends Component{
         this.brandsList();
     }
 
+    componentWillUnmount(){
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+
     deleteBrand(id){
         if(window.confirm('Are you sure?')){
             axios.delete(`https://localhost:44365/api/Brand/delete/${id}`)

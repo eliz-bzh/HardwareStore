@@ -27,6 +27,12 @@ export default class Suppliers extends Component{
         this.suppliersList();
     }
 
+    componentWillUnmount(){
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+
     deleteSupplier(id){
         if(window.confirm('Are you sure?')){
             axios.delete(`https://localhost:44365/api/Supplier/delete/${id}`)

@@ -27,6 +27,12 @@ export default class Types extends Component{
         this.typesList();
     }
 
+    componentWillUnmount(){
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+
     deleteType(id){
         if(window.confirm('Are you sure?')){
             axios.delete(`https://localhost:44365/api/Type/delete/${id}`)
