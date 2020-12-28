@@ -29,6 +29,12 @@ export default class Supplies extends Component{
         this.suppliesList();
     }
 
+    componentWillUnmount(){
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+
     deleteSupply(id){
         if(window.confirm('Are you sure?')){
             axios.delete(`https://localhost:44365/api/Supply/delete/${id}`)
@@ -84,7 +90,8 @@ export default class Supplies extends Component{
                         {supplies.map(supply=>
                             <tr key={supply.id}>
                                 <td>{this.date(supply.date)}</td>
-                                <td>{suppliers.map(supplier=>{if(supplier.id === supply.supplierId){return supplier.nameOrganization}})}</td>
+                                <td>{suppliers.filter(supplier => supplier.id === supply.supplierId)
+                                .map(supplier=>{return supplier.nameOrganization})}</td>
                                 <td>
                                 <ButtonToolbar>
                                     <Button 
