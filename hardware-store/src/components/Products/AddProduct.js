@@ -64,11 +64,11 @@ export default class AddProductModal extends Component{
         })}`)
         .then(res=> {
             console.log(res.data);
-            this.setState({snackBaropen: true, snackBarMessage: 'Added successfully', image:''});
+            this.setState({snackBaropen: true, snackBarMessage: 'Успешно добавлено', image:''});
         })
         .catch(error=> {
             console.log(error);
-            this.setState({snackBaropen: true, snackBarMessage: 'Failed added'});
+            this.setState({snackBaropen: true, snackBarMessage: 'Ошибка добавления'});
         });
     }
     

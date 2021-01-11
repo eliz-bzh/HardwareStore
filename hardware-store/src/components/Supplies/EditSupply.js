@@ -41,11 +41,11 @@ export default class EditSupplyModal extends Component{
         })}`)
         .then(res=> {
             console.log(res.data);
-            this.setState({snackBaropen: true, snackBarMessage: 'Updated successfully'});
+            this.setState({snackBaropen: true, snackBarMessage: 'Успешно обновлёна'});
         })
         .catch(error=> {
             console.log(error);
-            this.setState({snackBaropen: true, snackBarMessage: 'Failed to update'});
+            this.setState({snackBaropen: true, snackBarMessage: 'Ошибка редактирования'});
         });
     }
 

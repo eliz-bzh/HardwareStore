@@ -50,6 +50,7 @@ class Navigation extends Component{
                             <NavLink className='d-inline p-2 bg-dark text-white badge-pill' to='/admin/types'>Категории</NavLink>
                             <NavLink className='d-inline p-2 bg-dark text-white badge-pill' to='/admin/suppliers'>Поставщики</NavLink>
                             <NavLink className='d-inline p-2 bg-dark text-white badge-pill' to='/admin/supplies'>Поставки</NavLink>
+                            <NavLink className='d-inline p-2 bg-dark text-white badge-pill' to='/admin/orders'>Заказы</NavLink>
                         </Nav.Item>
                         <Nav.Item hidden={client}>
                             <NavLink className='d-inline p-2 bg-dark text-white badge-pill'  to={'/client/' + login + '/home'}>Главная</NavLink>
@@ -59,7 +60,9 @@ class Navigation extends Component{
                     </Nav>
                     <Nav>
                         <Nav.Item hidden={client}>
-                            <NavLink className='d-inline p-2 bg-dark text-white badge-pill' to={'/client/' + login + '/shoppingCart'}><Badge badgeContent={this.props.items.length} color="secondary" showZero>{<ShoppingCartRoundedIcon/>}</Badge></NavLink>
+                            <NavLink className='d-inline p-2 bg-dark text-white badge-pill' to={'/client/' + login + '/shoppingCart'}><Badge badgeContent={this.props.items.reduce((accumulator, product) => {
+                                                                                                                                                                return accumulator + product.quantity;
+                                                                                                                                                                }, 0)} color="secondary" showZero>{<ShoppingCartRoundedIcon/>}</Badge></NavLink>
                             <NavLink className='d-inline p-2 bg-dark text-white badge-pill' to={'/client/' + login + '/help'}>{<HelpOutlineIcon/>}</NavLink>
                         </Nav.Item>
                         <Nav.Item hidden={admin}>

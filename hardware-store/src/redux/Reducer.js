@@ -30,6 +30,23 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cartItems: state.cartItems.filter(x => x.id !== action.payload)
       };
+    case CONSTANTS.UPDATE_QUANTITY_CART_ITEM:{
+      let index = state.cartItems.findIndex(x => x.id === action.payload.id);
+
+      // User wants to update quantity of existing item.
+      if (index !== -1) {
+        let cloneCartItems = [...state.cartItems];
+        cloneCartItems[index] = {
+          ...cloneCartItems[index],
+          quantity: action.payload.quantity
+        };
+
+        return { ...state, cartItems: cloneCartItems };
+      }
+
+      // If we couldn't find such item, do nothing.
+      return state;
+    }
     default:
       return state;
   }
