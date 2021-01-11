@@ -12,6 +12,7 @@ import LoginForm from './components/LoginRegisterForms/LoginForm';
 import RegistrationForm from './components/LoginRegisterForms/RegistrationForm';
 import Supplies from './components/Supplies/Supplies';
 import Suppliers from './components/Suppliers/Suppliers';
+import Order from './components/Order/Order';
 
 function App() {
 
@@ -34,13 +35,14 @@ function App() {
                 <Route path='/admin/types' component={Types}/>
                 <Route path='/admin/supplies' component={Supplies}/>
                 <Route path='/admin/suppliers' component={Suppliers}/>
+                <Route path='/admin/orders' component={Order}/>
                 <Route path='/admin/help'><References role='admin'/></Route>
               </Switch>
             </Route>
 
             <Route path='/client/:login' component={Navigation}>
               <h1 className='m-3 d-flex justify-content-center'>i-Bozh</h1>
-              <Navigation role='client' totalItem={2}/>
+              <Navigation role='client'/>
 
               <Switch>
                 <Route path='/client/:login/home'><Home/></Route>

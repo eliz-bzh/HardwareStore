@@ -8,3 +8,7 @@ export const deleteCartItem = id => ({
   type: CONSTANTS.DELETE_CART_ITEM,
   payload: id
 });
+export const updateQuantityCartItem = object => ({
+  type: CONSTANTS.UPDATE_QUANTITY_CART_ITEM,
+  payload: object
+});

@@ -36,11 +36,11 @@ export default class AddSupplyModal extends Component{
         })}`)
         .then(res=> {
             console.log(res.data);
-            this.setState({snackBaropen: true, snackBarMessage: 'Added successfully'});
+            this.setState({snackBaropen: true, snackBarMessage: 'Успешно добавлено'});
         })
         .catch(error=> {
             console.log(error);
-            this.setState({snackBaropen: true, snackBarMessage: 'Failed added'});
+            this.setState({snackBaropen: true, snackBarMessage: 'Ошибка добавления'});
         });
     }
 

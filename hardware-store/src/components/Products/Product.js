@@ -10,6 +10,8 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { addItemInCart } from "../../redux/Actions";
+import SnackBar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 class Product extends Component{
     constructor(props){
@@ -19,7 +21,8 @@ class Product extends Component{
             types:[],
             supplies: [],
             suppliers: [],
-            editModalShow: false
+            editModalShow: false,
+            open: false
         }
     }
 
@@ -75,6 +78,11 @@ class Product extends Component{
         const editModalClose=()=>this.setState({editModalShow:false});
         return(
             <div>
+                <SnackBar open={this.state.open} autoHideDuration={400} onClose={()=>{this.setState({open: false})}}>
+                    <MuiAlert onClose={()=>{this.setState({open: false})}} severity="success" variant="filled">
+                        <b>Товар добавлен</b>
+                    </MuiAlert>
+                </SnackBar>
                 <Row>
                     <Col>
                         <Card className='mr-2 mt-2' key={this.props.product.id} style={{ width: '16.5rem'}}>
@@ -144,6 +152,11 @@ class Product extends Component{
                                         {this.props.product.amount > 0 ? <Button variant="light"
                                         onClick={e => {
                                             e.stopPropagation();
+                                            this.setState(({open})=>{
+                                                return {
+                                                    open: !open
+                                                }
+                                            })
                                             this.props.dispatch(
                                                 addItemInCart({ ...this.props.product, quantity: 1 })
                                             );
