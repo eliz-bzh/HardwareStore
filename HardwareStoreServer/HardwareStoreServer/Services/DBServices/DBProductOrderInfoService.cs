@@ -95,6 +95,7 @@ namespace HardwareStoreServer.Services.DBServices
             }
 
             prevEntity.ProductId = newEntity.ProductId;
+            prevEntity.Quantity = newEntity.Quantity;
             prevEntity.OrderId = newEntity.OrderId;
 
             try

@@ -28,7 +28,6 @@ namespace HardwareStoreServer.Models.DBModels
         public string Image { get; set; } 
 
         [JsonIgnore]
-        public ICollection<Stock> Stocks { get; set; }
         public ICollection<ProductOrderInfo> ProductOrderInfos { get; set; }
 
     }

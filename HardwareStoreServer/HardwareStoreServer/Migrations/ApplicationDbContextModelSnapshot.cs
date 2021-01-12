@@ -65,27 +65,6 @@ namespace HardwareStoreServer.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Employee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employees");
-                });
-
             modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -99,14 +78,12 @@ namespace HardwareStoreServer.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
-
-                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Orders");
                 });
@@ -166,10 +143,13 @@ namespace HardwareStoreServer.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -179,23 +159,6 @@ namespace HardwareStoreServer.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductOrderInfos");
-                });
-
-            modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Stock", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Stocks");
                 });
 
             modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Supplier", b =>
@@ -263,15 +226,7 @@ namespace HardwareStoreServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HardwareStoreServer.Models.DBModels.Employee", "Employee")
-                        .WithMany("Orders")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Client");
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Product", b =>
@@ -305,9 +260,7 @@ namespace HardwareStoreServer.Migrations
                 {
                     b.HasOne("HardwareStoreServer.Models.DBModels.Order", "Order")
                         .WithMany("ProductOrderInfos")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("HardwareStoreServer.Models.DBModels.Product", "Product")
                         .WithMany("ProductOrderInfos")
@@ -316,17 +269,6 @@ namespace HardwareStoreServer.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Stock", b =>
-                {
-                    b.HasOne("HardwareStoreServer.Models.DBModels.Product", "Product")
-                        .WithMany("Stocks")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Product");
                 });
@@ -352,11 +294,6 @@ namespace HardwareStoreServer.Migrations
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Employee", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
             modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Order", b =>
                 {
                     b.Navigation("ProductOrderInfos");
@@ -365,8 +302,6 @@ namespace HardwareStoreServer.Migrations
             modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Product", b =>
                 {
                     b.Navigation("ProductOrderInfos");
-
-                    b.Navigation("Stocks");
                 });
 
             modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Supplier", b =>
