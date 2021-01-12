@@ -45,16 +45,16 @@ namespace HardwareStoreServer.Services.DBServices
             return true;
         }
 
-        public void ExportOrdersToExcel(DateTime from, DateTime to)
+        public string ExportOrdersToExcel(DateTime from, DateTime to)
         {
             var q = context.Orders.Where(o => o.Date > from && o.Date < to);
             try
             {
-                excelService.ExportData(q);
+                return excelService.ExportData(q);
             }
             catch (Exception ex)
             {
-
+                return ex.ToString();
             }
         }
 
@@ -109,9 +109,9 @@ namespace HardwareStoreServer.Services.DBServices
                 return false;
             }
 
-            prevEntity.EmployeeId = newEntity.EmployeeId;
             prevEntity.ClientId = newEntity.ClientId;
             prevEntity.Date = newEntity.Date;
+            prevEntity.TotalPrice = newEntity.TotalPrice;
 
             try
             {

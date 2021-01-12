@@ -35,11 +35,9 @@ namespace HardwareStoreServer
 
             services.AddScoped(typeof(DBBrandService));
             services.AddScoped(typeof(DBClientService));
-            services.AddScoped(typeof(DBEmployeeService));
             services.AddScoped(typeof(DBOrderService));
             services.AddScoped(typeof(DBProductOrderInfoService));
             services.AddScoped(typeof(DBProductService));
-            services.AddScoped(typeof(DBStockService));
             services.AddScoped(typeof(DBSupplierService));
             services.AddScoped(typeof(DBSupplyService));
             services.AddScoped(typeof(DBTypeService));
