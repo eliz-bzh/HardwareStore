@@ -1,4 +1,9 @@
 # HardwareStoreWithReactRedux
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/43619988/107078238-14e7f780-67ff-11eb-8ad5-697f967b34d6.gif" width=200%/>
+</p>
+
 ## Installation
 To install a custom application shell use these commands:
 ### `npm install` or `npm i`
@@ -6,6 +11,7 @@ To install a custom application shell use these commands:
 In the project directory, you can run:
 ### `npm start`
 Runs the app in the development mode.
+
 Open http://localhost:3000 to view it in the browser.
 ## Demos
 ### Authorization form
