@@ -32,7 +32,7 @@ Home page with salutation.
 ________________________________________________
 
 ### Product page
-A page with technics that we can sort by brand , category and price.
+A page with technics that we can sort by brand, category and price.
 
 ![image](https://user-images.githubusercontent.com/43619988/107070105-ea447180-67f3-11eb-8b92-3f461fc50251.png)
 
@@ -42,6 +42,8 @@ _______________________________________________
 User (customer) cart.
 
 ![image](https://user-images.githubusercontent.com/43619988/107070692-b4ec5380-67f4-11eb-8c38-6e81fe8c7cdd.png)
+
+_______________________________________________
 
 ### Reference page
 Here user can read a app reference system.
