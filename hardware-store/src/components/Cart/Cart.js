@@ -10,6 +10,7 @@ import { deleteCartItem, updateQuantityCartItem } from '../../redux/Actions';
 import SnackBar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import ExportCSV from '../../ExcelCheck/Check';
+import ScrollTop from '../ScrollTop';
 
 class Cart extends Component{
 
@@ -130,8 +131,8 @@ class Cart extends Component{
                             {this.props.items.map(product=>
                                 <tr key={product.id}>
                                     <td><img src={product.image} alt='error' height='100px' width='100px'/></td>
-                                    <td>{product.name}</td>
-                                    <td>
+                                    <td style={{maxWidth: '200px'}}>{product.name}</td>
+                                    <td style={{maxWidth: '210px'}}>
                                         <div>
                                             <b>Модель: </b>{product.modal}<br/>
                                             <b>Год выпуска: </b>{product.year}<br/>
@@ -166,6 +167,7 @@ class Cart extends Component{
                         </tbody>
                     </Table>
                 ):(<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)}
+                <ScrollTop/>
             </div>
         )
     }

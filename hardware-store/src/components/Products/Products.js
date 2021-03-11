@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
-import {ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, CardGroup, Alert} from 'react-bootstrap';
+import {ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, CardGroup, Alert, ListGroup, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
 import AddProductModal from './AddProduct';
-import Product from './Product';
+import ProductOfGrid from './ProductOfGrid';
+import ProductOfList from './ProductOfList';
 import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
 import CheckBox from '../CheckBox';
 import RadioBox from '../RadioBox';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import ViewComfyIcon from '@material-ui/icons/ViewComfy';
+import ScrollTop from '../ScrollTop';
 
 export default class Products extends Component{
     constructor(props){
@@ -25,7 +29,8 @@ export default class Products extends Component{
                 {id: 3, label: 'От меньшего к большему'}
             ],
             sortBy: '',
-            cart: []
+            cart: [],
+            grid: true, showScroll: false
         };
     }
 
@@ -120,9 +125,13 @@ export default class Products extends Component{
     }
 
     render(){
-        const{productsFilters, brands, types, search, items}=this.state;
+        const{productsFilters, brands, types, search, items, grid}=this.state;
         const addModalClose=()=>this.setState({addModalShow:false});
         const productsSearch = this.searchPanel(productsFilters);
+        const list = (productsSearch && productsSearch.length !== 0) ? (
+            (grid === true)?(<CardGroup className='justify-content-center'> {productsSearch.map(product=> <ProductOfGrid key={product.id} product={product} role={this.props.role}/> )} </CardGroup>)
+            :(<ListGroup> {productsSearch.map(product=> <ProductOfList key={product.id} product={product} role={this.props.role}/> )} </ListGroup>))
+            :(<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)
         return(
             <div>
                 <ButtonToolbar className='float-right'>
@@ -163,14 +172,12 @@ export default class Products extends Component{
                         onChange={(e)=>this.setState({search: e.target.value})}/>
                     </FormGroup>
                 </Form>
-
-                {(productsSearch && productsSearch.length !== 0) ? ( 
-                    <CardGroup className='justify-content-center'>
-                        {productsSearch.map(product=>
-                            <Product key={product.id} product={product} role={this.props.role}/>
-                        )}
-                    </CardGroup>
-                ):(<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)}
+                <ToggleButtonGroup className='d-flex justify-content-center align-items-center' type="radio" name="options" defaultValue={1}>
+                    <ToggleButton value={1} variant="light" checked={grid === true} name="radio" onChange={(e)=>this.setState({grid: true})}>{<ViewComfyIcon/>}</ToggleButton>
+                    <ToggleButton value={2} variant="light" checked={grid === false} name="radio" onChange={(e)=>this.setState({grid: false})}>{<FormatListBulletedIcon/>}</ToggleButton>
+                </ToggleButtonGroup>
+                {list}
+                <ScrollTop/>
             </div>
         )
     }

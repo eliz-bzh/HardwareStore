@@ -6,6 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
+import ScrollTop from '../ScrollTop';
 
 export default class Types extends Component{
     constructor(props){
@@ -63,6 +64,19 @@ export default class Types extends Component{
         const editModalClose=()=>this.setState({editModalShow:false});
         return(
             <div>
+                <ButtonToolbar className='float-right mt-2 mb-2'>
+                    <Button variant="light"
+                        onClick={()=>{
+                            this.setState({addModalShow: true})
+                        }}>
+                        {<AddIcon/>}Добавить новую категорию
+                    </Button>
+                </ButtonToolbar>
+
+                <AddTypeModal
+                    show={this.state.addModalShow}
+                    onHide={addModalClose}>
+                </AddTypeModal>
                 {(types && types.length !== 0) ? (
                         <Table className='mt-4' size='sm'>
                     <thead>
@@ -108,20 +122,7 @@ export default class Types extends Component{
                     </tbody>
                 </Table>
                 ):(<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)}
-
-                <ButtonToolbar>
-                    <Button variant="light"
-                        onClick={()=>{
-                            this.setState({addModalShow: true})
-                        }}>
-                        {<AddIcon/>}Добавить новую категорию
-                    </Button>
-                </ButtonToolbar>
-
-                <AddTypeModal
-                    show={this.state.addModalShow}
-                    onHide={addModalClose}>
-                </AddTypeModal>
+                <ScrollTop/>
             </div>
         )
     }

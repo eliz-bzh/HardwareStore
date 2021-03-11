@@ -4,13 +4,14 @@ import qs from 'querystring';
 import {Button, Table, Alert, Form, Row, Col, InputGroup } from 'react-bootstrap';
 import SnackBar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import ScrollTop from '../ScrollTop';
 
 export default class Order extends Component{
 
     constructor(props){
         super(props);
         this.state = {
-            orders: [], clients: [], open: false, message: '', severity: ''
+            orders: [], clients: [], open: false, message: '', severity: '', to: '', from: ''
         }
     }
 
@@ -62,8 +63,21 @@ export default class Order extends Component{
         })
     }
 
+    filterList(rows){
+        const { to, from } = this.state;
+        let newList = rows;
+        if(from !== ''){
+            newList = rows.filter(row=>row.date >= from);
+        }
+        if(to !== ''){
+           newList = newList.filter(row=>row.date < to);
+        }
+        return newList;
+    }
+
     render(){
         const { orders, clients, message, open, severity } = this.state;
+        const filterOrder = this.filterList(orders);
         return(
             <div>
                 <SnackBar open={open} autoHideDuration={8000} onClose={()=>{this.setState({open: false})}}>
@@ -79,22 +93,22 @@ export default class Order extends Component{
                                 <InputGroup.Prepend>
                                     <InputGroup.Text>С</InputGroup.Text>
                                 </InputGroup.Prepend>
-                                <Form.Control type="date" name='from' required />
+                                <Form.Control type="date" name='from' required onChange={(e)=>this.setState({from: e.target.value})} />
                             </InputGroup>
                         </Col>
                         <Col>
                             <InputGroup>
                                 <InputGroup.Prepend>
-                                    <InputGroup.Text>По</InputGroup.Text>
+                                    <InputGroup.Text>До</InputGroup.Text>
                                 </InputGroup.Prepend>
-                                <Form.Control type="date" name='to' required/>
+                                <Form.Control type="date" name='to' required onChange={(e)=>this.setState({to: e.target.value})} />
                             </InputGroup>
                         </Col>
                             <Button variant='outline-dark' type='submit'>Сформировать отчёт</Button>
                     </Row>
                 </Form>
                
-                {(orders && orders.length !== 0) ? ( 
+                {(filterOrder && filterOrder.length !== 0) ? ( 
                     <Table className='mt-4' size='sm'>
                         <thead>
                             <tr>
@@ -105,7 +119,7 @@ export default class Order extends Component{
                             </tr>
                         </thead>
                         <tbody>
-                            {orders.map(order=>
+                            {filterOrder.map(order=>
                                 <tr key={order.id}>
                                     <td>{order.id}</td>
                                     <td>{clients.filter(client=>client.id === order.clientId).map(client=>{return client.name + ' ' + client.surname})}</td>
@@ -116,6 +130,7 @@ export default class Order extends Component{
                         </tbody>
                     </Table>
                 ):(<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)}
+                <ScrollTop/>
             </div>
         )
     }
