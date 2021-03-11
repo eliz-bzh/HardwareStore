@@ -53,7 +53,6 @@ export default class AddSupplierModal extends Component{
         ]}/>
             <Modal
       {...this.props}
-      size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -64,7 +63,7 @@ export default class AddSupplierModal extends Component{
       </Modal.Header>
       <Modal.Body>
               <Row>
-                  <Col sm={6}>
+                  <Col>
                       <Form onSubmit={this.handleSubmit}>
                       <Form.Group controlId="name">
                                 <Form.Label>Организация</Form.Label>

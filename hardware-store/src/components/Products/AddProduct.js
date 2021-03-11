@@ -108,7 +108,6 @@ export default class AddProductModal extends Component{
         ]}/>
             <Modal
       {...this.props}
-      size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -119,7 +118,7 @@ export default class AddProductModal extends Component{
       </Modal.Header>
       <Modal.Body>
               <Row key={1}>
-                  <Col sm={6}>
+                  <Col>
                       <Form onSubmit={this.handleSubmit}>
                           <Form.Group>
                               <div>
