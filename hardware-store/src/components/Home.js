@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Home=()=>{
+const Home = () => {
 
-    return(
+    return (
         <div className='mt-2'>
             <h1>Главная страница</h1>
             <h3>Добро пожаловать в web-приложение магазина техники i-Bozh!</h3>
