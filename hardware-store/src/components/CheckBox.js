@@ -25,7 +25,7 @@ const CheckBox = ({ items, sortBy, handleFilters }) => {
 
     const list = items.map(item => {
         return (
-            <Form.Check checked={checked.indexOf(item.id) === -1 ? false : true} inline type="checkbox" label={item} key={item.id} value={item.id} onChange={() => handleToggle(item.id)} />
+            <Form.Check checked={checked.indexOf(item.id) === -1 ? false : true} inline type="checkbox" label={item.name} key={item.id} value={item.id} onChange={() => handleToggle(item.id)} />
         );
     });
 

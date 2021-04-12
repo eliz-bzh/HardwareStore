@@ -3,8 +3,8 @@ import './Spinner.css';
 
 const Spinner = () => {
     return (
-        <div class="loadingio-spinner-spin-oefynqutfaf">
-            <div class="ldio-a99n4ssuwle">
+        <div className="loadingio-spinner-spin-oefynqutfaf">
+            <div className="ldio-a99n4ssuwle">
                 <div>
                     <div></div>
                 </div>

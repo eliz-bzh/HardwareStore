@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {ButtonToolbar, Button, Table, Alert} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { ButtonToolbar, Button, Table, Alert } from 'react-bootstrap';
 import AddTypeModal from './AddType';
 import EditTypeModal from './EditType';
 import AddIcon from '@material-ui/icons/Add';
@@ -8,68 +8,68 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 import ScrollTop from '../ScrollTop';
 
-export default class Types extends Component{
-    constructor(props){
+export default class Types extends Component {
+    constructor(props) {
         super(props);
-        this.state={
-            types:[],
-            snackBaropen: false, 
+        this.state = {
+            types: [],
+            snackBaropen: false,
             snackBarMessage: '',
             addModalShow: false,
             editModalShow: false
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.typesList();
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         this.typesList();
     }
 
-    componentWillUnmount(){
-        this.setState = (state,callback)=>{
+    componentWillUnmount() {
+        this.setState = (state, callback) => {
             return;
         };
     }
 
-    deleteType(id){
-        if(window.confirm('Are you sure?')){
-            axios.delete(`https://localhost:44365/api/Type/delete/${id}`)
-            .then(res=> {
-                console.log(res.data);
-            })
-            .catch(error=> {
-                console.log(error);
-            });
+    deleteType(id) {
+        if (window.confirm('Are you sure?')) {
+            axios.delete(`https://localhost:5001/api/Type/delete/${id}`)
+                .then(res => {
+                    console.log(res.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 
-    typesList(){
-        axios.get(`https://localhost:44365/api/Type/getAll`)
-        .then(res=> {
-            this.setState({types: res.data})
-        });
+    typesList() {
+        axios.get(`https://localhost:5001/api/Type/getAll`)
+            .then(res => {
+                this.setState({ types: res.data })
+            });
     }
 
-    snackBarClose=(event)=>{
-        this.setState({snackBaropen: false});
+    snackBarClose = (event) => {
+        this.setState({ snackBaropen: false });
     }
 
 
-    render(){
-        const{types, Id,  Name}=this.state;
-        const addModalClose=()=>this.setState({addModalShow:false});
-        const editModalClose=()=>this.setState({editModalShow:false});
-        return(
+    render() {
+        const { types, Id, Name } = this.state;
+        const addModalClose = () => this.setState({ addModalShow: false });
+        const editModalClose = () => this.setState({ editModalShow: false });
+        return (
             <div>
                 <ButtonToolbar className='float-right mt-2 mb-2'>
                     <Button variant="light"
-                        onClick={()=>{
-                            this.setState({addModalShow: true})
+                        onClick={() => {
+                            this.setState({ addModalShow: true })
                         }}>
-                        {<AddIcon/>}Добавить новую категорию
+                        {<AddIcon />}Добавить новую категорию
                     </Button>
                 </ButtonToolbar>
 
@@ -78,51 +78,51 @@ export default class Types extends Component{
                     onHide={addModalClose}>
                 </AddTypeModal>
                 {(types && types.length !== 0) ? (
-                        <Table className='mt-4' size='sm'>
-                    <thead>
-                        <tr>
-                            <th>Название</th>
-                            <th>Действия</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {types.map(type=>
-                            <tr key={type.id}>
-                                <td>{type.name}</td>
-                                <td>
-                                <ButtonToolbar>
-                                    <Button 
-                                    variant="light" 
-                                    onClick={()=>this.setState({
-                                        editModalShow: true, 
-                                        Id: type.id,
-                                        Name: type.name
-                                        })}>
-                                    {<EditIcon/>}
-                                    </Button>
-
-                                    <div className="mr-2"></div>
-
-                                    <Button className="mr-2"
-                                    variant="ligth" 
-                                    onClick={()=>this.deleteType(type.id)}>
-                                    {<DeleteIcon/>}
-                                    </Button>
-
-                                    <EditTypeModal
-                                    show={this.state.editModalShow}
-                                    onHide={editModalClose}
-                                    typeid={Id}
-                                    typename={Name}/>
-
-                                </ButtonToolbar>
-                                </td>
+                    <Table className='mt-4' size='sm'>
+                        <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Действия</th>
                             </tr>
-                        )}
-                    </tbody>
-                </Table>
-                ):(<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)}
-                <ScrollTop/>
+                        </thead>
+                        <tbody>
+                            {types.map(type =>
+                                <tr key={type.id}>
+                                    <td>{type.name}</td>
+                                    <td>
+                                        <ButtonToolbar>
+                                            <Button
+                                                variant="light"
+                                                onClick={() => this.setState({
+                                                    editModalShow: true,
+                                                    Id: type.id,
+                                                    Name: type.name
+                                                })}>
+                                                {<EditIcon />}
+                                            </Button>
+
+                                            <div className="mr-2"></div>
+
+                                            <Button className="mr-2"
+                                                variant="ligth"
+                                                onClick={() => this.deleteType(type.id)}>
+                                                {<DeleteIcon />}
+                                            </Button>
+
+                                            <EditTypeModal
+                                                show={this.state.editModalShow}
+                                                onHide={editModalClose}
+                                                typeid={Id}
+                                                typename={Name} />
+
+                                        </ButtonToolbar>
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </Table>
+                ) : (<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)}
+                <ScrollTop />
             </div>
         )
     }

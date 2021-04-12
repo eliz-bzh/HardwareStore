@@ -11,12 +11,12 @@ const CarouselImages = ({ images }) => {
 
     return (
         <Carousel style={{ width: '16.4rem' }} activeIndex={index} onSelect={handleSelect}>
-            {images && images.map((image, index) =>
+            {images && images.map(image =>
                 <Carousel.Item>
-                    <img
+                    <img key={image.id}
                         height='230px'
                         className="d-block w-100"
-                        src={image}
+                        src={image.url}
                         alt="Error, sorry..."
                     />
                 </Carousel.Item>

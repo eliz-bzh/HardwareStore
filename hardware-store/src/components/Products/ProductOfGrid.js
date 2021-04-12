@@ -35,28 +35,28 @@ class ProductOfGrid extends Component {
     }
 
     brandsList() {
-        axios.get(`https://localhost:44365/api/Brand/getAll`)
+        axios.get(`https://localhost:5001/api/Brand/getAll`)
             .then(res => {
                 this.setState({ brands: res.data })
             });
     }
 
     typesList() {
-        axios.get(`https://localhost:44365/api/Type/getAll`)
+        axios.get(`https://localhost:5001/api/Type/getAll`)
             .then(res => {
                 this.setState({ types: res.data })
             });
     }
 
     suppliesList() {
-        axios.get(`https://localhost:44365/api/Supply/getAll`)
+        axios.get(`https://localhost:5001/api/Supply/getAll`)
             .then(res => {
                 this.setState({ supplies: res.data })
             });
     }
 
     suppliersList() {
-        axios.get(`https://localhost:44365/api/Supplier/getAll`)
+        axios.get(`https://localhost:5001/api/Supplier/getAll`)
             .then(res => {
                 this.setState({ suppliers: res.data })
             });
@@ -64,7 +64,7 @@ class ProductOfGrid extends Component {
 
     deleteProduct(id) {
         if (window.confirm('Are you sure?')) {
-            axios.delete(`https://localhost:44365/api/Product/delete/${id}`)
+            axios.delete(`https://localhost:5001/api/Product/delete/${id}`)
                 .then(res => {
                     console.log(res.data);
                 })
