@@ -24,21 +24,21 @@ export default class AddProductModal extends Component {
     }
 
     brandsList() {
-        axios.get(`https://localhost:44365/api/Brand/getAll`)
+        axios.get(`https://localhost:5001/api/Brand/getAll`)
             .then(res => {
                 this.setState({ brands: res.data })
             });
     }
 
     typesList() {
-        axios.get(`https://localhost:44365/api/Type/getAll`)
+        axios.get(`https://localhost:5001/api/Type/getAll`)
             .then(res => {
                 this.setState({ types: res.data })
             });
     }
 
     suppliersList() {
-        axios.get(`https://localhost:44365/api/Supplier/getAll`)
+        axios.get(`https://localhost:5001/api/Supplier/getAll`)
             .then(res => {
                 this.setState({ suppliers: res.data })
             });
@@ -50,20 +50,20 @@ export default class AddProductModal extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-
-        axios.post(`https://localhost:44365/api/Product/create?${qs.stringify({
-            Name: event.target.name.value,
-            Year: event.target.year.value,
-            BrandId: event.target.brand.value,
-            TypeId: event.target.type.value,
-            Modal: event.target.model.value,
-            Warranty: event.target.warranty.value,
-            Price: event.target.price.value,
-            Amount: event.target.amount.value,
-            SupplyId: event.target.supplier.value,
-            Image: this.state.images
-        })}`)
+        axios.post(`https://localhost:5001/api/Product/create`, {
+            name: event.target.name.value,
+            year: event.target.year.value,
+            brandId: parseInt(event.target.brand.value),
+            typeId: parseInt(event.target.type.value),
+            modal: event.target.modal.value,
+            warranty: parseInt(event.target.warranty.value),
+            price: parseInt(event.target.price.value),
+            amount: parseInt(event.target.amount.value),
+            supplyId: parseInt(event.target.supplier.value),
+            images: this.state.images
+        })
             .then(res => {
+                console.log(res);
                 console.log(res.data);
                 this.setState({ snackBaropen: true, snackBarMessage: 'Успешно добавлено', images: [] });
             })
@@ -91,7 +91,7 @@ export default class AddProductModal extends Component {
             this.setState(({ loading, images }) => {
                 return {
                     loading: false,
-                    images: [...images, file.secure_url]
+                    images: [...images, { url: file.secure_url }]
                 }
             })
         }
@@ -101,7 +101,7 @@ export default class AddProductModal extends Component {
         const { brands, types, suppliers, images } = this.state;
         const imagesView =
             images && images.map((image, index) =>
-                <img className='mt-2 mr-2' key={index} src={image} style={{ width: '300px' }} alt='' />
+                <img className='mt-2 mr-2' key={index} src={image.url} style={{ width: '300px' }} alt='Error, sorry...' />
             );
         return (
             <div className='container'>
@@ -139,7 +139,7 @@ export default class AddProductModal extends Component {
                                                     <div className='mt-4' style={{ display: 'inline-flex' }}><Spinner /></div>
                                                 </div>
                                             ) : (images && images.map((image, index) =>
-                                                <img className='mt-2 mr-2' key={index} src={image} style={{ width: '300px' }} alt='' />
+                                                <img className='mt-2 mr-2' key={index} src={image.url} style={{ width: '300px' }} alt='' />
                                             ))
                                             }
                                         </div>
@@ -158,7 +158,7 @@ export default class AddProductModal extends Component {
                                                 <Form.Label>Модель</Form.Label>
                                                 <Form.Control
                                                     type="text"
-                                                    name="model"
+                                                    name="modal"
                                                     required
                                                     placeholder="Модель" />
                                             </Col>
@@ -168,7 +168,7 @@ export default class AddProductModal extends Component {
                                         <Row>
                                             <Col>
                                                 <Form.Label>Категория</Form.Label>
-                                                <Form.Control as="select">
+                                                <Form.Control as="select" name='type'>
                                                     {types.map(type =>
                                                         <Tooltip key={type.id} title={type.name}>
                                                             <option key={type.id} value={type.id}>{type.name}</option>
@@ -178,7 +178,7 @@ export default class AddProductModal extends Component {
                                             </Col>
                                             <Col>
                                                 <Form.Label>Бренд</Form.Label>
-                                                <Form.Control as="select">
+                                                <Form.Control as="select" name='brand'>
                                                     {brands.map(brand =>
                                                         <Tooltip key={brand.id} title={brand.name}>
                                                             <option key={brand.id} value={brand.id}>{brand.name}</option>
@@ -220,7 +220,7 @@ export default class AddProductModal extends Component {
                                         <Row>
                                             <Col>
                                                 <Form.Label>Поставщик</Form.Label>
-                                                <Form.Control as="select">
+                                                <Form.Control as="select" name='supplier'>
                                                     {suppliers.map(supplier =>
                                                         <Tooltip key={supplier.id} title={supplier.nameOrganization}>
                                                             <option key={supplier.id} value={supplier.id}>{supplier.nameOrganization}</option>

@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {Modal, Row, Col, Form} from 'react-bootstrap';
-import {Button} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Modal, Row, Col, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import SnackBar from '@material-ui/core/Snackbar';
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from '@material-ui/icons/Close';
@@ -8,115 +8,115 @@ import axios from 'axios';
 import qs from 'querystring';
 import Tooltip from '@material-ui/core/Tooltip';
 
-export default class EditSupplyModal extends Component{
+export default class EditSupplyModal extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {snackBaropen: false, snackBarMessage: '', suppliers: []};
+        this.state = { snackBaropen: false, snackBarMessage: '', suppliers: [] };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.suppliersList();
     }
 
-    suppliersList(){
-        axios.get(`https://localhost:44365/api/Supplier/getAll`)
-        .then(res=> {
-            this.setState({suppliers: res.data})
-        });
+    suppliersList() {
+        axios.get(`https://localhost:5001/api/Supplier/getAll`)
+            .then(res => {
+                this.setState({ suppliers: res.data })
+            });
     }
 
-    snackBarClose=(event)=>{
-        this.setState({snackBaropen: false});
+    snackBarClose = (event) => {
+        this.setState({ snackBaropen: false });
     }
 
-    handleSubmit=(event)=>{
+    handleSubmit = (event) => {
         event.preventDefault();
-        
-        axios.put(`https://localhost:44365/api/Supply/edit?${qs.stringify({
+
+        axios.put(`https://localhost:5001/api/Supply/edit?${qs.stringify({
             Id: this.props.supplyid,
             SupplierId: event.target.supplier.value,
             Date: event.target.date.value
         })}`)
-        .then(res=> {
-            console.log(res.data);
-            this.setState({snackBaropen: true, snackBarMessage: 'Успешно обновлёна'});
-        })
-        .catch(error=> {
-            console.log(error);
-            this.setState({snackBaropen: true, snackBarMessage: 'Ошибка редактирования'});
-        });
+            .then(res => {
+                console.log(res.data);
+                this.setState({ snackBaropen: true, snackBarMessage: 'Успешно обновлёна' });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка редактирования' });
+            });
     }
 
-    render(){
-        const{suppliers}=this.state;
-        return(
+    render() {
+        const { suppliers } = this.state;
+        return (
             <div className='container'>
                 <SnackBar
-                anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
-                open={this.state.snackBaropen}
-                autoHideDuration={1000}
-                onClose={this.snackBarClose}
-        message={<span id='message-id'>{this.state.snackBarMessage}</span>}
-        action={[
-            <IconButton color="inherit" size="small"
-                    onClick={this.snackBarClose}
-                    ><CloseIcon/></IconButton>
-        ]}/>
-            <Modal
-      {...this.props}
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Редактирование поставки
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                    open={this.state.snackBaropen}
+                    autoHideDuration={1000}
+                    onClose={this.snackBarClose}
+                    message={<span id='message-id'>{this.state.snackBarMessage}</span>}
+                    action={[
+                        <IconButton color="inherit" size="small"
+                            onClick={this.snackBarClose}
+                        ><CloseIcon /></IconButton>
+                    ]} />
+                <Modal
+                    {...this.props}
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            Редактирование поставки
         </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-              <Row>
-                  <Col>
-                      <Form onSubmit={this.handleSubmit}>
-                      <Form.Group controlId="date">
-                                <Form.Label>Дата поставки</Form.Label>
-                                    <Form.Control
-                                        defaultValue={this.props.supplydate}
-                                        type="date"
-                                        name="date"
-                                        required
-                                        placeholder="Дата поставки"/>
-                        </Form.Group>
-                          <Form.Group controlId="supplier">
-                              <Form.Label>Организация</Form.Label>
-                              <Form.Control as="select"
-                                defaultValue={this.props.supplier}>
-                                    {suppliers.map(supplier=>
-                                    <Tooltip key={supplier.id} title={supplier.nameOrganization}>
-                                        <option key={supplier.id} value={supplier.id}>{supplier.nameOrganization}</option>
-                                    </Tooltip>
-                                )}
-                                </Form.Control>
-                          </Form.Group>
-                          <Form.Group>
-                            <Button variant="light" type="submit">
-                                Изменить поставку
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Row>
+                            <Col>
+                                <Form onSubmit={this.handleSubmit}>
+                                    <Form.Group controlId="date">
+                                        <Form.Label>Дата поставки</Form.Label>
+                                        <Form.Control
+                                            defaultValue={this.props.supplydate}
+                                            type="date"
+                                            name="date"
+                                            required
+                                            placeholder="Дата поставки" />
+                                    </Form.Group>
+                                    <Form.Group controlId="supplier">
+                                        <Form.Label>Организация</Form.Label>
+                                        <Form.Control as="select"
+                                            defaultValue={this.props.supplier}>
+                                            {suppliers.map(supplier =>
+                                                <Tooltip key={supplier.id} title={supplier.nameOrganization}>
+                                                    <option key={supplier.id} value={supplier.id}>{supplier.nameOrganization}</option>
+                                                </Tooltip>
+                                            )}
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Button variant="light" type="submit">
+                                            Изменить поставку
                             </Button>
-                          </Form.Group>
-                      </Form>
-                  </Col>
-              </Row>
-          
-      </Modal.Body>
-      <Modal.Footer>
+                                    </Form.Group>
+                                </Form>
+                            </Col>
+                        </Row>
 
-        <Button variant="light" onClick={this.props.onHide}>
-            Закрыть
+                    </Modal.Body>
+                    <Modal.Footer>
+
+                        <Button variant="light" onClick={this.props.onHide}>
+                            Закрыть
         </Button>
 
-      </Modal.Footer>
-    </Modal>
-    </div>
+                    </Modal.Footer>
+                </Modal>
+            </div>
         );
     };
 }

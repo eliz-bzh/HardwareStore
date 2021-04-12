@@ -14,7 +14,7 @@ export default class LoginForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        axios.get(`https://localhost:44365/api/Client/getByLogin/${event.target.login.value}`)
+        axios.get(`https://localhost:5001/api/Client/getByLogin/${event.target.login.value}`)
             .then(res => {
                 if (res.data !== '') {
                     if (event.target.password.value === res.data.password) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, CardGroup, Alert, ListGroup, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, CardGroup, Alert, ListGroup } from 'react-bootstrap';
 import AddProductModal from './AddProduct';
 import ProductOfGrid from './ProductOfGrid';
 import ProductOfList from './ProductOfList';
@@ -52,27 +52,27 @@ export default class Products extends Component {
     }
 
     brandsList() {
-        axios.get(`https://localhost:44365/api/Brand/getAll`)
+        axios.get(`https://localhost:5001/api/Brand/getAll`)
             .then(res => {
                 this.setState({ brands: res.data })
             });
     }
 
     typesList() {
-        axios.get(`https://localhost:44365/api/Type/getAll`)
+        axios.get(`https://localhost:5001/api/Type/getAll`)
             .then(res => {
                 this.setState({ types: res.data })
             });
     }
 
     productsList() {
-        axios.get('https://localhost:44365/api/Product/getAll')
+        axios.get('https://localhost:5001/api/Product/getAll')
             .then(res => {
                 let filterList = this.filterList(res.data);
                 if (this.state.sortBy !== '') {
                     this.sortList(filterList, this.state.sortBy);
                 }
-
+                
                 this.setState({ products: res.data, productsFilters: filterList });
             })
     }
@@ -128,7 +128,7 @@ export default class Products extends Component {
     render() {
         const { productsFilters, brands, types, search, items, grid } = this.state;
         const addModalClose = () => this.setState({ addModalShow: false });
-        const productsSearch = this.searchPanel([...productsFilters, { id: 1, images: ['https://res.cloudinary.com/dzlhauo5h/image/upload/v1617229484/hardware-store/x68rpa4qoydqcwdhsxtb.jpg', 'https://res.cloudinary.com/dzlhauo5h/image/upload/v1617229485/hardware-store/l3z2odopnti8rrmiwtgg.jpg', 'https://res.cloudinary.com/dzlhauo5h/image/upload/v1617229486/hardware-store/bmutuvtuombddnotmbpk.png'], name: 'dfghjklkjhgfdfghjklkdfghjdaiiadeii', typeId: 1, brandId: 2, modal: 'dfghjkjdffjjdf', year: 2021, warranty: 3, amount: 323, supplyId: 1, price: 345678 }]);
+        const productsSearch = this.searchPanel(productsFilters);
         const list = (productsSearch && productsSearch.length !== 0) ? (
             (grid === true) ? (<CardGroup className='d-flex justify-content-center'> {productsSearch.map(product => <ProductOfGrid key={product.id} product={product} role={this.props.role} />)} </CardGroup>)
                 : (<ListGroup> {productsSearch.map(product => <ProductOfList key={product.id} product={product} role={this.props.role} />)} </ListGroup>))
