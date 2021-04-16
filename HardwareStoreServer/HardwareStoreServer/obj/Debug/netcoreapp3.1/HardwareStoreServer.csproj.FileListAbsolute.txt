@@ -1,6 +1,5 @@
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\appsettings.json
-D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.exe
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.deps.json
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\HardwareStoreServer.runtimeconfig.json
@@ -102,3 +101,4 @@ D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csproj.CoreCompileInputs.cache
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.MvcApplicationPartsAssemblyInfo.cache
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csprojAssemblyReference.cache
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\scopedcss\bundle\HardwareStoreServer.styles.css
