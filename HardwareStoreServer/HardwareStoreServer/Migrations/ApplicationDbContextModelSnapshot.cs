@@ -65,6 +65,26 @@ namespace HardwareStoreServer.Migrations
                     b.ToTable("Clients");
                 });
 
+            modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -100,9 +120,6 @@ namespace HardwareStoreServer.Migrations
 
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Modal")
                         .HasColumnType("nvarchar(max)");
@@ -218,6 +235,13 @@ namespace HardwareStoreServer.Migrations
                     b.ToTable("Types");
                 });
 
+            modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Image", b =>
+                {
+                    b.HasOne("HardwareStoreServer.Models.DBModels.Product", null)
+                        .WithMany("Images")
+                        .HasForeignKey("ProductId");
+                });
+
             modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Order", b =>
                 {
                     b.HasOne("HardwareStoreServer.Models.DBModels.Client", "Client")
@@ -301,6 +325,8 @@ namespace HardwareStoreServer.Migrations
 
             modelBuilder.Entity("HardwareStoreServer.Models.DBModels.Product", b =>
                 {
+                    b.Navigation("Images");
+
                     b.Navigation("ProductOrderInfos");
                 });
 
