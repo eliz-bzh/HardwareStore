@@ -25,10 +25,14 @@ namespace HardwareStoreServer.Models.DBModels
         [ForeignKey("Supply")]
         public int SupplyId { get; set; }
         public Supply Supply { get; set; }
-        public string Image { get; set; } 
+        public ICollection<Image> Images { get; set; }
 
         [JsonIgnore]
         public ICollection<ProductOrderInfo> ProductOrderInfos { get; set; }
 
+        public Product()
+        {
+            Images = new HashSet<Image>();
+        }
     }
 }

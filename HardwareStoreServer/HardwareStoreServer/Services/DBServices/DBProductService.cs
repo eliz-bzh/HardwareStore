@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HardwareStoreServer.Services.DBServices
 {
-    public class DBProductService: IDBService<Product>
+    public class DBProductService : IDBService<Product>
     {
         private readonly ApplicationDbContext context;
 
@@ -33,19 +33,18 @@ namespace HardwareStoreServer.Services.DBServices
             try
             {
                 context.SaveChanges();
-
+                return true;
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
-
-            return true;
         }
 
         public IList<Product> GetAll()
         {
-            return context.Products.ToList();
+            //return context.Products.ToList();
+            return context.Products.Include(p => p.Images).ToList();
         }
 
         public Product GetById(int id)
@@ -55,9 +54,23 @@ namespace HardwareStoreServer.Services.DBServices
 
         public bool Remove(int id)
         {
-            var deleted = context.Products.FirstOrDefault(x => x.Id == id);
+            var deleted = context.Products.Include(p => p.Images).FirstOrDefault(x => x.Id == id);
 
             if (deleted == null)
+            {
+                return false;
+            }
+
+            foreach (var img in deleted.Images)
+            {
+                context.Remove(img);
+            }
+
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
             {
                 return false;
             }
@@ -72,13 +85,12 @@ namespace HardwareStoreServer.Services.DBServices
             try
             {
                 context.SaveChanges();
+                return true;
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
-
-            return true;
         }
 
         public bool Update(Product newEntity)
@@ -87,7 +99,7 @@ namespace HardwareStoreServer.Services.DBServices
             {
                 return false;
             }
-            var prevEntity = context.Products.FirstOrDefault(x => x.Id == newEntity.Id);
+            var prevEntity = context.Products.Include(p => p.Images).FirstOrDefault(x => x.Id == newEntity.Id);
 
             if (prevEntity == null)
             {
@@ -103,7 +115,26 @@ namespace HardwareStoreServer.Services.DBServices
             prevEntity.Price = newEntity.Price;
             prevEntity.Amount = newEntity.Amount;
             prevEntity.SupplyId = newEntity.SupplyId;
-            prevEntity.Image = newEntity.Image;
+
+            if (newEntity.Images?.Count != 0)
+            {
+                foreach (var img in prevEntity.Images)
+                {
+                    context.Remove(img);
+                }
+
+                try
+                {
+                    context.SaveChanges();
+                    prevEntity.Images = null;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            prevEntity.Images = newEntity.Images;
 
             try
             {
