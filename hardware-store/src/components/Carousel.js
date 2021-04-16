@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 
-const CarouselImages = ({ images }) => {
+const CarouselImages = ({ images, height, width }) => {
 
     const [index, setIndex] = useState(0);
 
@@ -10,11 +10,11 @@ const CarouselImages = ({ images }) => {
     };
 
     return (
-        <Carousel style={{ width: '16.4rem' }} activeIndex={index} onSelect={handleSelect}>
+        <Carousel style={{ width: `${width}` }} activeIndex={index} onSelect={handleSelect}>
             {images && images.map(image =>
                 <Carousel.Item>
                     <img key={image.id}
-                        height='230px'
+                        height={height}
                         className="d-block w-100"
                         src={image.url}
                         alt="Error, sorry..."

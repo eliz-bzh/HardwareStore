@@ -75,7 +75,7 @@ class ProductOfGrid extends Component {
     }
 
     render() {
-        const { brands, types, suppliers, Id, Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Image } = this.state;
+        const { brands, types, suppliers, Id, Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Images } = this.state;
         const editModalClose = () => this.setState({ editModalShow: false });
         return (
             <div>
@@ -87,7 +87,7 @@ class ProductOfGrid extends Component {
                 <Row>
                     <Col>
                         <Card className='mr-2 mt-2' key={this.props.product.id} style={{ width: '16.5rem' }}>
-                            <Carousel images={this.props.product.images} />
+                            <Carousel images={this.props.product.images} height='230px' width='16.4rem' />
                             <Card.Header style={{ textAlign: 'center' }}>{this.props.product.name}</Card.Header>
                             <Card.Body style={{ textAlign: 'left' }}>
                                 <Card.Text>
@@ -98,7 +98,7 @@ class ProductOfGrid extends Component {
                                     Срок гарантии: {this.props.product.warranty}<br />
                                     Количество на складе: {this.props.product.amount}<br />
                                     Поставщик: {suppliers.filter(supplier => supplier.id === this.props.product.supplyId).map(supplier => { return supplier.nameOrganization + ', ' + supplier.adress + '; ' + supplier.number })}<br />
-                                    Цена: <b style={{ color: 'red' }}>{this.props.product.price} руб.</b>
+                                    Цена: <b style={{ color: 'red' }}>{this.props.product.price} BYN</b>
                                 </Card.Text>
 
                             </Card.Body>
@@ -120,7 +120,7 @@ class ProductOfGrid extends Component {
                                                         Amount: this.props.product.amount,
                                                         Supply: this.props.product.supplyId,
                                                         Price: this.props.product.price,
-                                                        Image: this.props.product.image
+                                                        Images: this.props.product.images
                                                     })
                                                 }}>
                                                 {<EditIcon />}
@@ -146,7 +146,7 @@ class ProductOfGrid extends Component {
                                                 amount={Amount}
                                                 supply={Supply}
                                                 price={Price}
-                                                image={Image} />
+                                                images={Images} />
                                         </div>
                                     ) : (
                                         <div>

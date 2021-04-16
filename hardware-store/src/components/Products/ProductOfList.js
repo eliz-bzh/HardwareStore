@@ -75,7 +75,7 @@ class ProductOfList extends Component {
     }
 
     render() {
-        const { brands, types, suppliers, Id, Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, Imagesrc } = this.state;
+        const { brands, types, suppliers, Id, Name, Year, Brand, Type, Modal, Warranty, Amount, Supply, Price, ImagesSrc } = this.state;
         const editModalClose = () => this.setState({ editModalShow: false });
         return (
             <div>
@@ -86,8 +86,8 @@ class ProductOfList extends Component {
                 </SnackBar>
                 <ListGroup.Item className='mr-2 mt-2' key={this.props.product.id} >
                     <Row>
-                        <Col md='auto'>
-                            <Carousel images={this.props.product.images} />
+                        <Col md='auto' className='d-flex justify-content-center'>
+                            <Carousel images={this.props.product.images} height='230px' width='16.4rem' />
                         </Col>
                         <Col>
                             <Container>
@@ -103,7 +103,7 @@ class ProductOfList extends Component {
                                         Срок гарантии: {this.props.product.warranty}<br />
                                         Количество на складе: {this.props.product.amount}<br />
                                         Поставщик: {suppliers.filter(supplier => supplier.id === this.props.product.supplyId).map(supplier => { return supplier.nameOrganization + ', ' + supplier.adress + '; ' + supplier.number })}<br />
-                                        Цена: <b style={{ color: 'red' }}>{this.props.product.price} руб.</b>
+                                        Цена: <b style={{ color: 'red' }}>{this.props.product.price} BYN</b>
                                     </Col>
                                 </Row>
                             </Container>
@@ -127,7 +127,7 @@ class ProductOfList extends Component {
                                             Amount: this.props.product.amount,
                                             Supply: this.props.product.supplyId,
                                             Price: this.props.product.price,
-                                            Imagesrc: this.props.product.image
+                                            ImagesSrc: this.props.product.images
                                         })
                                     }}>
                                     {<EditIcon />}
@@ -153,7 +153,7 @@ class ProductOfList extends Component {
                                     amount={Amount}
                                     supply={Supply}
                                     price={Price}
-                                    image={Imagesrc} />
+                                    images={ImagesSrc} />
                             </div>
                         ) : (
                             <div>
