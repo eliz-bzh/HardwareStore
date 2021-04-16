@@ -10,7 +10,7 @@ import RadioBox from '../RadioBox';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import ScrollTop from '../ScrollTop';
-import { ToggleButtons } from '..';
+import { Carousel, ToggleButtons } from '..';
 
 export default class Products extends Component {
     constructor(props) {
@@ -29,6 +29,7 @@ export default class Products extends Component {
                 { id: 2, label: 'От большего к меньшему' },
                 { id: 3, label: 'От меньшего к большему' }
             ],
+            baners: [],
             sortBy: '',
             cart: [],
             grid: true, showScroll: false
@@ -39,6 +40,7 @@ export default class Products extends Component {
         this.brandsList();
         this.typesList();
         this.productsList();
+        this.banersList();
     }
 
     componentDidUpdate() {
@@ -51,18 +53,19 @@ export default class Products extends Component {
         };
     }
 
+    banersList() {
+        axios.get(`https://localhost:5001/api/Product/baners`)
+            .then(res => this.setState({ baners: res.data }))
+    }
+
     brandsList() {
         axios.get(`https://localhost:5001/api/Brand/getAll`)
-            .then(res => {
-                this.setState({ brands: res.data })
-            });
+            .then(res => this.setState({ brands: res.data }));
     }
 
     typesList() {
         axios.get(`https://localhost:5001/api/Type/getAll`)
-            .then(res => {
-                this.setState({ types: res.data })
-            });
+            .then(res => this.setState({ types: res.data }));
     }
 
     productsList() {
@@ -72,7 +75,7 @@ export default class Products extends Component {
                 if (this.state.sortBy !== '') {
                     this.sortList(filterList, this.state.sortBy);
                 }
-                
+
                 this.setState({ products: res.data, productsFilters: filterList });
             })
     }
@@ -126,7 +129,7 @@ export default class Products extends Component {
     }
 
     render() {
-        const { productsFilters, brands, types, search, items, grid } = this.state;
+        const { productsFilters, brands, types, search, items, grid, baners } = this.state;
         const addModalClose = () => this.setState({ addModalShow: false });
         const productsSearch = this.searchPanel(productsFilters);
         const list = (productsSearch && productsSearch.length !== 0) ? (
@@ -135,6 +138,7 @@ export default class Products extends Component {
             : (<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)
         return (
             <div>
+                {(baners.length !== 0) ? <div className="mt-2"><Carousel images={baners} /></div> : null}
                 <ButtonToolbar className='float-right'>
                     <ButtonGroup className='vertical'>
                         {/*Sorting by price*/}
@@ -171,6 +175,7 @@ export default class Products extends Component {
                             onChange={(e) => this.setState({ search: e.target.value })} />
                     </FormGroup>
                 </Form>
+
                 <ToggleButtons items={[<ViewComfyIcon />, <FormatListBulletedIcon />]} variant='light' value={grid} onChange={(grid) => this.setState({ grid })} />
                 {list}
                 <ScrollTop />

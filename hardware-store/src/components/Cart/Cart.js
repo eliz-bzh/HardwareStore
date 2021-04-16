@@ -11,6 +11,7 @@ import SnackBar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import ExportCSV from '../../ExcelCheck/Check';
 import ScrollTop from '../ScrollTop';
+import { Carousel } from '..';
 
 class Cart extends Component {
 
@@ -114,7 +115,7 @@ class Cart extends Component {
 
                 <h5>Итого: <span style={{ color: 'red' }}>{this.props.items.reduce((accumulator, product) => {
                     return accumulator + product.price * product.quantity;
-                }, 0)}</span> руб.</h5>
+                }, 0)}</span> BYN</h5>
                 {(this.props.items && this.props.items.length !== 0) ? (
                     <Table className='mt-4' size='sm'>
                         <thead>
@@ -130,7 +131,7 @@ class Cart extends Component {
                         <tbody>
                             {this.props.items.map(product =>
                                 <tr key={product.id}>
-                                    <td><img src={product.image} alt='error' height='100px' width='100px' /></td>
+                                    <td><Carousel images={product.images} height='150px' width='150px' /></td>
                                     <td style={{ maxWidth: '200px' }}>{product.name}</td>
                                     <td style={{ maxWidth: '210px' }}>
                                         <div>
@@ -152,7 +153,7 @@ class Cart extends Component {
                                                 this.props.dispatch(updateQuantityCartItem({ id: product.id, quantity }));
                                             }} />
                                     </td>
-                                    <td><b>{product.price}</b> руб.</td>
+                                    <td><b>{product.price}</b> BYN</td>
                                     <td>
                                         <Button className="mr-2"
                                             variant="ligth"
