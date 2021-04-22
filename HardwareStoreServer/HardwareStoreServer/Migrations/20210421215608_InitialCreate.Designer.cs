@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HardwareStoreServer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210404131004_InitialCreate")]
+    [Migration("20210421215608_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,6 +45,9 @@ namespace HardwareStoreServer.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Adress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Login")

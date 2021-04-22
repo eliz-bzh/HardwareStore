@@ -8,15 +8,17 @@ using System.Threading.Tasks;
 
 namespace HardwareStoreServer.Services.DBServices
 {
-    public class DBOrderService: IDBService<Order>
+    public class DBOrderService : IDBService<Order>
     {
         private readonly ApplicationDbContext context;
         private readonly ExcelService excelService;
+        private readonly DBProductOrderInfoService productOrderInfoService;
 
-        public DBOrderService(ApplicationDbContext context, ExcelService excelService)
+        public DBOrderService(ApplicationDbContext context, ExcelService excelService, DBProductOrderInfoService productOrderInfo)
         {
             this.context = context;
             this.excelService = excelService;
+            this.productOrderInfoService = productOrderInfo;
         }
 
         public bool Create(Order entity)
@@ -71,10 +73,16 @@ namespace HardwareStoreServer.Services.DBServices
         public bool Remove(int id)
         {
             var deleted = context.Orders.FirstOrDefault(x => x.Id == id);
+            var prodDel = context.ProductOrderInfos.Where(x => x.OrderId == id);
 
             if (deleted == null)
             {
                 return false;
+            }
+
+            foreach (var prod in prodDel)
+            {
+                context.ProductOrderInfos.Remove(prod);
             }
 
             var result = context.Orders.Remove(deleted).State;
