@@ -15,7 +15,7 @@ function App() {
 
           <Route path='/registration' component={RegistrationForm} />
           <Route path='/admin'>
-            <h1 className='m-3 d-flex justify-content-center'>i-Bozh</h1>
+            <p className='d-flex justify-content-center'><img src='/My logo/logo_transparent.png' width='20%' height='130px' /></p>
 
             <Navigation role='admin' />
 
@@ -32,7 +32,8 @@ function App() {
           </Route>
 
           <Route path='/client/:login' component={Navigation}>
-            <h1 className='m-3 d-flex justify-content-center'>i-Bozh</h1>
+
+            <p className='d-flex justify-content-center'><img src='/My logo/logo_transparent.png' width='20%' height='130px' /></p>
             <Navigation role='client' />
 
             <Switch>
