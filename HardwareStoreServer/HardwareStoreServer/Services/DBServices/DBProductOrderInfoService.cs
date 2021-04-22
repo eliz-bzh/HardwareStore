@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HardwareStoreServer.Services.DBServices
 {
-    public class DBProductOrderInfoService: IDBService<ProductOrderInfo>
+    public class DBProductOrderInfoService : IDBService<ProductOrderInfo>
     {
         private readonly ApplicationDbContext context;
 
@@ -55,6 +55,7 @@ namespace HardwareStoreServer.Services.DBServices
 
         public bool Remove(int id)
         {
+            var ids = id;
             var deleted = context.ProductOrderInfos.FirstOrDefault(x => x.Id == id);
 
             if (deleted == null)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HardwareStoreServer.Services.DBServices
 {
-    public class DBClientService: IDBService<Client>
+    public class DBClientService : IDBService<Client>
     {
         private readonly ApplicationDbContext context;
 
@@ -28,7 +28,7 @@ namespace HardwareStoreServer.Services.DBServices
 
             if (user != null)
             {
-                throw new Exception("User already register"); 
+                throw new Exception("User already register");
             }
 
             var state = context.Add(entity).State;
@@ -111,6 +111,7 @@ namespace HardwareStoreServer.Services.DBServices
             prevEntity.Surname = newEntity.Surname;
             prevEntity.Adress = newEntity.Adress;
             prevEntity.Number = newEntity.Number;
+            prevEntity.Email = newEntity.Email;
             prevEntity.Login = newEntity.Login;
             prevEntity.Password = newEntity.Password;
 
