@@ -11,18 +11,18 @@ import SnackBar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import ExportCSV from '../../ExcelCheck/Check';
 import ScrollTop from '../ScrollTop';
-import { Carousel } from '..';
+import { Carousel, EmailForm } from '..';
 
 import emailjs from "emailjs-com";
 import { init } from "emailjs-com";
-init("user_AXLVgARgxsKtDi3AgnrpK");
+init("user_ZNDi6J5mnaAE4KFSr9mch");
 
 class Cart extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            user: {}, open: false, message: '', severity: '', buttonHidden: true, fileName: 'CheckOnline', dataToCheck: []
+            user: {}, open: false, message: '', severity: '', buttonHidden: true, fileName: 'CheckOnline', dataToCheck: [], order: null
         }
     }
 
@@ -98,23 +98,45 @@ class Cart extends Component {
         return date.toLocaleDateString();
     }
 
+    htmlMess = (user, order, products) => {
+        return (
+            `<div>
+                        <p>Здравствуйте, ${user.name} ${user.surname}.</p>
+                        <p>Ваш заказ №<b>${order.id}</b> от ${this.date(order.date)} на сумму <b>${order.totalPrice}</b>р.</p>
+                        <h3>Продукты</h3>
+                        <hr>
+                        ${products.map(prod => {
+                return (
+                    `<div>
+                            <br/>
+                            <img src=${prod.images[0].url} alt='Error' style='float:left; margin: 7px 7px 7px 7px' height='150px' width='150px' />
+                            <h3>${prod.name}</h3>
+                            <h4>Кол-во: ${prod.quantity}</h4>
+                            <h4><span style='color: red'>${prod.price}</span> BYN</h4><br/>
+                        </div>`
+                )
+            })}
+                        <br/><br/><hr>
+                        <p>С наилучшими пожеланиями, интернет-магазин i-Bozh shop.</p>
+                    </div>`
+        );
+    }
+
     createLetter() {
-        const templateId = "template_uf9y7yq";
+        const templateId = "template_o16n64t";
         const { user } = this.state;
         let products = [];
         this.props.items.map((product, index) => {
             products.push(` ${index + 1}) ${product.name} x ${product.quantity} шт.`)
         });
+
+
         axios.get(`https://localhost:5001/api/Order/getAll`)
             .then(res => {
                 const order = res.data[res.data.length - 1];
                 this.sendFeedback(templateId, {
-                    nameUser: `${user.name} ${user.surname}`,
-                    number: order.id,
-                    date: this.date(order.date),
-                    totalPrice: order.totalPrice,
-                    message: products,
-                    email: user.email
+                    email: user.email,
+                    html: this.htmlMess(user, order, this.props.items)
                 });
             })
     }
@@ -122,7 +144,7 @@ class Cart extends Component {
     sendFeedback(templateId, variables) {
         const { user } = this.state;
         emailjs
-            .send("service_7elox3j", templateId, variables)
+            .send("service_e2uee2x", templateId, variables)
             .then((res) => {
                 this.setState({ open: true, message: `Письмо отправлено на почту ${user.email}`, severity: 'success' });
                 console.log("Email successfully send!");
@@ -136,7 +158,7 @@ class Cart extends Component {
     }
 
     render() {
-        const { user, open, message, severity, buttonHidden, fileName, dataToCheck } = this.state;
+        const { user, open, message, severity, buttonHidden, fileName, dataToCheck, order } = this.state;
         return (
             <div>
                 <SnackBar open={open} autoHideDuration={3000} onClose={() => { this.setState({ open: false }) }}>
@@ -164,6 +186,7 @@ class Cart extends Component {
                 <h5>Итого: <span style={{ color: 'red' }}>{this.props.items.reduce((accumulator, product) => {
                     return accumulator + product.price * product.quantity;
                 }, 0)}</span> BYN</h5>
+
                 {(this.props.items && this.props.items.length !== 0) ? (
                     <Table className='mt-4' size='sm'>
                         <thead>
