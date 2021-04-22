@@ -13,6 +13,10 @@ import ExportCSV from '../../ExcelCheck/Check';
 import ScrollTop from '../ScrollTop';
 import { Carousel } from '..';
 
+import emailjs from "emailjs-com";
+import { init } from "emailjs-com";
+init("user_AXLVgARgxsKtDi3AgnrpK");
+
 class Cart extends Component {
 
     constructor(props) {
@@ -74,8 +78,10 @@ class Cart extends Component {
                 TotalPrice: totalPrice
             })}`, arrOrder)
                 .then(res => {
+                    console.log(res);
                     this.data();
                     this.setState({ open: true, message: 'Заказ оформлен', severity: 'success', buttonHidden: false });
+                    this.createLetter();
                 })
                 .catch(err => {
                     console.log(err);
@@ -85,6 +91,48 @@ class Cart extends Component {
 
     buttonHidden = (hidden) => {
         this.setState({ buttonHidden: hidden });
+    }
+
+    date = (dateOrder) => {
+        var date = new Date(dateOrder);
+        return date.toLocaleDateString();
+    }
+
+    createLetter() {
+        const templateId = "template_uf9y7yq";
+        const { user } = this.state;
+        let products = [];
+        this.props.items.map((product, index) => {
+            products.push(` ${index + 1}) ${product.name} x ${product.quantity} шт.`)
+        });
+        axios.get(`https://localhost:5001/api/Order/getAll`)
+            .then(res => {
+                const order = res.data[res.data.length - 1];
+                this.sendFeedback(templateId, {
+                    nameUser: `${user.name} ${user.surname}`,
+                    number: order.id,
+                    date: this.date(order.date),
+                    totalPrice: order.totalPrice,
+                    message: products,
+                    email: user.email
+                });
+            })
+    }
+
+    sendFeedback(templateId, variables) {
+        const { user } = this.state;
+        emailjs
+            .send("service_7elox3j", templateId, variables)
+            .then((res) => {
+                this.setState({ open: true, message: `Письмо отправлено на почту ${user.email}`, severity: 'success' });
+                console.log("Email successfully send!");
+            })
+            .catch((err) =>
+                console.error(
+                    "Oh well, you failed. Here some thoughts on the error that occured:",
+                    err
+                )
+            );
     }
 
     render() {

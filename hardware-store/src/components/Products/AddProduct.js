@@ -5,7 +5,6 @@ import SnackBar from '@material-ui/core/Snackbar';
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from '@material-ui/icons/Close';
 import axios from 'axios';
-import qs from 'querystring';
 import Tooltip from '@material-ui/core/Tooltip';
 import Spinner from '../Spinner/Spinner';
 
@@ -77,17 +76,24 @@ export default class AddProductModal extends Component {
     uploadImage = async event => {
         const files = event.target.files;
         const data = new FormData();
+        console.log(files);
         for (let i = 0; i !== files.length; ++i) {
             data.append('file', files[i]);
             data.append('upload_preset', 'hardware-store');
             this.setState({ loading: true })
-            axios.post(`https://api.cloudinary.com/v1_1/dzlhauo5h/image/upload`, data)
-                .then(res => this.setState(({ loading, images }) => {
-                    return {
-                        loading: false,
-                        images: [...images, { url: res.data.secure_url }]
-                    }
-                }))
+            const res = await fetch(`https://api.cloudinary.com/v1_1/dzlhauo5h/image/upload`,
+                {
+                    method: 'POST',
+                    body: data
+                }
+            );
+            const file = await res.json();
+            this.setState(({ loading, images }) => {
+                return {
+                    loading: false,
+                    images: [...images, { url: file.secure_url }]
+                }
+            })
         }
     }
 
