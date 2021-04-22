@@ -20,6 +20,7 @@ export default class RegistrationForm extends Component {
                 surname: event.target.surname.value,
                 adress: event.target.city.value + ', ' + event.target.street.value + ', д. ' + event.target.house.value + ', кв. ' + event.target.flat.value,
                 number: event.target.number.value,
+                email: event.target.email.value,
                 login: event.target.login.value,
                 password: event.target.password.value
 
@@ -28,8 +29,8 @@ export default class RegistrationForm extends Component {
                     console.log(res);
                     console.log(res.data);
                     this.setState({ error: '' });
-                    //const customHistory = createBrowserHistory();
-                    //return customHistory.go(customHistory.push('/'));
+                    const customHistory = createBrowserHistory();
+                    return customHistory.go(customHistory.push('/'));
                 })
                 .catch(error => {
                     console.log(error);
@@ -49,36 +50,44 @@ export default class RegistrationForm extends Component {
                         <hr />
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Label>Ваше имя</Form.Label>
-                            <Form.Control type="text" name='name' required autoFocus placeholder="Ваше имя" />
+                            <Form.Control type="text" name='name' required placeholder="Ваше имя" />
 
                             <Form.Label>Ваша фамилия</Form.Label>
-                            <Form.Control type="text" name='surname' required autoFocus placeholder="Ваше фамилия" />
+                            <Form.Control type="text" name='surname' required placeholder="Ваше фамилия" />
 
                             <Row>
                                 <Col>
                                     <Form.Label>Город</Form.Label>
-                                    <Form.Control type="text" name='city' required autoFocus placeholder="Город"></Form.Control>
+                                    <Form.Control type="text" name='city' required placeholder="Город"></Form.Control>
                                 </Col>
                                 <Col>
                                     <Form.Label>Улица</Form.Label>
-                                    <Form.Control type="text" name='street' required autoFocus placeholder="Улица"></Form.Control>
+                                    <Form.Control type="text" name='street' required placeholder="Улица"></Form.Control>
                                 </Col>
                                 <Col>
                                     <Form.Label>Номер дома</Form.Label>
-                                    <Form.Control type="number" name='house' required autoFocus placeholder="Номер дома"></Form.Control>
+                                    <Form.Control type="number" name='house' required placeholder="Номер дома"></Form.Control>
                                 </Col>
                                 <Col>
                                     <Form.Label>Номер квартиры</Form.Label>
-                                    <Form.Control type="number" name='flat' required autoFocus placeholder="Номер квартиры"></Form.Control>
+                                    <Form.Control type="number" name='flat' required placeholder="Номер квартиры"></Form.Control>
+                                </Col>
+                            </Row>
+
+                            <Row>
+                                <Col>
+                                    <Form.Label>Номер телефона</Form.Label>
+                                    <Form.Control type="tel" name="number" defaultValue='+375' required maxLength={13}></Form.Control>
+                                </Col>
+                                <Col>
+                                    <Form.Label>Электронная почта</Form.Label>
+                                    <Form.Control type="email" name="email" required placeholder="Электронная почта"></Form.Control>
                                 </Col>
                             </Row>
 
 
-                            <Form.Label>Номер телефона</Form.Label>
-                            <Form.Control type="tel" name="number" defaultValue='+375' required maxLength={13}></Form.Control>
-
                             <Form.Label>Логин</Form.Label>
-                            <Form.Control type="text" name='login' required autoFocus placeholder="Логин" />
+                            <Form.Control type="text" name='login' required placeholder="Логин" />
 
                             <Form.Label>Пароль</Form.Label>
                             <Form.Control type="password" name="password" required placeholder="Пароль" />
