@@ -1,7 +1,7 @@
 import React from 'react';
 import './Spinner.css';
 
-const Spinner = () => {
+const Spinner = ({ width }) => {
     return (
         <div className="loadingio-spinner-spin-oefynqutfaf">
             <div className="ldio-a99n4ssuwle">

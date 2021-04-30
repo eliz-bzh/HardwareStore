@@ -9,7 +9,7 @@ import RemoveShoppingCartRoundedIcon from '@material-ui/icons/RemoveShoppingCart
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
-import { addItemInCart } from "../../redux/Actions";
+import { addItemInCart } from "../../redux/actions/ActionsCart";
 import SnackBar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Carousel } from '..';

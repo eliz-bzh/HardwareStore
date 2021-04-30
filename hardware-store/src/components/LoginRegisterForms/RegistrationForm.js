@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { Form, Button, ButtonGroup, Alert, Container, Row, Col } from 'react-bootstrap';
 import { createBrowserHistory } from 'history';
 import axios from 'axios';
+import { SHA256 } from 'crypto-js';
 
 export default class RegistrationForm extends Component {
 
     constructor(props) {
         super(props);
         this.state = { error: '' }
+    }
+
+    hashingPassword = (password) => {
+        return SHA256(password).toString();
     }
 
     handleSubmit = (event) => {
@@ -22,7 +27,7 @@ export default class RegistrationForm extends Component {
                 number: event.target.number.value,
                 email: event.target.email.value,
                 login: event.target.login.value,
-                password: event.target.password.value
+                password: this.hashingPassword(event.target.password.value)
 
             })
                 .then(res => {

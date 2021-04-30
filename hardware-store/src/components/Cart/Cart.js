@@ -6,12 +6,12 @@ import { ButtonToolbar, ButtonGroup, Button, Table, Alert, Form } from 'react-bo
 import DeleteIcon from '@material-ui/icons/Delete';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
-import { deleteCartItem, updateQuantityCartItem } from '../../redux/Actions';
+import { deleteCartItem, updateQuantityCartItem } from '../../redux/actions/ActionsCart';
 import SnackBar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import ExportCSV from '../../ExcelCheck/Check';
 import ScrollTop from '../ScrollTop';
-import { Carousel, EmailForm } from '..';
+import { Carousel } from '..';
 
 import emailjs from "emailjs-com";
 import { init } from "emailjs-com";
@@ -22,7 +22,7 @@ class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {}, open: false, message: '', severity: '', buttonHidden: true, fileName: 'CheckOnline', dataToCheck: [], order: null
+            user: {}, open: false, message: '', severity: '', buttonHidden: true, fileName: 'CheckOnline', dataToCheck: []
         }
     }
 
@@ -78,7 +78,6 @@ class Cart extends Component {
                 TotalPrice: totalPrice
             })}`, arrOrder)
                 .then(res => {
-                    console.log(res);
                     this.data();
                     this.setState({ open: true, message: 'Заказ оформлен', severity: 'success', buttonHidden: false });
                     this.createLetter();
@@ -158,7 +157,7 @@ class Cart extends Component {
     }
 
     render() {
-        const { user, open, message, severity, buttonHidden, fileName, dataToCheck, order } = this.state;
+        const { user, open, message, severity, buttonHidden, fileName, dataToCheck } = this.state;
         return (
             <div>
                 <SnackBar open={open} autoHideDuration={3000} onClose={() => { this.setState({ open: false }) }}>
@@ -246,7 +245,7 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => {
-    return { items: state.cartItems };
+    return { items: state.cartReducer.cartItems };
 };
 
 export default withRouter(connect(mapStateToProps)(Cart));

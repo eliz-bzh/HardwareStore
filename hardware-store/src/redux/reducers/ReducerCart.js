@@ -1,11 +1,11 @@
-import * as CONSTANTS from "./ActionTypes";
+import * as CONSTANTS from "../actions/ActionTypes";
 
 // If multiple components need access to some data, in that case we store such data in redux.
 const initialState = {
   cartItems: []
 };
 
-const rootReducer = (state = initialState, action) => {
+const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case CONSTANTS.ADD_ITEM_IN_CART: {
       let index = state.cartItems.findIndex(x => x.id === action.payload.id);
@@ -30,7 +30,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cartItems: state.cartItems.filter(x => x.id !== action.payload)
       };
-    case CONSTANTS.UPDATE_QUANTITY_CART_ITEM:{
+    case CONSTANTS.UPDATE_QUANTITY_CART_ITEM: {
       let index = state.cartItems.findIndex(x => x.id === action.payload.id);
 
       // User wants to update quantity of existing item.
@@ -52,4 +52,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-export default rootReducer;
+export default cartReducer;

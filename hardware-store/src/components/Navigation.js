@@ -76,7 +76,10 @@ class Navigation extends Component {
 }
 
 const mapStateToProps = state => {
-    return { items: state.cartItems };
+    return {
+        items: state.cartReducer.cartItems,
+        role: state.roleReducer.role
+    };
 };
 
 export default withRouter(connect(mapStateToProps)(Navigation));
