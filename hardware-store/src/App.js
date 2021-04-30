@@ -17,7 +17,7 @@ function App() {
           <Route path='/admin'>
             <p className='d-flex justify-content-center'><img src='/My logo/logo_transparent.png' width='20%' height='130px' /></p>
 
-            <Navigation role='admin' />
+            <Navigation />
 
             <Switch>
               <Route path='/admin/home'><Home /></Route>
@@ -34,7 +34,7 @@ function App() {
           <Route path='/client/:login' component={Navigation}>
 
             <p className='d-flex justify-content-center'><img src='/My logo/logo_transparent.png' width='20%' height='130px' /></p>
-            <Navigation role='client' />
+            <Navigation />
 
             <Switch>
               <Route path='/client/:login/home'><Home /></Route>
