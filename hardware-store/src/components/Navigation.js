@@ -40,7 +40,7 @@ class Navigation extends Component {
         const { admin, client } = this.state;
         const { login } = this.props.match.params;
         return (
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg">
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse className='m-2' id="responsive-navbar-nav">
                     <Nav className="mr-auto">

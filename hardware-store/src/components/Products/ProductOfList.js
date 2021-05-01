@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListGroup, Row, Col, Image, Container } from 'react-bootstrap';
+import { ListGroup, Row, Col, Container } from 'react-bootstrap';
 import { ButtonToolbar, Button } from 'react-bootstrap';
 import EditProductModal from './EditProduct';
 import EditIcon from '@material-ui/icons/Edit';
@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { addItemInCart } from "../../redux/actions/ActionsCart";
 import SnackBar from '@material-ui/core/Snackbar';
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from '@material-ui/icons/Close';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Carousel } from '..';
 
@@ -84,6 +86,17 @@ class ProductOfList extends Component {
                         <b>Товар добавлен</b>
                     </MuiAlert>
                 </SnackBar>
+                <SnackBar
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                    open={this.state.open}
+                    autoHideDuration={1000}
+                    onClose={() => { this.setState({ open: false }) }}
+                    message={<span id='message-id'>Товар добавлен</span>}
+                    action={[
+                        <IconButton color="inherit" size="small"
+                            onClick={() => { this.setState({ open: false }) }}
+                        ><CloseIcon /></IconButton>
+                    ]} />
                 <ListGroup.Item className='mr-2 mt-2' key={this.props.product.id} >
                     <Row>
                         <Col md='auto' className='d-flex justify-content-center'>
@@ -103,7 +116,7 @@ class ProductOfList extends Component {
                                         Срок гарантии: {this.props.product.warranty}<br />
                                         Количество на складе: {this.props.product.amount}<br />
                                         Поставщик: {suppliers.filter(supplier => supplier.id === this.props.product.supplyId).map(supplier => { return supplier.nameOrganization + ', ' + supplier.adress + '; ' + supplier.number })}<br />
-                                        Цена: <b style={{ color: 'red' }}>{this.props.product.price} BYN</b>
+                                        Цена: <b>{this.props.product.price} BYN</b>
                                     </Col>
                                 </Row>
                             </Container>

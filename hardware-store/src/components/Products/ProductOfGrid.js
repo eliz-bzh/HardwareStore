@@ -98,7 +98,7 @@ class ProductOfGrid extends Component {
                                     Срок гарантии: {this.props.product.warranty}<br />
                                     Количество на складе: {this.props.product.amount}<br />
                                     Поставщик: {suppliers.filter(supplier => supplier.id === this.props.product.supplyId).map(supplier => { return supplier.nameOrganization + ', ' + supplier.adress + '; ' + supplier.number })}<br />
-                                    Цена: <b style={{ color: 'red' }}>{this.props.product.price} BYN</b>
+                                    Цена: <b>{this.props.product.price} BYN</b>
                                 </Card.Text>
 
                             </Card.Body>
