@@ -1,0 +1,71 @@
+@import './variables.scss';
+.dark-mode {
+	background-color: $dark-background;
+	color: $color;
+    border-color: $dark-border;
+	b {
+		color: $dark-color-b;
+	}
+	nav{
+		background-color: $dark-nav-color;
+	}
+	input {
+		color: $color;
+		background-color: $dark-background;
+		border-color: $dark-border;
+		
+		&:focus-within {
+			color: $color;
+			border-color: $dark-border;
+			background-color: $dark-background;
+		}
+	}
+    /*.form-control{
+        &[type='date'] {
+
+        }
+        
+    }*/
+    select{
+        color: $color;
+		background-color: $dark-background;
+		border-color: $dark-border;
+        &:focus-within {
+			color: $color;
+			border-color: $dark-border;
+			background-color: $dark-background;
+		}
+    }
+    .custom-file-input{
+        border-color: $dark-border;
+        &:focus-within {
+			border-color: $dark-border;
+		}
+    }
+    .custom-file-label{
+        color: $color;
+		background-color: $dark-background;
+		border-color: $dark-border;
+        &::after{
+            color: $active-text-button;
+            background-color: $active-background-button;
+            border-color: $dark-border;
+        }
+    }
+    .modal-content{
+        background-color: $dark-background;
+        .modal-header{
+            border-color: $dark-border;
+        }
+        .modal-body{
+            border-color: $dark-border;
+        }
+        .modal-footer{
+            border-color: $dark-border;
+        }
+    }
+    .carousel{
+        filter: brightness(50%);
+    }
+    
+}

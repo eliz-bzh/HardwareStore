@@ -1,9 +1,10 @@
 import React from 'react';
-import './App.css';
+
 import Products from './components/Products/Products';
 import Navigation from './components/Navigation';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { References, Home, Brands, Types, Cart, LoginForm, RegistrationForm, Supplies, Suppliers, Order } from './components';
+import Switcher from './components/Switcher';
 
 function App() {
 
@@ -15,8 +16,8 @@ function App() {
 
           <Route path='/registration' component={RegistrationForm} />
           <Route path='/admin'>
-            <p className='d-flex justify-content-center'><img src='/My logo/logo_transparent.png' width='20%' height='130px' /></p>
-
+            <span className='logo' />
+            <Switcher />
             <Navigation />
 
             <Switch>
@@ -32,8 +33,8 @@ function App() {
           </Route>
 
           <Route path='/client/:login' component={Navigation}>
-
-            <p className='d-flex justify-content-center'><img src='/My logo/logo_transparent.png' width='20%' height='130px' /></p>
+            <span className='logo' />
+            <Switcher />
             <Navigation />
 
             <Switch>

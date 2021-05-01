@@ -1,0 +1,41 @@
+@import './variables.scss';
+
+@mixin theme-colors($dark-theme: true) {
+	@if $dark-theme {
+        color: $color;
+		background-color: $dark-background;
+		border-color: $dark-border;
+	}
+}
+  
+.btn {
+	@include theme-colors($dark-theme: false);
+	body.dark-mode & {
+		@include theme-colors($dark-theme: true);
+        &.btn-light{
+            &.active{
+                color: $active-text-button;
+                background-color: $active-background-button;
+                border-color: $dark-border;
+            }
+            &:hover {
+                color: $active-text-button;
+                background-color: $active-background-button;
+                border-color: $dark-border;
+            }
+        }
+        &.btn-outline-dark{
+            &.active{
+                color: $active-text-button;
+                background-color: $active-background-button;
+                border-color: $dark-border;
+            }
+            &:hover {
+                color: $active-text-button;
+                background-color: $active-background-button;
+                border-color: $dark-border;
+            }
+        }
+	}
+}
+
