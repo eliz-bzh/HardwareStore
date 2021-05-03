@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Products from './components/Products/Products';
 import Navigation from './components/Navigation';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -11,13 +10,15 @@ function App() {
   return (
     <BrowserRouter>
       <div className='container'>
+        <div className='d-flex justify-content-end mt-3'>
+          <Switcher />
+        </div>
         <Switch>
           <Route path='/' component={LoginForm} exact />
 
           <Route path='/registration' component={RegistrationForm} />
           <Route path='/admin'>
-            <span className='logo' />
-            <Switcher />
+            <span className='logo mb-2' />
             <Navigation />
 
             <Switch>
@@ -33,8 +34,7 @@ function App() {
           </Route>
 
           <Route path='/client/:login' component={Navigation}>
-            <span className='logo' />
-            <Switcher />
+            <span className='logo mb-2' />
             <Navigation />
 
             <Switch>
