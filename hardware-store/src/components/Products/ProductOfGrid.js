@@ -81,7 +81,7 @@ class ProductOfGrid extends Component {
             <div>
                 <SnackBar open={this.state.open} autoHideDuration={400} onClose={() => { this.setState({ open: false }) }}>
                     <MuiAlert onClose={() => { this.setState({ open: false }) }} severity="success" variant="filled">
-                        <b>Товар добавлен</b>
+                        <b className='snackBar-label'>Товар добавлен</b>
                     </MuiAlert>
                 </SnackBar>
                 <Row>
@@ -98,7 +98,7 @@ class ProductOfGrid extends Component {
                                     Срок гарантии: {this.props.product.warranty}<br />
                                     Количество на складе: {this.props.product.amount}<br />
                                     Поставщик: {suppliers.filter(supplier => supplier.id === this.props.product.supplyId).map(supplier => { return supplier.nameOrganization + ', ' + supplier.adress + '; ' + supplier.number })}<br />
-                                    Цена: <b>{this.props.product.price} BYN</b>
+                                    <span className='d-flex justify-content-end'><b className='price product'>{this.props.product.price} </b>BYN</span>
                                 </Card.Text>
 
                             </Card.Body>

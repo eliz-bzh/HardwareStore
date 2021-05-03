@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, CardGroup, Alert, ListGroup } from 'react-bootstrap';
+import { ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, CardGroup, Alert, ListGroup, Container, CardDeck, Row } from 'react-bootstrap';
 import AddProductModal from './AddProduct';
 import ProductOfGrid from './ProductOfGrid';
 import ProductOfList from './ProductOfList';
@@ -133,8 +133,8 @@ export default class Products extends Component {
         const addModalClose = () => this.setState({ addModalShow: false });
         const productsSearch = this.searchPanel(productsFilters);
         const list = (productsSearch && productsSearch.length !== 0) ? (
-            (grid === true) ? (<CardGroup className='d-flex justify-content-center'> {productsSearch.map(product => <ProductOfGrid key={product.id} product={product} role={this.props.role} />)} </CardGroup>)
-                : (<ListGroup> {productsSearch.map(product => <ProductOfList key={product.id} product={product} role={this.props.role} />)} </ListGroup>))
+            (grid === true) ? (<Row className='d-flex justify-content-center'>{productsSearch.map(product => <ProductOfGrid key={product.id} product={product} role={this.props.role} />)}</Row>)
+                : (<ListGroup>{productsSearch.map(product => <ProductOfList key={product.id} product={product} role={this.props.role} />)}</ListGroup>))
             : (<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)
         return (
             <div>

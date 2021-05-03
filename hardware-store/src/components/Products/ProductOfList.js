@@ -83,21 +83,10 @@ class ProductOfList extends Component {
             <div>
                 <SnackBar open={this.state.open} autoHideDuration={400} onClose={() => { this.setState({ open: false }) }}>
                     <MuiAlert onClose={() => { this.setState({ open: false }) }} severity="success" variant="filled">
-                        <b>Товар добавлен</b>
+                        <b className='snackBar-label'>Товар добавлен</b>
                     </MuiAlert>
                 </SnackBar>
-                <SnackBar
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                    open={this.state.open}
-                    autoHideDuration={1000}
-                    onClose={() => { this.setState({ open: false }) }}
-                    message={<span id='message-id'>Товар добавлен</span>}
-                    action={[
-                        <IconButton color="inherit" size="small"
-                            onClick={() => { this.setState({ open: false }) }}
-                        ><CloseIcon /></IconButton>
-                    ]} />
-                <ListGroup.Item className='mr-2 mt-2' key={this.props.product.id} >
+                <ListGroup.Item className='mr-2 mt-2' key={this.props.product.id}>
                     <Row>
                         <Col md='auto' className='d-flex justify-content-center'>
                             <Carousel images={this.props.product.images} height='230px' width='16.4rem' />
@@ -116,7 +105,7 @@ class ProductOfList extends Component {
                                         Срок гарантии: {this.props.product.warranty}<br />
                                         Количество на складе: {this.props.product.amount}<br />
                                         Поставщик: {suppliers.filter(supplier => supplier.id === this.props.product.supplyId).map(supplier => { return supplier.nameOrganization + ', ' + supplier.adress + '; ' + supplier.number })}<br />
-                                        Цена: <b>{this.props.product.price} BYN</b>
+                                        <div className='d-flex justify-content-end'><b className='price product'>{this.props.product.price}</b>BYN</div>
                                     </Col>
                                 </Row>
                             </Container>
