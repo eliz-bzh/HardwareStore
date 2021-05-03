@@ -47,6 +47,9 @@ const cartReducer = (state = initialState, action) => {
       // If we couldn't find such item, do nothing.
       return state;
     }
+    case CONSTANTS.CLEAR_CART: {
+      return { ...state, cartItems: action.payload };
+    }
     default:
       return state;
   }

@@ -12,3 +12,7 @@ export const updateQuantityCartItem = object => ({
   type: CONSTANTS.UPDATE_QUANTITY_CART_ITEM,
   payload: object
 });
+export const clearCart = () => ({
+  type: CONSTANTS.CLEAR_CART,
+  payload: []
+});
