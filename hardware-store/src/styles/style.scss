@@ -3,9 +3,6 @@
 body {
 	background-color: $default-background;
 	color: $default-color;
-	b {
-		color: $color-b;
-	}
 	nav{
 		background-color: $default-nav-color;
 		.nav-item{
@@ -31,18 +28,17 @@ body {
 	}
 	.logo{
 		display: block;
-		margin: auto;
 		mix-blend-mode: multiply;
 		background-image: url('../logo_transparent.png');
 		background-repeat: no-repeat;
-		background-size: 100% 100%;
-		width: 20%;
+		background-position: center;
+		background-size: contain;
     	height: 130px;
 	}
-	th{
-		color: $color;
-	}
-	td{
-		color: $color;
+	.price{
+		color: $color-price;
+		&.product{
+			font-size: 25px;
+		}
 	}
 }

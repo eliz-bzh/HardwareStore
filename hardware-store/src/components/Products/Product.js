@@ -80,7 +80,7 @@ class Product extends Component {
             <div>
                 <SnackBar open={this.state.open} autoHideDuration={400} onClose={() => { this.setState({ open: false }) }}>
                     <MuiAlert onClose={() => { this.setState({ open: false }) }} severity="success" variant="filled">
-                        <b>Товар добавлен</b>
+                        <b className='snackBar-label'>Товар добавлен</b>
                     </MuiAlert>
                 </SnackBar>
                 <Row>

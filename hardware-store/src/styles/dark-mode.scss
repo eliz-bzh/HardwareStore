@@ -3,9 +3,6 @@
 	background-color: $dark-background;
 	color: $color;
     border-color: $dark-border;
-	b {
-		color: $dark-color-b;
-	}
 	nav{
 		background-color: $dark-nav-color;
 	}
@@ -20,12 +17,6 @@
 			background-color: $dark-background;
 		}
 	}
-    /*.form-control{
-        &[type='date'] {
-
-        }
-        
-    }*/
     select{
         color: $color;
 		background-color: $dark-background;
@@ -64,8 +55,27 @@
             border-color: $dark-border;
         }
     }
+    thead{
+        th{
+            color: $color;
+            border-color: $dark-border;
+        }
+	}
+    tbody{
+        td{
+            color: $color;
+            border-color: $dark-border;
+        }
+    }
     .carousel{
         filter: brightness(50%);
     }
-    
+    .price{
+        color: $dark-color-price;
+    }
+    .input-group-text{
+        color: $active-text-button;
+        background-color: $active-background-button;
+        border-color: $dark-border;
+    }
 }
