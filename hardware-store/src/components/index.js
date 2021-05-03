@@ -11,4 +11,4 @@ export { default as Order } from './Order/Order';
 export { default as Spinner } from './Spinner/Spinner';
 export { default as Carousel } from './Carousel';
 export { default as ToggleButtons } from './ToggleButtons';
-export { default as EmailForm } from './Cart/EmailForm';
+export { default as PaymentSystem } from './Cart/PaymentSystem';

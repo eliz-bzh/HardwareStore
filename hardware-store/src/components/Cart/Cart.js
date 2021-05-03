@@ -11,7 +11,7 @@ import SnackBar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import ExportCSV from '../../ExcelCheck/Check';
 import ScrollTop from '../ScrollTop';
-import { Carousel } from '..';
+import { Carousel, PaymentSystem } from '..';
 
 import emailjs from "emailjs-com";
 import { init } from "emailjs-com";
@@ -22,7 +22,7 @@ class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {}, open: false, message: '', severity: '', buttonHidden: true, fileName: 'CheckOnline', dataToCheck: []
+            user: {}, open: false, message: '', severity: '', buttonHiddenCheck: true, buttonHiddenPayment: true, fileName: 'CheckOnline', dataToCheck: []
         }
     }
 
@@ -64,7 +64,7 @@ class Cart extends Component {
 
     requestOrder = () => {
         if (this.props.items && this.props.items.length === 0) {
-            this.setState({ open: true, message: 'Список пуст', severity: 'warning', buttonHidden: true });
+            this.setState({ open: true, message: 'Список пуст', severity: 'warning' });
         } else {
             let arrOrder = [];
             this.props.items.map(item => {
@@ -79,17 +79,12 @@ class Cart extends Component {
             })}`, arrOrder)
                 .then(res => {
                     this.data();
-                    this.setState({ open: true, message: 'Заказ оформлен', severity: 'success', buttonHidden: false });
-                    this.createLetter();
+                    this.setState({ open: true, message: 'Заказ оформлен', severity: 'success', buttonHiddenPayment: false });
                 })
                 .catch(err => {
                     console.log(err);
                 })
         }
-    }
-
-    buttonHidden = (hidden) => {
-        this.setState({ buttonHidden: hidden });
     }
 
     date = (dateOrder) => {
@@ -157,7 +152,7 @@ class Cart extends Component {
     }
 
     render() {
-        const { user, open, message, severity, buttonHidden, fileName, dataToCheck } = this.state;
+        const { user, open, message, severity, buttonHiddenCheck, buttonHiddenPayment, fileName, dataToCheck } = this.state;
         return (
             <div className='container'>
                 <SnackBar open={open} autoHideDuration={3000} onClose={() => { this.setState({ open: false }) }}>
@@ -172,7 +167,12 @@ class Cart extends Component {
                 <h1 className='mt-2 d-flex justify-content-center align-items-center'>Корзина</h1>
                 <ButtonToolbar className='mb-2 float-right'>
                     <ButtonGroup>
-                        <ExportCSV hidden={buttonHidden} csvData={dataToCheck} fileName={fileName} buttonHidden={hidden => setTimeout(this.buttonHidden, 10000, hidden)} />
+                        <ExportCSV hidden={buttonHiddenCheck} csvData={dataToCheck} fileName={fileName} buttonHidden={hidden => setTimeout((hidden) => this.setState({ buttonHiddenCheck: hidden }), 10000, hidden)} />
+                    </ButtonGroup>
+                    <ButtonGroup>
+                        <PaymentSystem totalPrice={this.props.items.reduce((accumulator, product) => {
+                            return accumulator + product.price * product.quantity;
+                        }, 0)} user={user} hidden={buttonHiddenPayment} onHidden={hidden => this.setState({ buttonHiddenCheck: hidden })} createLetter={() => this.createLetter()} />
                     </ButtonGroup>
                     <ButtonGroup>
                         <Button className='mr-2' variant="outline-dark" onClick={() => this.requestOrder()}>Оформить заказ</Button>

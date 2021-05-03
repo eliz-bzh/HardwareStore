@@ -12,6 +12,7 @@ import store from '../../redux/Store';
 import { Redirect } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
 import Switcher from '../Switcher';
+import { clearCart } from '../../redux/actions/ActionsCart';
 
 class LoginForm extends Component {
 
@@ -33,6 +34,7 @@ class LoginForm extends Component {
                     const password = this.hashingPassword(event.target.password.value);
                     if (password === res.data.password) {
                         this.props.dispatch(updateRole('client'));
+                        this.props.dispatch(clearCart());
                         this.setState({ error: '', login: event.target.login.value, redirectClient: true, loading: false });
                     } else {
                         this.setState({ error: 'Неверный пароль', loading: false });
@@ -113,7 +115,7 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => {
-    return { role: state.role };
+    return { role: state.roleReducer.role, items: state.cartReducer.cartItems };
 };
 
 export default withRouter(connect(mapStateToProps)(LoginForm));
