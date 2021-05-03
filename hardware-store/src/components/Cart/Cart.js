@@ -159,10 +159,10 @@ class Cart extends Component {
     render() {
         const { user, open, message, severity, buttonHidden, fileName, dataToCheck } = this.state;
         return (
-            <div>
+            <div className='container'>
                 <SnackBar open={open} autoHideDuration={3000} onClose={() => { this.setState({ open: false }) }}>
                     <MuiAlert onClose={() => { this.setState({ open: false }) }} severity={severity} variant="filled">
-                        <b>{message}</b>
+                        <b className='snackBar-label'>{message}</b>
                     </MuiAlert>
                 </SnackBar>
                 <h1 className='mt-2 d-flex justify-content-left align-items-center'>
@@ -182,12 +182,12 @@ class Cart extends Component {
                     return accumulator + product.quantity;
                 }, 0)}</h5>
 
-                <h5>Итого: <span style={{ color: 'red' }}>{this.props.items.reduce((accumulator, product) => {
+                <h5>Итого: <span className='price'>{this.props.items.reduce((accumulator, product) => {
                     return accumulator + product.price * product.quantity;
                 }, 0)}</span> BYN</h5>
 
                 {(this.props.items && this.props.items.length !== 0) ? (
-                    <Table className='mt-4' size='sm'>
+                    <Table className='mt-4' responsive="xl">
                         <thead>
                             <tr>
                                 <th>Продукт</th>
@@ -223,7 +223,7 @@ class Cart extends Component {
                                                 this.props.dispatch(updateQuantityCartItem({ id: product.id, quantity }));
                                             }} />
                                     </td>
-                                    <td><b>{product.price}</b> BYN</td>
+                                    <td><b className='price product'>{product.price}</b> BYN</td>
                                     <td>
                                         <Button className="mr-2"
                                             variant="ligth"

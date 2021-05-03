@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Container, Row, Col, ToggleButtonGroup, ToggleButton, Alert } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import axios from 'axios';
 import { ToggleButtons } from '..';
@@ -11,6 +11,7 @@ import { SHA256 } from 'crypto-js';
 import store from '../../redux/Store';
 import { Redirect } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
+import Switcher from '../Switcher';
 
 class LoginForm extends Component {
 
@@ -40,6 +41,9 @@ class LoginForm extends Component {
                     this.setState({ error: 'Пользователь не зарегистрирован', loading: false })
                 }
             })
+            .catch(err => {
+                this.setState({ error: 'Ошибка сервера', loading: false })
+            })
     }
 
     handleSubmitAdmin = (event) => {
@@ -57,7 +61,6 @@ class LoginForm extends Component {
 
     render() {
         const { radioValue, error, redirectClient, redirectAdmin, login, loading } = this.state;
-        console.log(loading);
         return (
             <div>
                 {redirectClient ? <Redirect to={`/client/${login}/home`} /> : null}

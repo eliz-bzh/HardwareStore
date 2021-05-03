@@ -82,7 +82,7 @@ export default class Order extends Component {
             <div>
                 <SnackBar open={open} autoHideDuration={8000} onClose={() => { this.setState({ open: false }) }}>
                     <MuiAlert onClose={() => { this.setState({ open: false }) }} severity={severity} variant="filled">
-                        <b>{message}</b>
+                        <b className='snackBar-label'>{message}</b>
                     </MuiAlert>
                 </SnackBar>
                 <h1 className='mt-2 d-flex justify-content-center align-items-center'>Заказы</h1>
