@@ -49,7 +49,7 @@ export default class RegistrationForm extends Component {
         return (
             <div>
                 {redirect ? <Redirect to={`/`} /> : null}
-                <Container className='mt-5 d-flex flex-column justify-content-center align-items-center'>
+                <Container className='d-flex flex-column justify-content-center align-items-center'>
                     <Row>
                         <Col>
                             <h1 align='center'>Регистрация</h1>
