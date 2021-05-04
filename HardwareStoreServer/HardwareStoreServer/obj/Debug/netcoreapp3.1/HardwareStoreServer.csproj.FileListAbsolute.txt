@@ -102,3 +102,5 @@ D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.MvcApplicationPartsAssemblyInfo.cache
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\HardwareStoreServer.csprojAssemblyReference.cache
 D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\obj\Debug\netcoreapp3.1\scopedcss\bundle\HardwareStoreServer.styles.css
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\MySqlConnector.dll
+D:\Курсовая 4 курс\HardwareStoreServer\HardwareStoreServer\bin\Debug\netcoreapp3.1\Pomelo.EntityFrameworkCore.MySql.dll
