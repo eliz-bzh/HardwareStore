@@ -20,14 +20,10 @@ export default class Order extends Component {
         this.clientList();
     }
 
-    componentDidUpdate() {
-        this.ordersList();
-    }
-
-    componentWillUnmount() {
-        this.setState = (state, callback) => {
-            return;
-        };
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.to !== this.state.to || prevState.from !== this.state.from) {
+            this.ordersList();
+        }
     }
 
     ordersList() {
@@ -109,7 +105,7 @@ export default class Order extends Component {
                 </Form>
 
                 {(filterOrder && filterOrder.length !== 0) ? (
-                    <Table className='mt-4' size='sm'>
+                    <Table className='mt-4' responsive="xl">
                         <thead>
                             <tr>
                                 <th>Номер заказа</th>

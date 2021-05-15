@@ -8,7 +8,7 @@ const CarouselImages = ({ images, height, width }) => {
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
-    //mix-blend-mode: multiply;
+
     return (
         <Carousel style={{ width: `${width}` }} activeIndex={index} onSelect={handleSelect}>
             {images && images.map((image, index) =>

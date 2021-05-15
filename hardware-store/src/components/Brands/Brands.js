@@ -24,21 +24,17 @@ export default class Brands extends Component {
         this.brandsList();
     }
 
-    componentDidUpdate() {
-        this.brandsList();
-    }
-
-    componentWillUnmount() {
-        this.setState = (state, callback) => {
-            return;
-        };
+    componentDidUpdate(prevProps, prevState) {
+        if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+            this.brandsList();
+        }
     }
 
     deleteBrand(id) {
-        if (window.confirm('Are you sure?')) {
+        if (window.confirm('Вы уверены?')) {
             axios.delete(`https://localhost:5001/api/Brand/delete/${id}`)
                 .then(res => {
-                    console.log(res.data);
+                    this.brandsList();
                 })
                 .catch(error => {
                     console.log(error);
@@ -48,9 +44,9 @@ export default class Brands extends Component {
 
     brandsList() {
         axios.get(`https://localhost:5001/api/Brand/getAll`)
-            .then(res => {
+            .then(res =>
                 this.setState({ brands: res.data })
-            });
+            );
     }
 
     snackBarClose = (event) => {
@@ -79,7 +75,7 @@ export default class Brands extends Component {
                 </AddBrandModal>
 
                 {(brands && brands.length !== 0) ? (
-                    <Table className='mt-4' size='sm'>
+                    <Table className='mt-4' responsive="xl">
                         <thead>
                             <tr>
                                 <th>Название</th>

@@ -24,21 +24,17 @@ export default class Suppliers extends Component {
         this.suppliersList();
     }
 
-    componentDidUpdate() {
-        this.suppliersList();
-    }
-
-    componentWillUnmount() {
-        this.setState = (state, callback) => {
-            return;
-        };
+    componentDidUpdate(prevProps, prevState) {
+        if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+            this.suppliersList();
+        }
     }
 
     deleteSupplier(id) {
-        if (window.confirm('Are you sure?')) {
+        if (window.confirm('Вы уверены?')) {
             axios.delete(`https://localhost:5001/api/Supplier/delete/${id}`)
                 .then(res => {
-                    console.log(res.data);
+                    this.suppliersList();
                 })
                 .catch(error => {
                     console.log(error);
@@ -79,7 +75,7 @@ export default class Suppliers extends Component {
                 </AddSupplierModal>
 
                 {(suppliers && suppliers.length !== 0) ? (
-                    <Table className='mt-4' size='sm'>
+                    <Table className='mt-4' responsive="xl">
                         <thead>
                             <tr>
                                 <th>Организация</th>

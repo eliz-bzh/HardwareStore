@@ -5,6 +5,15 @@
     border-color: $dark-border;
 	nav{
 		background-color: $dark-nav-color;
+        .nav-items{
+			color: $nav-item-dark;
+			&:hover{
+				color: $nav-item-hover-dark;
+			}
+			&.active{
+				color: $nav-item-hover-dark;
+			}
+		}
 	}
 	input {
 		color: $color;

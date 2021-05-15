@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, CardGroup, Alert, ListGroup, Container, CardDeck, Row } from 'react-bootstrap';
+import { ButtonToolbar, Button, ButtonGroup, FormControl, Form, FormGroup, Alert, ListGroup, Row } from 'react-bootstrap';
 import AddProductModal from './AddProduct';
 import ProductOfGrid from './ProductOfGrid';
 import ProductOfList from './ProductOfList';
@@ -31,7 +31,6 @@ export default class Products extends Component {
             ],
             baners: [],
             sortBy: '',
-            cart: [],
             grid: true, showScroll: false
         };
     }
@@ -43,14 +42,10 @@ export default class Products extends Component {
         this.banersList();
     }
 
-    componentDidUpdate() {
-        this.productsList();
-    }
-
-    componentWillUnmount() {
-        this.setState = (state, callback) => {
-            return;
-        };
+    componentDidUpdate(prevProps, prevState) {
+        if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+            this.productsList();
+        }
     }
 
     banersList() {
@@ -71,11 +66,7 @@ export default class Products extends Component {
     productsList() {
         axios.get('https://localhost:5001/api/Product/getAll')
             .then(res => {
-                let filterList = this.filterList(res.data);
-                if (this.state.sortBy !== '') {
-                    this.sortList(filterList, this.state.sortBy);
-                }
-
+                let filterList = this.filterList(this.sortList(res.data, this.state.sortBy))
                 this.setState({ products: res.data, productsFilters: filterList });
             })
     }
@@ -104,14 +95,15 @@ export default class Products extends Component {
         let oldList = list;
         if (sortType === 'От большего к меньшему' || sortType === 'От меньшего к большему') {
             if (sortType === 'От меньшего к большему') {
-                return list.sort((a, b) => (a.price > b.price) ? 1 : -1);
+                oldList = list.sort((a, b) => (a.price > b.price) ? 1 : -1);
             } else if (sortType === 'От большего к меньшему') {
-                return list.sort((a, b) => (a.price < b.price) ? 1 : -1);
+                oldList = list.sort((a, b) => (a.price < b.price) ? 1 : -1);
             }
         } else {
             list = oldList;
             return list;
         }
+        return oldList;
     }
 
     handleFiltersBrands = (filters) => {
@@ -133,8 +125,8 @@ export default class Products extends Component {
         const addModalClose = () => this.setState({ addModalShow: false });
         const productsSearch = this.searchPanel(productsFilters);
         const list = (productsSearch && productsSearch.length !== 0) ? (
-            (grid === true) ? (<Row className='d-flex justify-content-center'>{productsSearch.map(product => <ProductOfGrid key={product.id} product={product} role={this.props.role} />)}</Row>)
-                : (<ListGroup>{productsSearch.map(product => <ProductOfList key={product.id} product={product} role={this.props.role} />)}</ListGroup>))
+            (grid === true) ? (<Row className='d-flex justify-content-center'>{productsSearch.map(product => <ProductOfGrid key={product.id} productsUpdate={() => this.productsList()} product={product} role={this.props.role} />)}</Row>)
+                : (<ListGroup>{productsSearch.map(product => <ProductOfList key={product.id} productsUpdate={() => this.productsList()} product={product} role={this.props.role} />)}</ListGroup>))
             : (<Alert className='mt-2 d-flex justify-content-center' variant='secondary'>Список пуст</Alert>)
         return (
             <div>

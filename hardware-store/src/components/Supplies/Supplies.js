@@ -26,21 +26,17 @@ export default class Supplies extends Component {
         this.suppliersList();
     }
 
-    componentDidUpdate() {
-        this.suppliesList();
-    }
-
-    componentWillUnmount() {
-        this.setState = (state, callback) => {
-            return;
-        };
+    componentDidUpdate(prevProps, prevState) {
+        if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+            this.suppliesList();
+        }
     }
 
     deleteSupply(id) {
-        if (window.confirm('Are you sure?')) {
+        if (window.confirm('Вы уверены?')) {
             axios.delete(`https://localhost:5001/api/Supply/delete/${id}`)
                 .then(res => {
-                    console.log(res.data);
+                    this.suppliesList();
                 })
                 .catch(error => {
                     console.log(error);
@@ -92,7 +88,7 @@ export default class Supplies extends Component {
                     onHide={addModalClose}>
                 </AddSupplyModal>
                 {(supplies && supplies.length !== 0) ? (
-                    <Table className='mt-4' size='sm'>
+                    <Table className='mt-4' responsive="xl">
                         <thead>
                             <tr>
                                 <th>Дата поставки</th>
