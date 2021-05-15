@@ -42,42 +42,29 @@ class ProductOfList extends Component {
 
     brandsList() {
         axios.get(`https://localhost:5001/api/Brand/getAll`)
-            .then(res => {
-                this.setState({ brands: res.data })
-            });
+            .then(res => this.setState({ brands: res.data }));
     }
 
     typesList() {
         axios.get(`https://localhost:5001/api/Type/getAll`)
-            .then(res => {
-                this.setState({ types: res.data })
-            });
+            .then(res => this.setState({ types: res.data }));
     }
 
     suppliesList() {
         axios.get(`https://localhost:5001/api/Supply/getAll`)
-            .then(res => {
-                this.setState({ supplies: res.data })
-            });
+            .then(res => this.setState({ supplies: res.data }));
     }
 
     suppliersList() {
         axios.get(`https://localhost:5001/api/Supplier/getAll`)
-            .then(res => {
-                this.setState({ suppliers: res.data })
-            });
+            .then(res => this.setState({ suppliers: res.data }));
     }
 
     deleteProduct(id) {
         if (window.confirm('Вы уверены?')) {
             axios.delete(`https://localhost:5001/api/Product/delete/${id}`)
-                .then(res => {
-                    this.props.productsUpdate();
-                    console.log(res.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+                .then(res => this.props.productsUpdate())
+                .catch(error => console.log(error));
         }
     }
 

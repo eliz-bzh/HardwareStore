@@ -39,14 +39,8 @@ export default class EditSupplyModal extends Component {
             SupplierId: event.target.supplier.value,
             Date: event.target.date.value
         })}`)
-            .then(res => {
-                console.log(res.data);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Успешно обновлёна' });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка редактирования' });
-            });
+            .then(res => this.setState({ snackBaropen: true, snackBarMessage: 'Успешно обновлёна' }))
+            .catch(error => this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка редактирования' }));
     }
 
     render() {

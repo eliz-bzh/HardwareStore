@@ -16,7 +16,6 @@ const PaymentSystem = ({ totalPrice, user, hidden, onHidden, createLetter }) => 
             { token, totalPrice }
         );
         const { status } = response.data;
-        console.log("Response:", response.data);
         if (status === "success") {
             setMessage('Оплата прошла успешно');
             setOpen(!open);

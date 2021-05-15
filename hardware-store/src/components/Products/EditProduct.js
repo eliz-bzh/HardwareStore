@@ -24,23 +24,17 @@ export default class EditProductModal extends Component {
 
     brandsList() {
         axios.get(`https://localhost:5001/api/Brand/getAll`)
-            .then(res => {
-                this.setState({ brands: res.data })
-            });
+            .then(res => this.setState({ brands: res.data }));
     }
 
     typesList() {
         axios.get(`https://localhost:5001/api/Type/getAll`)
-            .then(res => {
-                this.setState({ types: res.data })
-            });
+            .then(res => this.setState({ types: res.data }));
     }
 
     supplyList() {
         axios.get(`https://localhost:5001/api/Supplier/getAll`)
-            .then(res => {
-                this.setState({ suppliers: res.data })
-            });
+            .then(res => this.setState({ suppliers: res.data }));
     }
 
     snackBarClose = (event) => {
@@ -68,14 +62,8 @@ export default class EditProductModal extends Component {
             supplyId: parseInt(event.target.supplier.value),
             images: (this.state.imagesState.length !== 0) ? (this.state.imagesState) : (imagesArray)
         })
-            .then(res => {
-                console.log(res.data);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Успешно обновлён' });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка редактирования' });
-            });
+            .then(res => this.setState({ snackBaropen: true, snackBarMessage: 'Успешно обновлён' }))
+            .catch(error => this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка редактирования' }));
     }
 
     uploadImage = async event => {

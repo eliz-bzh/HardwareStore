@@ -26,14 +26,8 @@ export default class EditBrandModal extends Component {
             Id: this.props.brandid,
             Name: event.target.name.value
         })}`)
-            .then(res => {
-                console.log(res.data);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Успешно обновлён' });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка редактирования' });
-            });
+            .then(res => this.setState({ snackBaropen: true, snackBarMessage: 'Успешно обновлён' }))
+            .catch(error => this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка редактирования' }));
     }
 
     render() {

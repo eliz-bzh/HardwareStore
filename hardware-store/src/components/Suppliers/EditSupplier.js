@@ -28,14 +28,8 @@ export default class EditSupplierModal extends Component {
             Number: event.target.number.value,
             Adress: event.target.adress.value
         })}`)
-            .then(res => {
-                console.log(res.data);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Успешно обновлён' });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка редактирования' });
-            });
+            .then(res => this.setState({ snackBaropen: true, snackBarMessage: 'Успешно обновлён' }))
+            .catch(error => this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка редактирования' }));
     }
 
     render() {

@@ -27,7 +27,7 @@ export default class Supplies extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+        if (prevState.addModalShow !== this.state.addModalShow || prevState.editModalShow !== this.state.editModalShow) {
             this.suppliesList();
         }
     }
@@ -35,27 +35,19 @@ export default class Supplies extends Component {
     deleteSupply(id) {
         if (window.confirm('Вы уверены?')) {
             axios.delete(`https://localhost:5001/api/Supply/delete/${id}`)
-                .then(res => {
-                    this.suppliesList();
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+                .then(res => this.suppliesList())
+                .catch(error => console.log(error));
         }
     }
 
     suppliesList() {
         axios.get(`https://localhost:5001/api/Supply/getAll`)
-            .then(res => {
-                this.setState({ supplies: res.data })
-            });
+            .then(res => this.setState({ supplies: res.data }));
     }
 
     suppliersList() {
         axios.get(`https://localhost:5001/api/Supplier/getAll`)
-            .then(res => {
-                this.setState({ suppliers: res.data })
-            });
+            .then(res => this.setState({ suppliers: res.data }));
     }
 
     snackBarClose = (event) => {

@@ -28,16 +28,12 @@ export default class Order extends Component {
 
     ordersList() {
         axios.get(`https://localhost:5001/api/Order/getAll`)
-            .then(res => {
-                this.setState({ orders: res.data })
-            });
+            .then(res => this.setState({ orders: res.data }));
     }
 
     clientList() {
         axios.get(`https://localhost:5001/api/Client/getAll`)
-            .then(res => {
-                this.setState({ clients: res.data })
-            });
+            .then(res => this.setState({ clients: res.data }));
     }
 
     date = (dateSupply) => {

@@ -25,14 +25,8 @@ export default class AddTypeModal extends Component {
         axios.post(`https://localhost:5001/api/Type/create?${qs.stringify({
             Name: event.target.name.value
         })}`)
-            .then(res => {
-                console.log(res.data);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Успешно добавлено' });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка добавления' });
-            });
+            .then(res => this.setState({ snackBaropen: true, snackBarMessage: 'Успешно добавлено' }))
+            .catch(error => this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка добавления' }));
     }
 
     render() {
