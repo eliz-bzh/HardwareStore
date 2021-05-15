@@ -45,27 +45,27 @@ class Navigation extends Component {
                 <Navbar.Collapse className='m-2' id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Item hidden={admin} >
-                            <NavLink style={{ display: 'inline-block' }} className='text-white mr-3' to='/admin/home'>Главная</NavLink>
-                            <NavLink style={{ display: 'inline-block' }} className='text-white mr-3' to='/admin/products'>Список товаров</NavLink>
-                            <NavLink style={{ display: 'inline-block' }} className='text-white mr-3' to='/admin/brands'>Бренды</NavLink>
-                            <NavLink style={{ display: 'inline-block' }} className='text-white mr-3' to='/admin/types'>Категории</NavLink>
-                            <NavLink style={{ display: 'inline-block' }} className='text-white mr-3' to='/admin/suppliers'>Поставщики</NavLink>
-                            <NavLink style={{ display: 'inline-block' }} className='text-white mr-3' to='/admin/supplies'>Поставки</NavLink>
-                            <NavLink style={{ display: 'inline-block' }} className='text-white mr-3' to='/admin/orders'>Заказы</NavLink>
+                            <NavLink style={{ display: 'inline-block' }} className='nav-items mr-3' to='/admin/home'>Главная</NavLink>
+                            <NavLink style={{ display: 'inline-block' }} className='nav-items mr-3' to='/admin/products'>Список товаров</NavLink>
+                            <NavLink style={{ display: 'inline-block' }} className='nav-items mr-3' to='/admin/brands'>Бренды</NavLink>
+                            <NavLink style={{ display: 'inline-block' }} className='nav-items mr-3' to='/admin/types'>Категории</NavLink>
+                            <NavLink style={{ display: 'inline-block' }} className='nav-items mr-3' to='/admin/suppliers'>Поставщики</NavLink>
+                            <NavLink style={{ display: 'inline-block' }} className='nav-items mr-3' to='/admin/supplies'>Поставки</NavLink>
+                            <NavLink style={{ display: 'inline-block' }} className='nav-items mr-3' to='/admin/orders'>Заказы</NavLink>
                         </Nav.Item>
                         <Nav.Item hidden={client}>
-                            <NavLink style={{ display: 'inline-block' }} className='text-white mr-3' to={'/client/' + login + '/home'}>Главная</NavLink>
-                            <NavLink style={{ display: 'inline-block' }} className='text-white mr-3' to={'/client/' + login + '/products'}>Список товаров</NavLink>
+                            <NavLink style={{ display: 'inline-block' }} className='nav-items mr-3' to={'/client/' + login + '/home'}>Главная</NavLink>
+                            <NavLink style={{ display: 'inline-block' }} className='nav-items mr-3' to={'/client/' + login + '/products'}>Список товаров</NavLink>
                         </Nav.Item>
                     </Nav>
                     <Nav>
                         <Nav.Item>
-                            <NavLink hidden={client} style={{ display: 'inline-block' }} className='text-white mr-3' to={'/client/' + login + '/shoppingCart'}><Badge badgeContent={this.props.items.reduce((accumulator, product) => {
+                            <NavLink hidden={client} style={{ display: 'inline-block' }} className='nav-items mr-3' to={'/client/' + login + '/shoppingCart'}><Badge badgeContent={this.props.items.reduce((accumulator, product) => {
                                 return accumulator + product.quantity;
                             }, 0)} color="secondary" showZero>{<ShoppingCartRoundedIcon />}</Badge></NavLink>
-                            <NavLink hidden={client} style={{ display: 'inline-block' }} className='text-white mr-3' to={'/client/' + login + '/help'}>{<HelpOutlineIcon />}</NavLink>
-                            <NavLink hidden={admin} style={{ display: 'inline-block' }} className='text-white mr-3' to='/admin/help'>{<HelpOutlineIcon />}</NavLink>
-                            <NavLink style={{ display: 'inline-block' }} className='text-white mr-3' to='/'>Выход</NavLink>
+                            <NavLink hidden={client} style={{ display: 'inline-block' }} className='nav-items mr-3' to={'/client/' + login + '/help'}>{<HelpOutlineIcon />}</NavLink>
+                            <NavLink hidden={admin} style={{ display: 'inline-block' }} className='nav-items mr-3' to='/admin/help'>{<HelpOutlineIcon />}</NavLink>
+                            <NavLink style={{ display: 'inline-block' }} className='nav-items mr-3' to='/'>Выход</NavLink>
                         </Nav.Item>
 
                     </Nav>

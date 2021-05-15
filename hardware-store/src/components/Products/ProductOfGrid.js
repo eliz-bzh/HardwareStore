@@ -34,6 +34,12 @@ class ProductOfGrid extends Component {
         this.suppliersList();
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.editModalShow !== this.state.editModalShow) {
+            this.props.productsUpdate();
+        }
+    }
+
     brandsList() {
         axios.get(`https://localhost:5001/api/Brand/getAll`)
             .then(res => {
@@ -63,10 +69,10 @@ class ProductOfGrid extends Component {
     }
 
     deleteProduct(id) {
-        if (window.confirm('Are you sure?')) {
+        if (window.confirm('Вы уверены?')) {
             axios.delete(`https://localhost:5001/api/Product/delete/${id}`)
                 .then(res => {
-                    console.log(res.data);
+                    this.props.productsUpdate();
                 })
                 .catch(error => {
                     console.log(error);

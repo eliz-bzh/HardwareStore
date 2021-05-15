@@ -30,16 +30,6 @@ class Cart extends Component {
         this.user();
     }
 
-    componentDidUpdate() {
-        this.user();
-    }
-
-    componentWillUnmount() {
-        this.setState = (state, callback) => {
-            return;
-        };
-    }
-
     user() {
         const { match } = this.props;
         const { login } = match.params;

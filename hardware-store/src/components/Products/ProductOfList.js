@@ -11,8 +11,6 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { addItemInCart } from "../../redux/actions/ActionsCart";
 import SnackBar from '@material-ui/core/Snackbar';
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from '@material-ui/icons/Close';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Carousel } from '..';
 
@@ -34,6 +32,12 @@ class ProductOfList extends Component {
         this.typesList();
         this.suppliesList();
         this.suppliersList();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.editModalShow !== this.state.editModalShow) {
+            this.props.productsUpdate();
+        }
     }
 
     brandsList() {
@@ -65,9 +69,10 @@ class ProductOfList extends Component {
     }
 
     deleteProduct(id) {
-        if (window.confirm('Are you sure?')) {
+        if (window.confirm('Вы уверены?')) {
             axios.delete(`https://localhost:5001/api/Product/delete/${id}`)
                 .then(res => {
+                    this.props.productsUpdate();
                     console.log(res.data);
                 })
                 .catch(error => {

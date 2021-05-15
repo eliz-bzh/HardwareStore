@@ -24,21 +24,17 @@ export default class Types extends Component {
         this.typesList();
     }
 
-    componentDidUpdate() {
-        this.typesList();
-    }
-
-    componentWillUnmount() {
-        this.setState = (state, callback) => {
-            return;
-        };
+    componentDidUpdate(prevProps, prevState) {
+        if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+            this.typesList();
+        }
     }
 
     deleteType(id) {
-        if (window.confirm('Are you sure?')) {
+        if (window.confirm('Вы уверены?')) {
             axios.delete(`https://localhost:5001/api/Type/delete/${id}`)
                 .then(res => {
-                    console.log(res.data);
+                    this.typesList();
                 })
                 .catch(error => {
                     console.log(error);
@@ -78,7 +74,7 @@ export default class Types extends Component {
                     onHide={addModalClose}>
                 </AddTypeModal>
                 {(types && types.length !== 0) ? (
-                    <Table className='mt-4' size='sm'>
+                    <Table className='mt-4' responsive="xl">
                         <thead>
                             <tr>
                                 <th>Название</th>

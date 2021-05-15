@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import { Form, Button, Container, Row, Col, ToggleButtonGroup, ToggleButton, Alert } from 'react-bootstrap';
-import { Link, Switch } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { ToggleButtons } from '..';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { updateRole } from '../../redux/actions/ActionsRole';
 import { SHA256 } from 'crypto-js';
-import store from '../../redux/Store';
 import { Redirect } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner';
-import Switcher from '../Switcher';
 import { clearCart } from '../../redux/actions/ActionsCart';
 
 class LoginForm extends Component {

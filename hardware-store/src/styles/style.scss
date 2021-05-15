@@ -5,8 +5,14 @@ body {
 	color: $default-color;
 	nav{
 		background-color: $default-nav-color;
-		.nav-item{
-			color: $default-color;
+		.nav-items{
+			color: $nav-item;
+			&:hover{
+				color: $nav-item-hover;
+			}
+			&.active{
+				color: $nav-item-hover;
+			}
 		}
 	}
 	
