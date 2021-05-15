@@ -30,15 +30,8 @@ export default class RegistrationForm extends Component {
                 password: this.hashingPassword(event.target.password.value)
 
             })
-                .then(res => {
-                    console.log(res);
-                    console.log(res.data);
-                    this.setState({ error: '', redirect: true })
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.setState({ error: 'Пользователь уже существует' });
-                });
+                .then(res => this.setState({ error: '', redirect: true }))
+                .catch(error => this.setState({ error: 'Пользователь уже существует' }));
         } else {
             this.setState({ error: 'Пароли не совпадают' });
         }

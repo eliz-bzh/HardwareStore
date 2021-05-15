@@ -16,7 +16,6 @@ export default class Products extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: [],
             productsFilters: [],
             brands: [],
             types: [],
@@ -43,7 +42,7 @@ export default class Products extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+        if (prevState.addModalShow !== this.state.addModalShow) {
             this.productsList();
         }
     }
@@ -65,10 +64,7 @@ export default class Products extends Component {
 
     productsList() {
         axios.get('https://localhost:5001/api/Product/getAll')
-            .then(res => {
-                let filterList = this.filterList(this.sortList(res.data, this.state.sortBy))
-                this.setState({ products: res.data, productsFilters: filterList });
-            })
+            .then(res => this.setState({ productsFilters: res.data }))
     }
 
     searchPanel(rows) {
@@ -77,31 +73,22 @@ export default class Products extends Component {
 
     filterList(list) {
         let newList = list;
-        if ((this.state.newFiltersBrands && this.state.newFiltersBrands.length) || (this.state.newFiltersTypes && this.state.newFiltersTypes.length)) {
-            //if states not empty
-            if (this.state.newFiltersBrands && this.state.newFiltersBrands.length) {
-                newList = list.filter(a => this.state.newFiltersBrands.indexOf(a.brandId) > -1);
-            }
-            if (this.state.newFiltersTypes && this.state.newFiltersTypes.length) {
-                newList = newList.filter(a => this.state.newFiltersTypes.indexOf(a.typeId) > -1);
-            }
-        } else {
-            return newList = this.state.products;
+        if (this.state.newFiltersBrands && this.state.newFiltersBrands.length) {
+            newList = list.filter(a => this.state.newFiltersBrands.indexOf(a.brandId) > -1);
+        }
+        if (this.state.newFiltersTypes && this.state.newFiltersTypes.length) {
+            newList = newList.filter(a => this.state.newFiltersTypes.indexOf(a.typeId) > -1);
         }
         return newList;
     }
 
     sortList(list, sortType) {
         let oldList = list;
-        if (sortType === 'От большего к меньшему' || sortType === 'От меньшего к большему') {
-            if (sortType === 'От меньшего к большему') {
-                oldList = list.sort((a, b) => (a.price > b.price) ? 1 : -1);
-            } else if (sortType === 'От большего к меньшему') {
-                oldList = list.sort((a, b) => (a.price < b.price) ? 1 : -1);
-            }
-        } else {
-            list = oldList;
-            return list;
+        if (sortType === 'От меньшего к большему') {
+            oldList = list.sort((a, b) => (a.price > b.price) ? 1 : -1);
+        }
+        if (sortType === 'От большего к меньшему') {
+            oldList = list.sort((a, b) => (a.price < b.price) ? 1 : -1);
         }
         return oldList;
     }
@@ -123,7 +110,7 @@ export default class Products extends Component {
     render() {
         const { productsFilters, brands, types, search, items, grid, baners } = this.state;
         const addModalClose = () => this.setState({ addModalShow: false });
-        const productsSearch = this.searchPanel(productsFilters);
+        const productsSearch = this.searchPanel(this.filterList(this.sortList(productsFilters, this.state.sortBy)));
         const list = (productsSearch && productsSearch.length !== 0) ? (
             (grid === true) ? (<Row className='d-flex justify-content-center'>{productsSearch.map(product => <ProductOfGrid key={product.id} productsUpdate={() => this.productsList()} product={product} role={this.props.role} />)}</Row>)
                 : (<ListGroup>{productsSearch.map(product => <ProductOfList key={product.id} productsUpdate={() => this.productsList()} product={product} role={this.props.role} />)}</ListGroup>))

@@ -25,7 +25,7 @@ export default class Brands extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+        if (prevState.addModalShow !== this.state.addModalShow || prevState.editModalShow !== this.state.editModalShow) {
             this.brandsList();
         }
     }
@@ -33,20 +33,14 @@ export default class Brands extends Component {
     deleteBrand(id) {
         if (window.confirm('Вы уверены?')) {
             axios.delete(`https://localhost:5001/api/Brand/delete/${id}`)
-                .then(res => {
-                    this.brandsList();
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+                .then(res => this.brandsList())
+                .catch(error => console.log(error));
         }
     }
 
     brandsList() {
         axios.get(`https://localhost:5001/api/Brand/getAll`)
-            .then(res =>
-                this.setState({ brands: res.data })
-            );
+            .then(res => this.setState({ brands: res.data }));
     }
 
     snackBarClose = (event) => {

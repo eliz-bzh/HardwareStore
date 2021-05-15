@@ -34,9 +34,7 @@ class Cart extends Component {
         const { match } = this.props;
         const { login } = match.params;
         axios.get(`https://localhost:5001/api/Client/getByLogin/` + login)
-            .then(res => {
-                this.setState({ user: res.data })
-            })
+            .then(res => this.setState({ user: res.data }))
     }
 
     data = () => {
@@ -71,9 +69,7 @@ class Cart extends Component {
                     this.data();
                     this.setState({ open: true, message: 'Заказ оформлен', severity: 'success', buttonHiddenPayment: false });
                 })
-                .catch(err => {
-                    console.log(err);
-                })
+                .catch(err => console.log(err))
         }
     }
 
@@ -129,16 +125,8 @@ class Cart extends Component {
         const { user } = this.state;
         emailjs
             .send("service_e2uee2x", templateId, variables)
-            .then((res) => {
-                this.setState({ open: true, message: `Письмо отправлено на почту ${user.email}`, severity: 'success' });
-                console.log("Email successfully send!");
-            })
-            .catch((err) =>
-                console.error(
-                    "Oh well, you failed. Here some thoughts on the error that occured:",
-                    err
-                )
-            );
+            .then((res) => this.setState({ open: true, message: `Письмо отправлено на почту ${user.email}`, severity: 'success' }))
+            .catch((err) => console.error("Oh well, you failed. Here some thoughts on the error that occured:", err));
     }
 
     render() {

@@ -24,23 +24,17 @@ export default class AddProductModal extends Component {
 
     brandsList() {
         axios.get(`https://localhost:5001/api/Brand/getAll`)
-            .then(res => {
-                this.setState({ brands: res.data })
-            });
+            .then(res => this.setState({ brands: res.data }));
     }
 
     typesList() {
         axios.get(`https://localhost:5001/api/Type/getAll`)
-            .then(res => {
-                this.setState({ types: res.data })
-            });
+            .then(res => this.setState({ types: res.data }));
     }
 
     suppliersList() {
         axios.get(`https://localhost:5001/api/Supplier/getAll`)
-            .then(res => {
-                this.setState({ suppliers: res.data })
-            });
+            .then(res => this.setState({ suppliers: res.data }));
     }
 
     snackBarClose = (event) => {
@@ -61,22 +55,14 @@ export default class AddProductModal extends Component {
             supplyId: parseInt(event.target.supplier.value),
             images: this.state.images
         })
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Успешно добавлено', images: [] });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка добавления' });
-            });
+            .then(res => this.setState({ snackBaropen: true, snackBarMessage: 'Успешно добавлено', images: [] }))
+            .catch(error => this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка добавления' }));
     }
 
 
     uploadImage = async event => {
         const files = event.target.files;
         const data = new FormData();
-        console.log(files);
         for (let i = 0; i !== files.length; ++i) {
             data.append('file', files[i]);
             data.append('upload_preset', 'hardware-store');

@@ -8,7 +8,6 @@ const Switcher = () => {
     const darkMode = useSelector(state => state.darkModeReducer.darkMode);
 
     const myFunction = () => {
-        console.log(!darkMode);
         dispatch(changeDarkMode(!darkMode));
         var element = document.body;
         (!darkMode) ? (element.classList.add("dark-mode")) : (element.classList.remove("dark-mode"));

@@ -34,15 +34,8 @@ export default class AddSupplyModal extends Component {
             SupplierId: event.target.supplier.value,
             Date: event.target.date.value
         })}`)
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Успешно добавлено' });
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка добавления' });
-            });
+            .then(res => this.setState({ snackBaropen: true, snackBarMessage: 'Успешно добавлено' }))
+            .catch(error => this.setState({ snackBaropen: true, snackBarMessage: 'Ошибка добавления' }));
     }
 
     render() {

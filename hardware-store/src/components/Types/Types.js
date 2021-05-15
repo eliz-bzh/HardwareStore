@@ -25,7 +25,7 @@ export default class Types extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+        if (prevState.addModalShow !== this.state.addModalShow || prevState.editModalShow !== this.state.editModalShow) {
             this.typesList();
         }
     }
@@ -33,20 +33,14 @@ export default class Types extends Component {
     deleteType(id) {
         if (window.confirm('Вы уверены?')) {
             axios.delete(`https://localhost:5001/api/Type/delete/${id}`)
-                .then(res => {
-                    this.typesList();
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+                .then(res => this.typesList())
+                .catch(error => console.log(error));
         }
     }
 
     typesList() {
         axios.get(`https://localhost:5001/api/Type/getAll`)
-            .then(res => {
-                this.setState({ types: res.data })
-            });
+            .then(res => this.setState({ types: res.data }));
     }
 
     snackBarClose = (event) => {

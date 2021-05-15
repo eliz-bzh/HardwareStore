@@ -25,7 +25,7 @@ export default class Suppliers extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+        if (prevState.addModalShow !== this.state.addModalShow || prevState.editModalShow !== this.state.editModalShow) {
             this.suppliersList();
         }
     }
@@ -33,20 +33,14 @@ export default class Suppliers extends Component {
     deleteSupplier(id) {
         if (window.confirm('Вы уверены?')) {
             axios.delete(`https://localhost:5001/api/Supplier/delete/${id}`)
-                .then(res => {
-                    this.suppliersList();
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+                .then(res => this.suppliersList())
+                .catch(error => console.log(error));
         }
     }
 
     suppliersList() {
         axios.get(`https://localhost:5001/api/Supplier/getAll`)
-            .then(res => {
-                this.setState({ suppliers: res.data })
-            });
+            .then(res => this.setState({ suppliers: res.data }));
     }
 
     snackBarClose = (event) => {
