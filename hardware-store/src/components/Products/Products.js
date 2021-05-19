@@ -119,19 +119,14 @@ export default class Products extends Component {
             <div>
                 {(baners.length !== 0) ? <div className="mt-2"><Carousel images={baners} /></div> : null}
                 <ButtonToolbar className='float-right'>
-                    <ButtonGroup className='vertical'>
-                        {/*Sorting by price*/}
-                        <RadioBox list={items} handleSort={sort => this.handleSortPrice(sort)} />
-                        <div className="mr-2"></div>
-                        {(this.props.role === 'admin') ? (
-                            <Button variant="light"
-                                onClick={() => {
-                                    this.setState({ addModalShow: true })
-                                }}>
-                                {<AddIcon />}Добавить новый товар
-                            </Button>
-                        ) : (null)}
-                    </ButtonGroup>
+                    {(this.props.role === 'admin') ? (
+                        <Button variant="light"
+                            onClick={() => {
+                                this.setState({ addModalShow: true })
+                            }}>
+                            {<AddIcon />}Добавить новый товар
+                        </Button>
+                    ) : (null)}
                 </ButtonToolbar>
 
                 <div style={{ display: 'inline-flex' }}>
@@ -140,6 +135,9 @@ export default class Products extends Component {
                     <div className="mr-2"></div>
                     {/*Filter by category(types)*/}
                     <CheckBox items={types} sortBy='Категории' handleFilters={filters => this.handleFiltersTypes(filters)} />
+                    <div className="mr-2"></div>
+                    {/*Sorting by price*/}
+                    <RadioBox list={items} handleSort={sort => this.handleSortPrice(sort)} />
                 </div>
 
                 <AddProductModal

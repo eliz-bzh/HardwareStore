@@ -79,7 +79,7 @@ export default class Order extends Component {
                 </SnackBar>
                 <h1 className='mt-2 d-flex justify-content-center align-items-center'>Заказы</h1>
                 <Form className='mr-3' onSubmit={this.handleSubmit}>
-                    <Row>
+                    <Row className='order-settings'>
                         <Col>
                             <InputGroup>
                                 <InputGroup.Prepend>
