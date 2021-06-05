@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Курсовая 4 курс\\HardwareStoreServer\\HardwareStoreServer\\HardwareStoreServer.csproj": {}
+    "d:\\ДИПЛОМ\\HardwareStoreServer\\HardwareStoreServer\\HardwareStoreServer.csproj": {}
   },
   "projects": {
-    "D:\\Курсовая 4 курс\\HardwareStoreServer\\HardwareStoreServer\\HardwareStoreServer.csproj": {
+    "d:\\ДИПЛОМ\\HardwareStoreServer\\HardwareStoreServer\\HardwareStoreServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Курсовая 4 курс\\HardwareStoreServer\\HardwareStoreServer\\HardwareStoreServer.csproj",
+        "projectUniqueName": "d:\\ДИПЛОМ\\HardwareStoreServer\\HardwareStoreServer\\HardwareStoreServer.csproj",
         "projectName": "HardwareStoreServer",
-        "projectPath": "D:\\Курсовая 4 курс\\HardwareStoreServer\\HardwareStoreServer\\HardwareStoreServer.csproj",
+        "projectPath": "d:\\ДИПЛОМ\\HardwareStoreServer\\HardwareStoreServer\\HardwareStoreServer.csproj",
         "packagesPath": "C:\\Users\\Liz\\.nuget\\packages\\",
-        "outputPath": "D:\\Курсовая 4 курс\\HardwareStoreServer\\HardwareStoreServer\\obj\\",
+        "outputPath": "d:\\ДИПЛОМ\\HardwareStoreServer\\HardwareStoreServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Liz\\AppData\\Roaming\\NuGet\\NuGet.Config",

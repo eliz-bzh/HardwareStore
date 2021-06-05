@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7BQNo0TSgoyGMfTIlXfNoN+uLi5RtgEqHsXZiyxCU512toHJFUYCGmhZqBl69ywnzQmksaAYLFzGFJvH8tgtxA==",
+  "dgSpecHash": "imcK2UQCknMT9syA/1U7i4f+rMpQSHQPaHSFAIK3nCp+Ur4fy1pfejNGzTF/o8utzS3koLeJlqvVeWb4OF9yNw==",
   "success": true,
-  "projectFilePath": "D:\\Курсовая 4 курс\\HardwareStoreServer\\HardwareStoreServer\\HardwareStoreServer.csproj",
+  "projectFilePath": "d:\\ДИПЛОМ\\HardwareStoreServer\\HardwareStoreServer\\HardwareStoreServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Liz\\.nuget\\packages\\closedxml\\0.95.4\\closedxml.0.95.4.nupkg.sha512",
     "C:\\Users\\Liz\\.nuget\\packages\\documentformat.openxml\\2.7.2\\documentformat.openxml.2.7.2.nupkg.sha512",

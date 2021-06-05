@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace HardwareStoreServer.Services.DBServices
 {
@@ -47,17 +48,15 @@ namespace HardwareStoreServer.Services.DBServices
             return true;
         }
 
-        public string ExportOrdersToExcel(DateTime from, DateTime to)
+        public byte[] ExportOrdersToExcel(DateTime from, DateTime to)
         {
             var q = context.Orders.Where(o => o.Date > from && o.Date < to);
-            try
-            {
-                return excelService.ExportData(q);
-            }
-            catch (Exception ex)
-            {
-                return ex.ToString();
-            }
+            return excelService.ExportDataForOrders(q);
+        }
+
+        public byte[] ExportCartToExcel()
+        {
+            return excelService.ExportDataForCart();
         }
 
         public IList<Order> GetAll()
