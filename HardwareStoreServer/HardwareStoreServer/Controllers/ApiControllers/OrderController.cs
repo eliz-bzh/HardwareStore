@@ -81,9 +81,17 @@ namespace HardwareStoreServer.Controllers
         }
 
         [HttpGet("excelOrders")]
-        public string GetExcel([FromQuery]DateTime from, [FromQuery]DateTime to)
+        public FileResult GetExcelOrders([FromQuery]DateTime from, [FromQuery]DateTime to)
         {
-            return service.ExportOrdersToExcel(from, to);
+            var data = service.ExportOrdersToExcel(from, to);
+            return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Report.xlsx");
+        }
+
+        [HttpGet("excelCart")]
+        public FileResult GetExcelCart()
+        {
+            var data = service.ExportCartToExcel();
+            return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "CheckOnline.xlsx");
         }
 
         [HttpGet("getById/{id}")]
